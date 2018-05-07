@@ -1,0 +1,1 @@
+url:localhost-:banco:atgbasedados-:user:root-:pass:sistema47

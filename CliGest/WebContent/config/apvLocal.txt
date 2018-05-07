@@ -1,0 +1,1 @@
+url:localhost-:banco:gestclinica-:user:root-:pass:sistema47

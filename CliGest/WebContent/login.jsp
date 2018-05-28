@@ -23,7 +23,7 @@
 <body>
     <!-- logo start -->
       <div class="form-title">
-           <img src="theme/img/logo.jpg" class="img-circle" alt=""> 
+           CLI-GEST 
       </div>
      <!-- logo end -->
     <!-- Login Form-->

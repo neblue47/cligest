@@ -212,7 +212,7 @@
     
     <!-- start js include path -->
     
-    <script src="assets/jquery.min.js" ></script>
+<!--     <script src="assets/jquery.min.js" ></script> -->
     <script src="assets/popper/popper.js" ></script>
     <script src="assets/jquery.blockui.min.js" ></script>
 	<script src="assets/jquery.slimscroll.js"></script>
@@ -238,7 +238,7 @@
     
     
      <!-- Login js -->
-    <script src="assets/jquery.min.js" ></script>
+<!--     <script src="assets/jquery.min.js" ></script> -->
 <!--     <script src="assets/login.js"></script> -->
     <script src="assets/pages.js" ></script>
     <!-- end js include path -->

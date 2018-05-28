@@ -74,7 +74,7 @@
                                 <div class="card-body " id="bar-parent">
                                     <div class="row">
                                         <div class="col-md-3 col-sm-3 col-xs-3">
-                                            <ul class="nav nav-tabs tabs-left"  >
+                                            <ul class="nav nav-tabs tabs-left"  id="myTab">
                                                 <li class="nav-item">
                                                     <a href="#tab_6_1" data-toggle="tab" class="active"> Sinais e Dados </a>
                                                 </li>
@@ -403,6 +403,20 @@ $(document).on('click','.toggle',function(){
   }
   
 });
+</script>
+<script src="assets/js-tab/jquery-tab.min.js" ></script>
+<script src="assets/js-tab/bootstrap-tab.min.js" ></script>
+ <script  >
+ $(function() {
+	    $('a[data-toggle="tab"]').on('click', function(e) {
+	        window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+	    });
+	    var activeTab = window.localStorage.getItem('activeTab');
+	    if (activeTab) {
+	        $('#myTab a[href="' + activeTab + '"]').tab('show');
+	        window.localStorage.removeItem("activeTab");
+	    }
+	});
 </script>
 
  

@@ -113,6 +113,46 @@ public class AdministracaoController extends HttpServlet {
 				saida.forward(request, response);
 			}
 			
+			// Cadastro de Serviços - Consulta
+			if (tela != null && (tela.equals("lscons"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=lscons");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("novocons"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=novocons");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("editcons"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editcons");
+				saida.forward(request, response);
+			}
+			// Cadastro de Serviços - Exame
+			if (tela != null && (tela.equals("lsexam"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=lsexam");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("novoexam"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=novoexam");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("editexam"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editexam");
+				saida.forward(request, response);
+			}
+			
+			// Cadastro de Serviços - Especialidade
+			if (tela != null && (tela.equals("lsesp"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=lsesp");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("novoesp"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=novoesp");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("editesp"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editesp");
+				saida.forward(request, response);
+			}
 			if(mod!=null && mod.equals("ng"))
 			{
 				List<Paciente> agendados =  _agendaConsulta.listaConsultaAgendada();

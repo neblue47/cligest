@@ -60,15 +60,19 @@
 												</ul>
 			                                </li>
 			                                <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Exames</span>
+			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Serviços</span>
 			                                    </a>
 												 <ul class="sub-menu">
 													<li class="nav-item  ">
-														<a href="add_patient.html" class="nav-link "> <span class="title">Pacientes</span>
+														<a href="navegacao?mods=ad&pag=lscons" class="nav-link "> <span class="title">Consultas</span>
 														</a>
 													</li>
 													<li class="nav-item  ">
-														<a href="all_patients.html" class="nav-link "> <span class="title">Historico</span>
+														<a href="navegacao?mods=ad&pag=lsexam" class="nav-link "> <span class="title">Exames</span>
+														</a>
+													</li>
+													<li class="nav-item  ">
+														<a href="navegacao?mods=ad&pag=lsesp" class="nav-link "> <span class="title">Especialidades</span>
 														</a>
 													</li>
 												</ul>

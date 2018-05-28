@@ -44,14 +44,7 @@ public class PacienteExame {
 		this.nome_paciente = nome_paciente;
 	}
 
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
+	 
 	public String getGenero() {
 		return genero;
 	}
@@ -76,6 +69,14 @@ public class PacienteExame {
 
 	public void setData_exame(Calendar data_exame) {
 		this.data_exame = data_exame;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
 	}
 
 	

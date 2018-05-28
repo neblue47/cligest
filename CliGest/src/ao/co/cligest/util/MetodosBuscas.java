@@ -6020,7 +6020,7 @@ public class MetodosBuscas
 		String  local = "";
 		String maquina =  InetAddress.getLocalHost().getHostName();
 		if(maquina.equals("APV-DSV28"))
-			local = "C:\\Users\\nelson.joao\\workspace\\CliGest\\WebContent\\config\\apvlocal.txt";
+			local = "C:\\Users\\nelson.joao\\git\\CliGest\\WebContent\\config\\apvLocal.txt";
 		else if(maquina.equals("Caricoco"))
 			local = "C:\\ATW\\ATGesthosp\\WebContent\\config\\local.txt";
 		else if(maquina.equals("AT"))

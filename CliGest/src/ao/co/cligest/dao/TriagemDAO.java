@@ -33,8 +33,6 @@ private Connection con ;
 				 fun.setId_entidade(rs.getInt("FK_consulta_marcada"));
 				 fun.setNumero_processo(rs.getString("numero_processo"));
 				 fun.setNome(rs.getString("paciente"));
-//				 fun.setNomem(rs.getString("nome_meio"));
-//				 fun.setApelido(rs.getString("ultimo_nome"));
 				 fun.setServico(rs.getString("servico"));
 				 fun.setId_servico(rs.getInt("id_servico"));
 				 fun.setFK_doutor(rs.getInt("fk_doutor"));
@@ -148,41 +146,38 @@ private Connection con ;
 		int ultimoCod = 0;
 		String sql = "INSERT INTO TBLTRIAGEM(FK_consulta_confirmada,"
 												+ "FK_paciente, "
-												+ "FK_doutor, "
 												+ "FK_funcionario, "
 												+ "FK_estado_paciente, "
 												+ "FK_servico, "
-												+ "FK_temperatura, " 
-												+ "FK_pulso, 	"
-												+ "FK_respiracao,"
-												+ "FK_tensao_sistolica,"
-												+ "FK_tensao_diastolica,"
+												+ "temperatura, " 
+												+ "pulso, 	"
+												+ "respiracao,"
+												+ "tensao_sistolica,"
+												+ "tensao_diastolica,"
 												+ "peso,"
 												+ "data,"
 												+ "imc,"
 												+ "altura,"
-												+ "diagnostico_preliminar, hora_registo)" + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+												+ "diagnostico_preliminar, hora_registo)" + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try{
 			con = Conexao.getConexao();
 			PreparedStatement triagPac = con.prepareStatement(sql);
 			triagPac.setInt(1, fun.getId_cons_conf());
 			triagPac.setInt(2, fun.getFK_paciente());
-			triagPac.setInt(3, fun.getFK_doutor());
-			triagPac.setInt(4, fun.getFk_funcionario());
-			triagPac.setInt(5, fun.getFK_estado_do_paciente());
-			triagPac.setInt(6, fun.getId_servico());
-			triagPac.setInt(7, fun.getFk_temperatura());
-			triagPac.setInt(8, fun.getFk_pulso());
-			triagPac.setInt(9, fun.getFk_respiracao());
-			triagPac.setInt(10, fun.getFK_tensao_sistolica());
-			triagPac.setInt(11, fun.getFK_tensao_diastolica());
-			triagPac.setDouble(12, fun.getPeso());
-			triagPac.setDate(13, data_registo());
-			triagPac.setDouble(14, fun.getImc());
-			triagPac.setDouble(15,fun.getAltura());
-//			triagPac.setInt(15, fun.getUsuario());
-			triagPac.setString(16, fun.getDiagnostico_preliminar());
-			triagPac.setString(17, new Formatando().horaAtual());
+			triagPac.setInt(3, fun.getFk_funcionario());
+			triagPac.setInt(4, fun.getFK_estado_do_paciente());
+			triagPac.setInt(5, fun.getId_servico());
+			triagPac.setString(6, fun.getTemperatura());
+			triagPac.setString(7, fun.getPulso());
+			triagPac.setString(8, fun.getRespiracao());
+			triagPac.setString(9, fun.getTensao_sistolica());
+			triagPac.setString(10, fun.getTensao_diastolica());
+			triagPac.setDouble(11, fun.getPeso());
+			triagPac.setDate(12, data_registo());
+			triagPac.setDouble(13, fun.getImc());
+			triagPac.setDouble(14,fun.getAltura());
+			triagPac.setString(15, fun.getDiagnostico_preliminar());
+			triagPac.setString(16, new Formatando().horaAtual());
 			triagPac.execute();
 			
 			ResultSet rs = triagPac.executeQuery("SELECT LAST_INSERT_ID()");

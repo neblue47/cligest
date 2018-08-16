@@ -1,5 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ 
+<style>
+option.um     {background-color: blue;  color: white;} 
+option.dois   {background-color: green; color: white;} 
+option.tres   {background-color: yellow; color: black; } 
+option.quatro {background-color: orange; color: white;} 
+option.cinco  {background-color: red; color: white;} 
+</style>
 <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content">
@@ -64,7 +72,7 @@
 	                        	</div>
 	                   	 </div>
 	                    <div class="col-md-8 col-xs-12">
-	                     <form action="#" id="form_sample_1" class="form-horizontal" method="post">
+	                     <form action="TriagemController" id="form_sample_1" class="form-horizontal" method="post">
 	                     <div class="white-box">
 								<div class="cardbox">
 			                    <div class="card-head">
@@ -74,69 +82,55 @@
 				                        <div class="user-btm-box">
 				                                <div class="row   m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Temperatura</strong>
-				                                       <select class="form-control center" name="temperatura">
-                                                        <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
-                                                    </select>
+				                                       <input type="text" class="form-control " name="temperatura" placeholder="temperatura">  
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Respiração</strong>
-				                                     <select class="form-control center" name="genero">
-                                                        <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
-                                                    </select>
+				                                     <input type="text" class="form-control " name="respiracao" placeholder="respiracao">
 				                                    </div>
 				                                </div>
 				                                <div class="row   m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Pulso</strong>
-				                                        <select class="form-control center" name="genero">
-                                                        <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
-                                                    </select>
+				                                        <input type="text" class="form-control " name="pulso" placeholder="pulso">
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>T.A Sistolica</strong>
-				                                    <select class="form-control center" name="genero">
-                                                        <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
-                                                    </select>
+				                                    <input type="text" class="form-control " name="sistolica" placeholder="sistolica">
 				                                    </div>
 				                                </div>
 				                                <div class="row   m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>T.A Diastolica</strong>
-				                                        <select class="form-control  center" name="genero"  >
-                                                        <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
-                                                    </select>
+				                                        <input type="text" class="form-control " name="diastolica" placeholder="diastolica">
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Peso</strong>
 				                                    <div class="input-group">
-                                                        <input type="text" class="form-control " name="email" placeholder="peso"> </div>
+                                                        <input type="text" class="form-control " name="peso" id="peso"  placeholder="peso" onblur="retormaIMC()"> </div>
 				                                    </div>
 				                                </div>
 				                                <div class="row m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Altura</strong>
 				                                    <div class="input-group">
-                                                        <input type="text" class="form-control " name="email" placeholder="altura"> </div>
+                                                        <input type="text" class="form-control " name="altura" id="altura" placeholder="altura" onblur="retormaIMC()"> </div>
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>IMC</strong>
-				                                       <input type="text" class="form-control " name="email" placeholder="imc"> </div>
+				                                       <input type="text" class="form-control " name="imc" id="imc" placeholder="imc" readonly="readonly"> </div>
 				                                    </div>
 				                                </div>
 				                                <div class="row  m-t-10">
 				                                    <div class="col-lg-12  "><strong>Estado</strong>
-				                                    <select class="form-control  center" name="genero"  >
+				                                    <select class="form-control  center" name="estado"  >
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
+                                                        <option class="um" value="1">Não urgente</option>
+                                                        <option class="dois" value="2">Pouco Urgente</option>
+                                                        <option class="tres" value="3">Urgente</option>
+                                                        <option class="quatro" value="4">Muito Urgente</option>
+                                                        <option class="cinco" value="5">Emergente</option>
                                                         </select>  
 				                                    </div>
 				                                 
 				                                </div>
-				                                
+				                                <input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+											    <input type="hidden" name="funInt" value="${usuario}">
+											    <input type="hidden" name="serInt" value="${param.cods}">
+											    <input type="hidden" name="conInt" value="${param.codc}">
 				                                <div class="row  m-t-10">
 				                                    <div class="col-lg-12">
 				                                     <label class="control-label  "><strong>Nota</strong></label>
@@ -155,7 +149,9 @@
                                             	</div>
 	                        		</div>
 	                    </div>
+	                    </div>
 	                    </form>
                     </div>
                 </div>
                 <!-- end page content -->
+               

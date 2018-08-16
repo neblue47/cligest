@@ -43,7 +43,7 @@
 												<td>Dr. ${pc.nome_doutor}</td>
 												<td>${pc.servico}</td>
 												<td class="center">
-													<a href="navegacaoft?mods=fat&pag=pagarcon&codcs=${pc.FK_consulta_marcada}"class="btn btn-primary btn-xs" title="Pagar">
+													<a href="navegacaoft?mods=fat&pag=pagarcon&codcs=${pc.FK_consulta_marcada}&codcf=${pc.FK_consulta_confirmada}"class="btn btn-primary btn-xs" title="Pagar">
 														<i class="fa fa-credit-card"></i>
 													</a>
 													 

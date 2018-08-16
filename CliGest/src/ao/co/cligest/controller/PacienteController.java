@@ -107,9 +107,16 @@ public class PacienteController extends HttpServlet {
 					FileItem item = (FileItem)itr.next();
 					if(!item.isFormField()){ 
 						String itemname = item.getName();
+						if((itemname==null) || itemname.equals(""))
+						{
+							continue;
+						}
 						String filename = FilenameUtils.getName(itemname);
-						File f = checkExist(filename);
-						item.write(f);
+
+						if(Exist(filename)){
+							File f = checkExist(filename);
+							item.write(f);
+						}
 						break;
 					}
 				}
@@ -132,7 +139,14 @@ public class PacienteController extends HttpServlet {
 		}
 		return f;
 	}
-	
+	private boolean Exist(String fileName) {	
+		boolean existe = true;
+		File f = new File(saveFile+"/"+fileName);	
+		if(f.exists()){
+			existe = false;		
+		}
+		return existe;
+	}
 	private  void gerarPasta(String pasta){
 		try {
 			File dir = new File(pasta);

@@ -93,7 +93,6 @@ import ao.co.cligest.util.MetodosBuscas;
 @WebServlet("/navegacaoft")
 public class FacturacaoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private IPacientePlano iPacientePlano = new PacientePlanoDAO();  
 	private PacienteDAO _pacienteDAO = new PacienteDAO();
 	private IAgendaExame _agendaExame = new AgendaExameDAO();
 	FacturacaoDAO fDao = new FacturacaoDAO();
@@ -118,13 +117,13 @@ public class FacturacaoController extends HttpServlet {
 		
 		if (ss != null) {
 			if (mod != null && mod.equals("fat")) {
-				
+				request.setAttribute("pagmt", "active open");
 				// Inicio - Pagamento - Consultas
 				if (tela != null && (tela.equals("listacon"))) {
 					List<Paciente> lsPaciente = new ArrayList<>();
 					lsPaciente = _agendaConsulta.listaConsultaConfirmada();
 					request.setAttribute("lsPaciente", lsPaciente);
-					request.setAttribute("pagmt", "active open");
+					
 					saida = request.getRequestDispatcher("index.jsp?mods=fat&pag=listacon");
 					saida.forward(request, response);
 				}
@@ -141,6 +140,8 @@ public class FacturacaoController extends HttpServlet {
 					saida.forward(request, response);
 				}
 				if (tela != null && (tela.equals("listaconHis"))) {
+					List<Paciente> lsPaciente = _agendaConsulta.listaConsultaConfirmadaPago();
+					request.setAttribute("lsPaciente", lsPaciente);
 					saida = request.getRequestDispatcher("index.jsp?mods=fat&pag=listaconHis");
 					saida.forward(request, response);
 				}
@@ -173,8 +174,6 @@ public class FacturacaoController extends HttpServlet {
 					saida = request.getRequestDispatcher("index.jsp?mods=fat&pag=listaexaHis");
 					saida.forward(request, response);
 				}
-				
-				 
 				
 			}
 		} // if de Sessao

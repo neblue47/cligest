@@ -74,24 +74,29 @@ public class AgendaConsultaController extends HttpServlet {
 		String servico = request.getParameter("servico");
 		String hrConsulta = request.getParameter("hrConsulta");
 		String usuario = request.getParameter("usuario");
-
+		String encaminho = "";
 		try {
 				p.setFK_paciente(Integer.parseInt(pac));
 				p.setFK_doutor(Integer.parseInt(doutor));
 				p.setFK_servico(Integer.parseInt(servico));
 				p.setData_agendamento(ft.dataSql(dtConsulta));
-				p.setTelefone(Long.parseLong(number));
+				if(!number.isEmpty())
+				{
+					p.setTelefone(Long.parseLong(number));
+					p.setTelefonep(Long.parseLong(number));
+				}
 				p.setHora_daconfirmacao(hrConsulta);
 				p.setFK_funcionario(Integer.parseInt(usuario));
-				p.setTelefonep(Long.parseLong(number));
 				_agendaConsultaDAO.adicionaConsulta(p);
-				ss.setAttribute("msgOk", "msgOK");		
+				ss.setAttribute("msgOk", "msgOK");	
+				encaminho = "navegacaoag?mods=ag&pag=listagen";
 			} 
 		catch (Exception e) {
 			e.printStackTrace();
 			ss.setAttribute("msgNOK", "msgNOK");
+			encaminho = "navegacaoag?mods=ag&pag=novoagen";
 		}
-		response.sendRedirect("navegacaoag?mods=ag&pag=listagen");
+		response.sendRedirect(encaminho);
 	}
 
 }

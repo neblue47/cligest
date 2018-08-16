@@ -77,12 +77,11 @@ public class ProcedimentoController extends HttpServlet {
 
 		if (ss != null) {
 			if (mod != null && mod.equals("pd")) {
-				
+				request.setAttribute("procmt", "active open");
 				// Inicio - Triagem
 				if (tela != null && (tela.equals("triapac"))) {
-					List<Paciente> lsPaciente = new ArrayList<>();
-					lsPaciente = _agendaConsulta.listaConsultaConfirmada();
-					request.setAttribute("lsPaciente", lsPaciente);
+					 
+					request.setAttribute("lsNoTriado", _agendaConsulta.listaPagoNaoTriado());
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=triapac");
 					saida.forward(request, response);
 				}
@@ -96,10 +95,17 @@ public class ProcedimentoController extends HttpServlet {
 				}
 				// Inicio - Consulta
 				if (tela != null && (tela.equals("conspac"))) {
+					request.setAttribute("lsSiTriado", _agendaConsulta.listaPagoTriado());
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=conspac");
 					saida.forward(request, response);
 				}
 				if (tela != null && (tela.equals("newcons"))) {
+					String codp =request.getParameter("codp");
+					String codc =request.getParameter("codc");
+					Paciente perfil = _pacienteDAO.getPerfilPaciente(codp);
+					Triagem sinais = _agendaConsulta.getSinais(codc);
+					request.setAttribute("perfil", perfil);
+					request.setAttribute("sinais", sinais);
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=newcons");
 					saida.forward(request, response);
 				}

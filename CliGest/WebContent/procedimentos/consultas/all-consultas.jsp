@@ -1,5 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<style>
+.statu-1  {background-color: blue;  color: white; height: 12px;} 
+.statu-2  {background-color: green; color: white; height: 12px;} 
+.statu-3  {background-color: yellow; color: black; height: 12px;} 
+.statu-4  {background-color: orange; color: white; height: 12px;} 
+.statu-5  {background-color: red; color: white; height: 12px;} 
+</style>
 <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content">
@@ -30,50 +37,42 @@
 					                        <div class="col-md-12">
 					                            <div class="card card-topline-red">
 					                                <div class="card-head">
-					                                    <header> </header>
+					                                    <header> Lista de Pacientes </header>
 					                                    <div class="tools">
 					                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
 						                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
 					                                    </div>
 					                                </div>
 					                                <div class="card-body ">
-					                                    
-					                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
-					                                        <thead>
-					                                            <tr>
-					                                            	<th class="center"> <i class="fa fa-calendar"></i> </th>
-					                                                <th class="center"> Nome </th>
-					                                                <th class="center"> Genero </th>
-					                                                <th class="center"> Endereço </th>
-					                                                <th class="center"> Telefone </th>
-					                                                <th class="center"> Nascido </th>
-					                                                <th class="center"> Idade</th>
-					                                                <th class="center"> Sangue</th>
-					                                                <th class="center"> Opções </th>
-					                                            </tr>
-					                                        </thead>
-					                                        <tbody>
-																<tr class="odd gradeX">
-																	<td class="center">
-																		 
-																	</td>
-																	<td>Alexandre Alberto Joao</td>
-																	<td class="center">Masculino</td>
-																	<td class="center">18,Ajay flats, satadhar, ahmedabad</td>
-																	<td><a href="tel:4444565756">
-																			924 044 145 </a></td>
-																	<td class="center">18/12/2017</td>
-																	<td class="center">1</td>
-																	<td class="center">0+</td>
-																	<td  class="center">
-																		<a href="navegacaopd?mods=pd&pag=newcons" class="btn btn-primary btn-xs">
-																			<i class="fa fa-heartbeat"></i>
-																		</a>
-																	</td>
-																</tr>
+					                                    <table class="table display" id="example1" style="width:100%;">
+				                                        <thead>
+				                                            <tr>
+				                                                <th  > Nome do Paciente</th>
+				                                                <th class="center"> Genero </th>
+				                                                <th class="center"> Idade </th>
+				                                                <th class="center"> Serviço</th>
+				                                                <th class="center"> Status</th>
+				                                                <th class="center"> Opções </th>
+				                                            </tr>
+				                                        </thead>
+				                                        <tbody>
+				                                        <c:forEach var="pc" items="${lsSiTriado }">
+				                                        <tr class="odd gradeX">
 																 
-															</tbody>
-					                                    </table>
+																<td>${pc.nome_paciente}</td>
+																<td class="center"> ${pc.nomegenero} </td>
+																<td class="center"> ${pc.pac_idade}</td>
+																<td class="center">${pc.servico}</td>
+																<td class="center statu-${pc.FK_status}">${pc.status}</td>
+																<td class="center">
+																	<a href="navegacaopd?mods=pd&pag=newcons&codp=${pc.FK_paciente}&codc=${pc.FK_consulta_confirmada}" class="btn btn-primary btn-xs">
+																			<i class="fa fa-heartbeat"></i>
+																	</a>
+																</td>
+															</tr>
+				                                        </c:forEach>
+														</tbody>
+				                                    </table>
 					                                </div>
 					                            </div>
 					                        </div>
@@ -86,3 +85,7 @@
                 </div>
             </div>
             <!-- end page content -->
+            <script src="assets/datatables/jquery.dataTables.min.js" ></script>
+ 	<script src="assets/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
+    <script src="assets/table_data.js" ></script>
+            

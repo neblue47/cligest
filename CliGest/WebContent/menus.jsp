@@ -161,20 +161,8 @@
 												</ul>
 			                                </li>
 											 <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Outros Serviços</span>
+			                                    <a href="navegacaoft?mods=fat&pag=listapg" class="nav-link nav-toggle"> <span class="title">Pagamentos</span>
 			                                    </a>
-												 <ul class="sub-menu">
-												
-													<li class="nav-item  ">
-														<a href="add_patient.html" class="nav-link "> <span class="title">Urgencias</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="all_patients.html" class="nav-link "> <span class="title">Emergencias</span>
-														</a>
-													</li>
-												</ul>
-										
 			                                </li>
 	                            		</ul>
 		                             </li>
@@ -243,7 +231,7 @@
 				    			 </c:if>
 				    			 <c:if test="${md.codCl eq 'pd'}">
 				    			  
-				    			 	 <li class="nav-item start  ">
+				    			 	 <li class="nav-item ${procmt }  ">
 		                            	<a href="#" class="nav-link nav-toggle">
 		                                <i class="material-icons fa fa-stethoscope "></i>
 		                                <span class="title"> ${md.modulo} </span>

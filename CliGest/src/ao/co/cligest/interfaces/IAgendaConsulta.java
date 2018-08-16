@@ -3,6 +3,7 @@ package ao.co.cligest.interfaces;
 import java.util.List;
 
 import ao.co.cligest.entidades.Paciente;
+import ao.co.cligest.entidades.Triagem;
 
 public interface IAgendaConsulta {
 
@@ -17,6 +18,11 @@ public interface IAgendaConsulta {
 	List<Paciente> listaConsultaConfirmada();
 	List<Paciente> listaAgendasPacientes();
 	Paciente ConsultaParaPagar(int codcs);
+	Paciente getConsultaConfirmada(int consultaMarcadaId);
+	List<Paciente> listaConsultaConfirmadaPago();
+	List<Paciente> listaPagoTriado();
+	List<Paciente> listaPagoNaoTriado();
+	Triagem getSinais(String codc);
 	
 	
 	

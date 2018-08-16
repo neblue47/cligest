@@ -1,62 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="description" content="Responsive Admin Template" />
-    <meta name="author" content="RedstarHospital" />
+  
     <title>CLI-GEST | Sistema Integrado de Gestao Clinicas</title>
-    <!-- google font -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-	<!-- icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      
     <!-- bootstrap -->
     
 	<link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- style -->
     <link rel="stylesheet" href="theme/css/login.css">
+    <link rel="stylesheet" href="theme/css/bootstrap.min-login.css">
+    <link rel="stylesheet" href="theme/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="theme/css/font-awesome.min.css">
+    <link rel="stylesheet" href="theme/css/extra_pages.css">
 	<!-- favicon -->
     <link rel="shortcut icon" href="theme/img/favicon.ico" /> 
 </head>
 <body>
-    <!-- logo start -->
-      <div class="form-title">
-           CLI-GEST 
-      </div>
-     <!-- logo end -->
-    <!-- Login Form-->
-    <div class="login-form text-center">
-        <div class="toggle"> 
-        </div>
-        <div class="form formLogin">
-            <h2>Entrar no Sistema</h2>
-            <form method="post" action="LoginController">
-                <input type="text" placeholder="Username" name="usuario"/>
-                <input type="password" placeholder="Password" name="senha"/>
-                
-                <button>Login</button>
-                
-                <div class="forgetPassword"><a href="javascript:void(0)">Esqueceu sua senha?</a>
-                </div>
-            </form>
-        </div>
-        <div class="form formRegister">
-             
-        </div>
-        <div class="form formReset">
-            <h2>Reset your password?</h2>
-            <form>
-                <input type="email" placeholder="Email Address" />
-                <button>Send Verification Email</button>
-            </form>
-        </div>
-    </div>
+    <div class="limiter">
+		<div class="container-login100 page-background">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="post" action="LoginController">
+					<span class="login100-form-logo">
+<!-- 						<img alt="" src="theme/img/clilogo.png"> -->
+					</span>
+					<span class="login100-form-title p-b-34 p-t-27">
+						Entrar no CliGest
+					</span>
+					<div class="wrap-input100 validate-input" data-validate="Enter username">
+						<input class="input100" type="text" name="usuario" placeholder="Utilizador ID">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="senha" placeholder="Senha">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					<div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+							Lembrar-me
+						</label>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Entrar
+						</button>
+					</div>
+					<div class="text-center p-t-30">
+						<a class="txt1" href="#">
+							Esqueceu a senha
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
     <!-- start js include path -->
-    <script src="assets/jquery.min.js" ></script>
-    <script src="assets/login.js"></script>
-    <script src="assets/pages.js" ></script>
-    <!-- end js include path -->
+    <script src="assets/jquery.min-login.js" ></script>
+    <script src="assets/bootstrap.min.js" ></script>
+    <script src="assets/extra-login.js"></script>
 </body>
 </html>

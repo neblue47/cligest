@@ -13,10 +13,11 @@ public class Triagem implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id_triagem;
-//	private int FK_temperatura;
-//	private int FK_pulso;
-//	private int FK_respiracao;
-//	private int FK_tensao_arterial;
+	private String temperatura;
+	private String pulso;
+	private String respiracao;
+	private String tensao_sistolica;
+	private String tensao_diastolica;
 	private String objectivo_geral;
 	private String sistema_nervoso;
 	private double peso;
@@ -1195,6 +1196,37 @@ public int getId_hipotese() {
 	}
 	public void setDisponibilidade(int disponibilidade) {
 		this.disponibilidade = disponibilidade;
+	}
+	
+	public String getTemperatura() {
+		return temperatura;
+	}
+	public void setTemperatura(String temperatura) {
+		this.temperatura = temperatura;
+	}
+	public String getPulso() {
+		return pulso;
+	}
+	public void setPulso(String pulso) {
+		this.pulso = pulso;
+	}
+	public String getRespiracao() {
+		return respiracao;
+	}
+	public void setRespiracao(String respiracao) {
+		this.respiracao = respiracao;
+	}
+	public String getTensao_sistolica() {
+		return tensao_sistolica;
+	}
+	public void setTensao_sistolica(String tensao_sistolica) {
+		this.tensao_sistolica = tensao_sistolica;
+	}
+	public String getTensao_diastolica() {
+		return tensao_diastolica;
+	}
+	public void setTensao_diastolica(String tensao_diastolica) {
+		this.tensao_diastolica = tensao_diastolica;
 	}
 	
 }

@@ -35,7 +35,7 @@
     <link rel="shortcut icon" href="theme/img/favicon.ico" /> 
  </head>
  <!-- END HEAD -->
-<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
     <div class="page-wrapper">
         <!-- start header -->
         <div class="page-header navbar navbar-fixed-top">
@@ -182,7 +182,7 @@
             <c:if test="${param.mods eq 'fat' && param.pag eq 'pagarcon'}">
             	<jsp:include page="pagamentos/consultas/new-pagamento.jsp" />
             </c:if>
-            <c:if test="${param.mods eq 'pd' && param.pag eq 'listaconHis'}">
+            <c:if test="${param.mods eq 'fat' && param.pag eq 'listaconHis'}">
             	<jsp:include page="pagamentos/consultas/all-pacientesHis.jsp" />
             </c:if>
               <!-- PAGEMENTOS - Exames -->
@@ -226,6 +226,7 @@
 	<script src="assets/app.js" ></script>
     <script src="assets/layout.js" ></script>
     <script src="assets/theme-color.js" ></script>
+     <script src="assets/util-cligest.js" ></script>
     <!-- material -->
     <script src="assets/material/material.min.js"></script>
     <script src="assets/sweetalert.min.js" ></script>

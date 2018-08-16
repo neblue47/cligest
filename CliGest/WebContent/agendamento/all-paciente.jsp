@@ -3,6 +3,7 @@
 <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content">
+                <jsp:include page="../shared/mensagem.jsp" />		
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">

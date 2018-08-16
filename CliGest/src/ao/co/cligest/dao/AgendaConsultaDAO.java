@@ -191,7 +191,8 @@ public int inserirmarcacao(Paciente mc){
 		@Override
 		public List<Paciente> listaConsultaConfirmada() {
 			String sql = "SELECT * FROM vwlistaConsultaAgendada vw join tblconsultaconfirmada cf on vw.id_consulta_marcada = cf.FK_consulta_marcada"
-					+ " order by id_consulta_marcada asc limit 5";
+					+ " where cf.id_consulta_confirmada not in (SELECT FK_consulta_confirmada FROM tblfacturaconsulta ) "
+					+ " order by id_consulta_marcada asc ";
 			List<Paciente> lista = new ArrayList<>();
 			try {
 				 con = Conexao.getConexao();
@@ -214,6 +215,7 @@ public int inserirmarcacao(Paciente mc){
 					 p.setFK_paciente(rs.getInt("FK_paciente"));
 					 p.setFK_doutor(rs.getInt("FK_doutor"));
 					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setFK_consulta_confirmada(confirmado);
 					 p.setConfirmado(confirmado);
 					 p.setPreco(rs.getDouble("sub_total"));
 					 lista.add(p);
@@ -222,6 +224,162 @@ public int inserirmarcacao(Paciente mc){
 				e.printStackTrace();
 			}
 			return lista;
+		}
+		
+		@Override
+		public List<Paciente> listaConsultaConfirmadaPago() {
+			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
+					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
+					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada ";
+			List<Paciente> lista = new ArrayList<>();
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())
+				 {
+					 Paciente p = new Paciente();
+					 p.setNome_paciente(rs.getString("NomeCompleto"));
+					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setServico(rs.getString("servico"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data_do_agendamento"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setFK_consulta_confirmada(confirmado);
+					 p.setConfirmado(confirmado);
+					 p.setPreco(rs.getDouble("sub_total"));
+					 lista.add(p);
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return lista;
+		}
+		
+		@Override
+		public List<Paciente> listaPagoNaoTriado() {
+			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
+					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
+					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
+					   + " WHERE  cf.id_consulta_confirmada NOT IN (SELECT trg.FK_consulta_confirmada FROM tbltriagem trg) ";
+			List<Paciente> lista = new ArrayList<>();
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())
+				 {
+					 Paciente p = new Paciente();
+					 p.setNome_paciente(rs.getString("NomeCompleto"));
+					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setServico(rs.getString("servico"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data_do_agendamento"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setFK_consulta_confirmada(confirmado);
+					 p.setConfirmado(confirmado);
+					 p.setPreco(rs.getDouble("sub_total"));
+					 lista.add(p);
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return lista;
+		}
+		
+		@Override
+		public List<Paciente> listaPagoTriado() {
+			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
+					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
+					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
+					   + " JOIN tbltriagem trg ON cf.id_consulta_confirmada = trg.FK_consulta_confirmada ";
+			List<Paciente> lista = new ArrayList<>();
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())
+				 {
+					 Paciente p = new Paciente();
+					 p.setNome_paciente(rs.getString("NomeCompleto"));
+					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setServico(rs.getString("servico"));
+					 p.setNomegenero(rs.getString("genero"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data_do_agendamento"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setFK_consulta_confirmada(confirmado);
+					 p.setConfirmado(confirmado);
+					 p.setPreco(rs.getDouble("sub_total"));
+					 p.setStatus(retornaStatus(rs.getInt("FK_estado_paciente")));
+					 p.setFK_status(rs.getInt("FK_estado_paciente"));
+					 lista.add(p);
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return lista;
+		}
+		
+		@Override
+		public Paciente getConsultaConfirmada(int consultaMarcadaId) {
+			String sql = "SELECT * FROM vwlistaConsultaAgendada vw join tblconsultaconfirmada cf on vw.id_consulta_marcada = cf.FK_consulta_marcada"
+					+ " where vw.id_consulta_marcada = ?  ";
+			 Paciente p = new Paciente();
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps.setInt(1, consultaMarcadaId);
+				 ResultSet rs = ps.executeQuery();
+				 if(rs.next())
+				 {
+					
+					 p.setNome_paciente(rs.getString("NomeCompleto"));
+					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setServico(rs.getString("servico"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data_do_agendamento"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setFK_consulta_confirmada(confirmado);
+					 p.setConfirmado(confirmado);
+					 p.setPreco(rs.getDouble("sub_total"));
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return p;
 		}
 		
 		@Override
@@ -369,4 +527,66 @@ public int inserirmarcacao(Paciente mc){
 			return lista;
 		}
 
+		private String retornaStatus(int sts){
+			String sql ="Select * from tblestadodopaciente where id_estado_do_paciente = ?";
+			try {
+				con = Conexao.getConexao();
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, sts);
+				ResultSet rs = ps.executeQuery();
+				if(rs.next())
+					return rs.getString("estado_do_paciente");
+				
+				ps.close();
+				con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "";
+		}
+		
+		@Override
+		public Triagem getSinais(String codc)
+		{
+			Triagem pac = null;
+			String sql = "SELECT * FROM tbltriagem where FK_consulta_confirmada = ? ";
+			try
+			{
+				con = Conexao.getConexao();
+				 PreparedStatement preparador = con.prepareStatement(sql);
+				 preparador.setString(1, codc);
+				 ResultSet rs = preparador.executeQuery();
+				 if(rs.next())
+				 {
+					 pac = new Triagem();
+					 pac.setAltura(rs.getDouble("altura"));
+					 pac.setPeso(rs.getDouble("peso"));
+					 pac.setImc(rs.getDouble("imc"));
+					 pac.setValor_tmp(rs.getString("temperatura"));
+					 pac.setValor_pulso(rs.getString("pulso"));
+					 pac.setValor_tns(rs.getString("tensao_sistolica"));
+					 pac.setValor_resp(rs.getString("respiracao"));
+					// pac.setEstado(rs.getString("estado_do_paciente"));
+					 pac.setDescricao(rs.getString("diagnostico_preliminar"));
+					 
+				 }
+				 preparador.close();
+			}
+			
+			catch(SQLException er){
+			er.printStackTrace();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				try{
+					con.close();
+				}
+				catch(SQLException ef){
+					System.out.println("Erro finalizar: "+ef);
+				}
+			}
+			return pac;
+		}
 }

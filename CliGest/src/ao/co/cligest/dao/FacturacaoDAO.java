@@ -1029,21 +1029,17 @@ public class FacturacaoDAO {
 		public void inserir_faturaconsulta  (Facturacao fun)
 		{
 			 
-		    String sql = "INSERT INTO tblfacturaconsulta (FK_factura,taxa_emkz,total_pago,preco,FK_serv_consulta,FK_paciente,FK_consulta_confirmada,quantidade) VALUES (?,?,?,?,?,?,?,?)";
+		    String sql = "INSERT INTO tblfacturaconsulta (FK_factura,total_pago,FK_serv_consulta,FK_paciente,FK_consulta_confirmada) VALUES (?,?,?,?,?)";
 		    try {
 
 		    	 con = Conexao.getConexao();
 				 PreparedStatement cid = con.prepareStatement(sql);
 				 cid.setInt(1, fun.getFK_factura());
-				 cid.setDouble(2, fun.getTaxa_emkz());
-				 cid.setDouble(3, fun.getTotais());
-				 cid.setDouble(4, fun.getPreco());
-				 cid.setInt(5, fun.getFK_servico());
-				 cid.setInt(6, fun.getFK_paciente());
-				 cid.setInt(7, fun.getFK_confirmacao_do_agendamento());
-				 cid.setInt(8, fun.getQuantidade());
+				 cid.setDouble(2, fun.getTotais());
+				 cid.setInt(3, fun.getFK_servico());
+				 cid.setInt(4, fun.getFK_paciente());
+				 cid.setInt(5, fun.getFK_confirmacao_do_agendamento());
 				 cid.execute();
-				  
 				 cid.close();
 				 con.close();
 				 System.out.println("Cadastrado com sucesso...tblfacturaconsulta"); 

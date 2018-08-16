@@ -87,7 +87,7 @@
                                         <div class="col-md-9 col-sm-9 col-xs-9">
                                             <div class="tab-content nb-form">
                                                 <div class="tab-pane active" id="tab_6_1">
-                                                    <form action="#" method="post"  > 
+                                                    <form action="PagamentoController" method="post" id="formCash" > 
 											          <div class="widget-title">
 												 		 <div  class="input-group-addon-ajust"> 
 											      	   	 	 <div class="form-group input-group">
@@ -103,10 +103,11 @@
 												        </div>
 												        </div>
 												         <div class="pull-right">
-											            	 
-											            	 
-											            	<!-- Fim -->
-											            	<button type="button" onclick="salvarFormCash()" class="btn btn-success btn-sm">
+											            	<input type="hidden" name="tipoPg" value="1">
+											            	<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+											            	<input type="hidden" name="funInt" value="${usuario}">
+											            	<input type="hidden" name="codcs" value="${param.codcs}">
+											            	<button type="submit"  class="btn btn-success btn-sm">
 																  Pagar
 															</button>
 												            <a href="navegacaoft?mods=fat&pag=listacon"  class="btn btn-default btn-sm"  >
@@ -117,7 +118,7 @@
                                                 </div>
                                                 
                                                 <div class="tab-pane fade" id="tab_6_2">
-                                                   <form action="#" method="post"  > 
+                                                   <form action="#" method="post" name="formTPA" > 
 											          <div class="widget-title">
 												 		 <div class="input-group-addon-ajust"> 
 											      	   	 	 <div class="form-group input-group">
@@ -131,7 +132,7 @@
 											                 </div>
 											                 <div class="form-group input-group input-group-addon-ajust">
 															    
-												           		<select name="idBanco" id="banco" tabindex="1" required="required" class="form-control remove-radius"   required="required">
+												           		<select name="banco" id="banco" tabindex="1" required="required" class="form-control remove-radius"   required="required">
 																	   <option value="">-- Seleccione o banco --</option>	
 																	   <c:forEach var="at" items="${lsBancos }">
 																	   		<option value="${at.id_banco }"> ${at.banco }</option>
@@ -142,14 +143,15 @@
 											           	  	      <span class="input-group-addon">Nº Cartão</span>
 											                 </div>
 											                  <div class="form-group input-group">
-											                      <input name = "mtreceber"  type="text"  class="form-control remove-radius"  required="required" placeholder="9999" maxlength="4"/>
+											                      <input name = "numCartao"  type="text"  class="form-control remove-radius"  required="required" placeholder="9999" maxlength="4"/>
 											                 </div>
 												        </div>
 												        </div>
 												         <div class="pull-right">
-											            	 
-											            	 
-											            	<!-- Fim -->
+											            	<input type="hidden" name="tipoPg" value="2">
+											            	<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+											            	<input type="hidden" name="funInt" value="${usuario}">
+											            	<input type="hidden" name="codcs" value="${param.codcs}">
 											            	<button type="button" onclick="salvarFormCash()" class="btn btn-success btn-sm">
 																  Pagar
 															</button>
@@ -187,7 +189,7 @@
 											                 </div>
 											                 <div class="form-group input-group input-group-addon-ajust">
 															    
-												           		<select name="idBanco" id="banco" tabindex="1" required="required" class="form-control remove-radius"   required="required">
+												           		<select name="banco" id="banco" tabindex="1" required="required" class="form-control remove-radius"   required="required">
 																	   <option value="">-- Seleccione o banco --</option>	
 																	   <c:forEach var="at" items="${lsBancos }">
 																	   		<option value="${at.id_banco }"> ${at.banco }</option>
@@ -198,14 +200,15 @@
 											           	  	      <span class="input-group-addon">Nº Cartão</span>
 											                 </div>
 											                  <div class="form-group input-group">
-											                      <input name = "mtreceber"  type="text"  class="form-control remove-radius"  required="required" placeholder="9999" maxlength="4"/>
+											                      <input name = "numCartao"  type="text"  class="form-control remove-radius"  required="required" placeholder="9999" maxlength="4"/>
 											                 </div>
 												        </div>
 												        </div>
 												         <div class="pull-right">
-											            	 
-											            	 
-											            	<!-- Fim -->
+											            	<input type="hidden" name="tipoPg" value="3">
+											            	<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+											            	<input type="hidden" name="funInt" value="${usuario}">
+											            	<input type="hidden" name="codcs" value="${param.codcs}">
 											            	<button type="button" onclick="salvarFormCash()" class="btn btn-success btn-sm">
 																  Pagar
 															</button>

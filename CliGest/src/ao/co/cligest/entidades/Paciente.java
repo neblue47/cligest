@@ -47,6 +47,8 @@ public class Paciente implements Serializable {
 	private int gruposg;
 	private String gruposgnome;
 	private String data_vacina;
+	private String status;
+	private int FK_status;
 
 	private String cid;
 	// tblCidadao ---
@@ -578,7 +580,7 @@ public class Paciente implements Serializable {
 		public void setNomep(String nomep) {
 			this.nomep = nomep;
 		}
-		public Long getTelefonep() {
+		public long getTelefonep() {
 			return telefonep;
 		}
 		public void setTelefonep(Long telefonep) {
@@ -1538,6 +1540,26 @@ public class Paciente implements Serializable {
 
 				public void setFK_internamento(int fK_internamento) {
 					FK_internamento = fK_internamento;
+				}
+
+
+				public String getStatus() {
+					return status;
+				}
+
+
+				public void setStatus(String status) {
+					this.status = status;
+				}
+
+
+				public int getFK_status() {
+					return FK_status;
+				}
+
+
+				public void setFK_status(int fK_status) {
+					FK_status = fK_status;
 				}
 				
 				

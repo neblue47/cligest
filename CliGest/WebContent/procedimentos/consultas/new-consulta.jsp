@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"    pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<style>
+.user-btm-box {
+    padding: 5px 0 10px;
+
+</style>
 <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content">
@@ -76,7 +81,7 @@
                                         <div class="col-md-3 col-sm-3 col-xs-3">
                                             <ul class="nav nav-tabs tabs-left"  id="myTab">
                                                 <li class="nav-item">
-                                                    <a href="#tab_6_1" data-toggle="tab" class="active"> Sinais e Dados </a>
+                                                    <a href="#tab_6_1" data-toggle="tab" class="active"> Dados Triagem </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#tab_6_2" data-toggle="tab"> Queixas e Historial </a>
@@ -96,9 +101,9 @@
                                                 <li class="nav-item">
                                                     <a href="#tab_6_7" data-toggle="tab"> Exame Clinico </a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a href="#tab_6_8" data-toggle="tab"> Internamento </a>
-                                                </li>
+<!--                                                 <li class="nav-item"> -->
+<!--                                                     <a href="#tab_6_8" data-toggle="tab"> Internamento </a> -->
+<!--                                                 </li> -->
                                                 <li class="nav-item">
                                                     <a href="#tab_6_9" data-toggle="tab"> Tratamento e Recomendacoes </a>
                                                 </li>
@@ -113,7 +118,7 @@
                                         <div class="col-md-9 col-sm-9 col-xs-9">
                                             <div class="tab-content nb-form">
                                                 <div class="tab-pane active" id="tab_6_1">
-                                                    <p>Sinais e Dados</p>
+                                                   <jsp:include page="tab-sinais-triagem.jsp"/>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_2">
                                                 <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
@@ -134,46 +139,28 @@
 												
                                                 </div> 
                                                 <div class="form formRegister">
-                                                    <form name="form1" method="post" action="queixahistorcontroller">
-														<div >
-														 	<span> Queixas Principais</span>
-												  			<div id="agenda-perfil">	
-												      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="5" >${queixa}</textarea>
-												      		 </div>
-														</div> 
-														<p></p>
-														<div class="pull-right">
-														  <button type="button" class="btn btn-primary btn-sm" onclick="limparQ()">
-															  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
-														  </button>
-														</div>	
-														<br>
-														 
-													 	<div >
-														 	<span> Historial da Doença Actual</span>
-												  			<div id="agenda-perfil">	
-												      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="5">${historial}</textarea>
-												      		</div>
-														</div> 
-														<p></p>
-														<div class="pull-right">
-													   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
-															    Gravar
-														  </button>
-														  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
-															  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
-														  </button>
-														</div>	
-												</form>
+                                                    <jsp:include page="tab-queixas-hist-form.jsp" />
                                                 </div>    
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_3">
                                                    <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
                                                     <div class="form formLogin">
-                                                    Texto aqui
+                                                    <div >
+													 	<span> Pessoais </span>
+											  			<div id="agenda-perfil">	
+											      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="10" readonly="readonly"></textarea>
+											      		 </div>
+													</div> 
+													<br>
+												 	<div >
+													 	<span> Familiar</span>
+											  			<div id="agenda-perfil">	
+											      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="10" readonly="readonly"></textarea>
+											      		</div>
+													</div> 
                                                     </div>
                                                      <div class="form formRegister">
-                                                     outro textoa qui
+                                                    		<jsp:include page="tab-antecedentes-form.jsp" />
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_4">
@@ -218,61 +205,188 @@
 											      		 </div>
                                                      </div>
                                                      <div class="form formRegister">
-                                                     	<div >
-											       	   		<span>Exame Objectivo Geral</span>
-											      		 	<textarea name="objectivo" id="objectivo" class="form-control" >${fisicos.objectivo_geral  }</textarea>
-											      		 </div>
-											      		 <div >
-											       	   		<span>Cabeca</span>
-											      		 	<textarea name="cabecao" id="cabecao" class="form-control">${fisicos.exa_cabeca }</textarea>
-											      		 </div>
-											      		 <div>
-											       	   		<span>Pescoco</span>
-											      		 	<textarea name="pescoco" id="pescoco" class="form-control">${fisicos.exa_pescoco }</textarea>
-											      		 </div>
-											      		  <div>
-											       	   		<span>Torax</span>
-											      		 	<textarea name="torax" id="torax" class="form-control">${fisicos.exa_torax }</textarea>
-											      		 </div>
-											      		 <div>
-											       	   		<span>Abdomen</span>
-											      		 	<textarea name="abdomem" id="abdomem" class="form-control">${fisicos.exa_abdomen }</textarea>
-											      		 </div>	
-											      		 <div>
-											       	   		<span>Genito Urinário</span>
-											      		 	<textarea name="urinatio" id="urinatio" class="form-control">${fisicos.exa_urinario }</textarea>
-											      		 </div>
-											      		 <div>
-											       	   		<span>Membros Superiores</span>
-											      		 	<textarea name="membrosup" id="membrosup" class="form-control">${fisicos.exa_membSup }</textarea>
-											      		 </div>
-											      		 
-											      		  <div>
-											       	   		<span>Membros Inferiores</span>
-											      		 	<textarea name="membrosinf" id="membrosinf" class="form-control">${fisicos.exa_membInf }</textarea>
-											      		 </div>
-											      		<div >
-											       	   		<span>Sistema Nervoso</span>
-											      		 	<textarea name="sistema" id="sistema" class="form-control">${fisicos.sistema_nervoso }</textarea>
-											      		 </div>
+                                                     	<jsp:include page="tab-examesFisicos-form.jsp" />
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_5">
                                                     <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
                                                     <div class="form formLogin">
-                                                    Texto aqui
+                                                     <div class="card-head">
+                                            			 Hipoteses de Doenças 
+                                       				 </div>
+                                                       <div class="table-scrollable">  
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                    <thead>
+		                                                        <tr >
+		                                                            <th align="center">#</th>
+		                                                            <th>CID</th>
+		                                                            <th>Descrição</th>
+		                                                        </tr>
+		                                                    </thead>
+		                                                    <tbody>
+		                                                        <tr>
+		                                                            <td align="center">1</td>
+		                                                            <td>Mark</td>
+		                                                            <td>Otto</td>
+		                                                        </tr>
+		                                                        <tr>
+		                                                            <td align="center">2</td>
+		                                                            <td>Jacob</td>
+		                                                            <td>Thornton</td>
+		                                                        </tr>
+		                                                    </tbody>
+		                                                </table>
+		                                            </div>
+		                                             
+		                                             <div >
+											       	   		<div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="objectivo"  class="form-control" rows="10" readonly="readonly">${fisicos.objectivo_geral  }</textarea>
+											        </div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                     outro textoa qui
+                                                      	 
+                                       				    <form class="row   m-t-10">
+                                       				         <div class="card-head">
+                                            			 Hipoteses de Doenças 
+                                       				   </div>
+							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
+							                                   <input type="text" class="form-control " name="doenca" placeholder="pesquiar por doenças no CID">  
+							                                </div>
+							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
+							                                	<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> </button>
+							                                </div>
+							                            </form>
+                                                       <div class="table-scrollable">  
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                    <thead>
+		                                                        <tr >
+		                                                            <th align="center">#</th>
+		                                                            <th>CID</th>
+		                                                            <th>Descrição</th>
+		                                                        </tr>
+		                                                    </thead>
+		                                                    <tbody>
+		                                                        <tr>
+		                                                            <td align="center">1</td>
+		                                                            <td>Mark</td>
+		                                                            <td>Otto</td>
+		                                                        </tr>
+		                                                        <tr>
+		                                                            <td align="center">2</td>
+		                                                            <td>Jacob</td>
+		                                                            <td>Thornton</td>
+		                                                        </tr>
+		                                                    </tbody>
+		                                                </table>
+		                                            </div>
+		                                             
+		                                             <div >
+											       	   		<div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="objectivo"  class="form-control" rows="10"  >${fisicos.objectivo_geral  }</textarea>
+											        </div>
+											        <p></p>
+													<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+												    <input type="hidden" name="funInt" value="${usuario}">
+												    <input type="hidden" name="conInt" value="${conslt}">
+													<div class="pull-right">
+												   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
+														    Gravar
+													  </button>
+													  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
+														  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
+													  </button>
+													</div>
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_6">
                                                     <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
                                                     <div class="form formLogin">
-                                                    Texto aqui
+                                                      <div class="card-head">
+                                            			 Diagnósticos
+                                       				 </div>
+                                       				 <div class="table-scrollable">  
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                    <thead>
+		                                                        <tr >
+		                                                            <th align="center">#</th>
+		                                                            <th>Descrição da Doença</th>
+		                                                        </tr>
+		                                                    </thead>
+		                                                    <tbody>
+		                                                        <tr>
+		                                                            <td align="center">1</td>
+		                                                            <td>Otto</td>
+		                                                        </tr>
+		                                                        <tr>
+		                                                            <td align="center">2</td>
+		                                                            <td>Thornton</td>
+		                                                        </tr>
+		                                                    </tbody>
+		                                                </table>
+		                                                </div>
+		                                             <div >
+											       	   		<div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="objectivo"  class="form-control" rows="10" readonly="readonly">${fisicos.objectivo_geral  }</textarea>
+											        </div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                     outro textoa qui
+                                                        
+                                       				    <form class="row   m-t-10">
+                                       				         <div class="card-head">
+                                            			Diagnósticos 
+                                       				   </div>
+							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
+							                                   <input type="text" class="form-control " name="doenca" placeholder="pesquiar por doenças no CID">  
+							                                </div>
+							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
+							                                	<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> </button>
+							                                </div>
+							                          
+							                            </form>
+                                                        <div class="table-scrollable">  
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                    <thead>
+		                                                        <tr >
+		                                                            <th align="center">#</th>
+		                                                            <th>Descrição da Doença</th>
+		                                                        </tr>
+		                                                    </thead>
+		                                                    <tbody>
+		                                                        <tr>
+		                                                            <td align="center">1</td>
+		                                                            <td>Otto</td>
+		                                                        </tr>
+		                                                        <tr>
+		                                                            <td align="center">2</td>
+		                                                            <td>Thornton</td>
+		                                                        </tr>
+		                                                    </tbody>
+		                                                </table>
+		         										</div>
+		                                             <div >
+											       	   		<div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="objectivo"  class="form-control" rows="10"  >${fisicos.objectivo_geral  }</textarea>
+											        </div>
+											        <p></p>
+													<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+												    <input type="hidden" name="funInt" value="${usuario}">
+												    <input type="hidden" name="conInt" value="${conslt}">
+													<div class="pull-right">
+												   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
+														    Gravar
+													  </button>
+													  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
+														  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
+													  </button>
+													</div>
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_7">
@@ -280,59 +394,243 @@
                                                      
                                                     <div class="form formLogin">
                                                     <br> 
-                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"  >
+				                                	<table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"  >
 					                                        <thead>
 					                                            <tr>
-					                                            	<th class="center"> <i class="fa fa-calendar"></i> </th>
-					                                                <th class="center"> Descricao </th>
-					                                                <th class="center"> Grupo </th>
-					                                                <th class="center"> Opções </th>
+					                                            	<th class="center"> # </th>
+					                                                <th> Descricao </th>
+					                                                <th> Grupo Exame </th>
 					                                            </tr>
 					                                        </thead>
 					                                        <tbody>
 																<tr class="odd gradeX">
-																	<td class="center"></td>
-																	<td class="center"></td>
-																	<td>Alexandre Alberto Joao</td>
+																	<td class="center">1</td>
+																	<td> Hemograma Completo</td>
+																	<td> Exames Laboratorial</td>
+																</tr>
+																<tr class="odd gradeX">
+																	<td class="center">2</td>
+																	<td> Widal</td>
+																	<td> Exames Laboratorial</td>
+																</tr>
+																<tr class="odd gradeX">
+																	<td class="center">3</td>
+																	<td> TAC</td>
+																	<td> Exames Imagiologico</td>
+																</tr>
+																 
+															</tbody>
+					                                    </table>
+                                                    
+                                                    </div>
+                                                     <div class="form formRegister">
+                                                      <br> 
+                                                    <div class="row  m-t-10">
+				                                    <div class="col-lg-12  "><strong>Grupo de Exame</strong>
+				                                    <select class="form-control  center" name="estado"  >
+                                                        <option  value="">Selecione...</option>
+                                                        <option  value="1">Exames Laboratorial</option>
+                                                        <option  value="2">Exames Imagiologico</option>
+                                                    </select>  
+				                                    </div>
+				                                 	
+				                                	</div>
+				                                	<br>
+                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"  >
+					                                        <thead>
+					                                            <tr>
+					                                            	<th class="center"> # </th>
+					                                                <th> Descricao </th>
+					                                                <th class="center"> Opção </th>
+					                                            </tr>
+					                                        </thead>
+					                                        <tbody>
+																<tr class="odd gradeX">
+																	<td class="center">1</td>
+																	<td> Hemograma Completo</td>
 																	<td  class="center">
-																		<a href="navegacaopd?mods=pd&pag=newcons" class="btn btn-primary btn-xs">
-																			<i class="fa fa-heartbeat"></i>
-																		</a>
+																		<input type="checkbox" name="">
+																	</td>
+																</tr>
+																<tr class="odd gradeX">
+																	<td class="center">2</td>
+																	<td> Widal</td>
+																	<td  class="center">
+																		<input type="checkbox" name="">
+																	</td>
+																</tr>
+																<tr class="odd gradeX">
+																	<td class="center">3</td>
+																	<td> TAC</td>
+																	<td  class="center">
+																		<input type="checkbox" name="">
 																	</td>
 																</tr>
 																 
 															</tbody>
-					                                    </table>i
-                                                    </div>
-                                                     <div class="form formRegister">
-                                                     outro textoa qui
+					                                    </table> 
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_8">
                                                     <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
                                                     <div class="form formLogin">
-                                                    Texto aqui
+                                                      INTERNAMENTO 
                                                     </div>
                                                      <div class="form formRegister">
-                                                     outro textoa qui
+													  INTERNAMENTO OUTRO
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_9">
                                                     <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
                                                     <div class="form formLogin">
-                                                    Texto aqui
+                                                      <div >
+													 	<strong> Tratamento </strong>
+											  			<div id="agenda-perfil">	
+											      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="10" readonly="readonly"></textarea>
+											      		 </div>
+													</div> 
+													<br>
+												 	<div >
+													 	<strong>  Recomendações</strong>
+											  			<div id="agenda-perfil">	
+											      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="10" readonly="readonly"></textarea>
+											      		</div>
+													</div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                     outro textoa qui
+                                                     <form name="form1" method="post" action="QueixaHistorController">
+														<div >
+														 	<strong> Tratamentos</strong>
+												  			<div id="agenda-perfil">	
+												      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="10" >${queixa}</textarea>
+												      		 </div>
+														</div> 
+														<p></p>
+														<div class="pull-right">
+														  <button type="button" class="btn btn-primary btn-sm" onclick="limparQ()">
+															  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
+														  </button>
+														</div>	
+														<br>
+														 
+													 	<div >
+														 	<strong> Recomendações</strong>
+												  			<div id="agenda-perfil">	
+												      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="10">${historial}</textarea>
+												      		</div>
+														</div> 
+														<p></p>
+														<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+													    <input type="hidden" name="funInt" value="${usuario}">
+													    <input type="hidden" name="conInt" value="${conslt}">
+														<div class="pull-right">
+													   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
+															    Gravar
+														  </button>
+														  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
+															  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
+														  </button>
+														</div>
+														</form>
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_10">
                                                    <div class="toggle pull-right"><i class="fa fa-user-plus"></i></div>
                                                     <div class="form formLogin">
-                                                    Texto aqui
+                                                      <div class="card-head">
+                                            			 Medicamentos 
+                                       				 </div>
+                                                       <div class="table-scrollable">  
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                    <thead>
+		                                                        <tr align="center">
+		                                                            <th width="40%">Descricao</th>
+		                                                            <th>Possologia</th>
+		                                                            <th>Qtd</th>
+		                                                            <th> </th>
+		                                                        </tr>
+		                                                    </thead>
+		                                                    <tbody>
+		                                                        <tr>
+		                                                            <td>Mebocaino 500mg- Sharop</td>
+		                                                            <td align="center">12h/12h</td>
+		                                                            <td align="center">10</td>
+		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+		                                                        </tr>
+		                                                        <tr>
+		                                                            <td>Provitaminal 250mg- Sharop</td>
+		                                                            <td align="center">12h/12h</td>
+		                                                            <td align="center">1</td>
+		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+		                                                        </tr>
+		                                                    </tbody>
+		                                                </table>
+		                                            </div>
+		                                             
+		                                             <div >
+											       	   		<div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="objectivo"  class="form-control" rows="5" readonly="readonly">${fisicos.objectivo_geral  }</textarea>
+											        </div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                     outro textoa qui
+                                                      <form class="row   m-t-10">
+                                       				   <div class="card-head">
+                                            			 Medicamentos 
+                                       				   </div>
+							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
+							                                   <input type="text" class="form-control " name="produto" placeholder="pesquiar por doenças no CID">  
+							                                </div>
+							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
+							                                	<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> </button>
+							                                </div>
+							                            </form>
+                                                       <div class="table-scrollable">  
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                    <thead>
+		                                                        <tr align="center">
+		                                                            <th width="40%">Descricao</th>
+		                                                            <th>Possologia</th>
+		                                                            <th>Qtd</th>
+		                                                            <th> </th>
+		                                                        </tr>
+		                                                    </thead>
+		                                                    <tbody>
+		                                                        <tr>
+		                                                            <td>Mebocaino 500mg- Sharop</td>
+		                                                            <td align="center" ><input type="text" class="form-control" value="" style="width: 100px; text-align: center;"></td>
+		                                                            <td align="center"><input type="text" class="form-control" value="" style="width: 50px; text-align: center;"></td>
+		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+		                                                        </tr>
+		                                                        <tr>
+		                                                            <td>Provitaminal 250mg- Sharop</td>
+		                                                            <td align="center" ><input type="text" class="form-control" value="" style="width: 100px; text-align: center;"></td>
+		                                                            <td align="center"><input type="text" class="form-control" value="" style="width: 50px; text-align: center;"></td>
+		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+		                                                        </tr>
+		                                                    </tbody>
+		                                                </table>
+		                                            </div>
+		                                             
+		                                             <div >
+											       	   		<div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="objectivo"  class="form-control" rows="5"  >${fisicos.objectivo_geral  }</textarea>
+											        </div>
+											        <p></p>
+													<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+												    <input type="hidden" name="funInt" value="${usuario}">
+												    <input type="hidden" name="conInt" value="${conslt}">
+													<div class="pull-right">
+												   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
+														    Gravar
+													  </button>
+													  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
+														  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
+													  </button>
+													</div>
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_11">
@@ -404,8 +702,8 @@ $(document).on('click','.toggle',function(){
   
 });
 </script>
-<script src="assets/js-tab/jquery-tab.min.js" ></script>
-<script src="assets/js-tab/bootstrap-tab.min.js" ></script>
+<!-- <script src="assets/js-tab/jquery-tab.min.js" ></script> -->
+<!-- <script src="assets/js-tab/bootstrap-tab.min.js" ></script> -->
  <script  >
  $(function() {
 	    $('a[data-toggle="tab"]').on('click', function(e) {
@@ -414,7 +712,7 @@ $(document).on('click','.toggle',function(){
 	    var activeTab = window.localStorage.getItem('activeTab');
 	    if (activeTab) {
 	        $('#myTab a[href="' + activeTab + '"]').tab('show');
-	        window.localStorage.removeItem("activeTab");
+	       // window.localStorage.removeItem("activeTab");
 	    }
 	});
 </script>

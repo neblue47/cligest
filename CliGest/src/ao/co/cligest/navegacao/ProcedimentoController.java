@@ -62,7 +62,8 @@ public class ProcedimentoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PacienteDAO _pacienteDAO = new PacienteDAO();
 	private IAgendaConsulta _agendaConsulta = new AgendaConsultaDAO();
-    
+	private ExamesDAO _exames = new ExamesDAO();
+	private ConsultaDAO _consulta = new ConsultaDAO();
     public ProcedimentoController() {
         super();
     }
@@ -87,9 +88,9 @@ public class ProcedimentoController extends HttpServlet {
 				}
 				if (tela != null && (tela.equals("newtriar"))) {
 					String codcs =request.getParameter("codcs");
-					Paciente perfil = _pacienteDAO.getPerfilPaciente(codcs);
 				    
-					request.setAttribute("perfil", perfil);
+					request.setAttribute("perfil", _pacienteDAO.getPerfilPaciente(codcs));
+					
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=newtriar");
 					saida.forward(request, response);
 				}
@@ -104,8 +105,13 @@ public class ProcedimentoController extends HttpServlet {
 					String codc =request.getParameter("codc");
 					Paciente perfil = _pacienteDAO.getPerfilPaciente(codp);
 					Triagem sinais = _agendaConsulta.getSinais(codc);
+					int ultimoId =_consulta.xequeConsulta(Integer.parseInt(codp), Integer.parseInt(codc));
 					request.setAttribute("perfil", perfil);
 					request.setAttribute("sinais", sinais);
+					request.setAttribute("queixas", _consulta.getQueixaHistorial(ultimoId));
+					request.setAttribute("queixas", _consulta.getQueixaHistorial(ultimoId));
+					request.setAttribute("exmFs", _consulta.getExameFisicos(ultimoId));
+					request.setAttribute("tipoExames", _exames.getGrupoExames());
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=newcons");
 					saida.forward(request, response);
 				}

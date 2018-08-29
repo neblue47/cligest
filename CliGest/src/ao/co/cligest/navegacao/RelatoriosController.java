@@ -49,7 +49,7 @@ import ao.co.cligest.util.MetodosBuscas;
 /**
  * Servlet implementation class FarmController
  */
-@WebServlet("/navegacaorel")
+@WebServlet("/RelatorioController")
 public class RelatoriosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -2324,7 +2324,7 @@ public class RelatoriosController extends HttpServlet {
 			
 			Formatando fmt = new Formatando();
 			List<Exames> pacienteConsulta = null;
-			List<Exames> grupoExames = new ExamesDAO().buscagrupoexames();
+			List<Exames> grupoExames = new ExamesDAO().getGrupoExames();
 			List<Exames> exames = new ExamesDAO().buscagrupoexame();
 			
 			String data_ini = request.getParameter("data_ini");
@@ -2461,7 +2461,7 @@ public class RelatoriosController extends HttpServlet {
 			 
 			Formatando fmt = new Formatando();
 			List<Exames> pacienteConsulta = null;
-			List<Exames> grupoExames = new ExamesDAO().buscagrupoexames();
+			List<Exames> grupoExames = new ExamesDAO().getGrupoExames();
 			List<Exames> exames = new ExamesDAO().buscagrupoexame();
 			
 			String data_ini = request.getParameter("data_ini");
@@ -2591,7 +2591,7 @@ public class RelatoriosController extends HttpServlet {
 			
 			Formatando fmt = new Formatando();
 			List<Exames> pacienteConsulta = null;
-			List<Exames> grupoExames = new ExamesDAO().buscagrupoexames();
+			List<Exames> grupoExames = new ExamesDAO().getGrupoExames();
 			List<Exames> exames = new ExamesDAO().buscagrupoexame();
 			
 			String data_ini = request.getParameter("data_ini");
@@ -2720,7 +2720,7 @@ public class RelatoriosController extends HttpServlet {
 			 
 			Formatando fmt = new Formatando();
 			List<Exames> pacienteConsulta = null;
-			List<Exames> grupoExames = new ExamesDAO().buscagrupoexames();
+			List<Exames> grupoExames = new ExamesDAO().getGrupoExames();
 			List<Exames> exames = new ExamesDAO().buscagrupoexame();
 			
 			String data_ini = request.getParameter("data_ini");

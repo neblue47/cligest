@@ -45,54 +45,23 @@
 													</li>
 												</ul>
 			                                </li>
-			                                 <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Outros Funcionarios</span>
+			                                 
+			                                    <li class="nav-item  ">
+				                                    <a href="navegacao?mods=ad&pag=doc" class="nav-link nav-toggle"> <span class="title">Medicos</span>
+				                                    </a>
+			                                    </li>
+			                                    <li class="nav-item  ">
+													<a href="navegacao?mods=ad&pag=doc" class="nav-link nav-toggle"> <span class="title">Utilizadores</span>
+				                                    </a>
+			                                    </li>
+			                                    <li class="nav-item  "> 
+			                                    <a href="navegacao?mods=ad&pag=lscons" class="nav-link nav-toggle"> <span class="title">Serviços</span>
 			                                    </a>
-												 <ul class="sub-menu">
-													<li class="nav-item  ">
-														<a href="#" class="nav-link "> <span class="title">Add Funcionario</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="#" class="nav-link "> <span class="title">Lista de Funcionario</span>
-														</a>
-													</li>
-												</ul>
-			                                </li>
-			                                <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Serviços</span>
-			                                    </a>
-												 <ul class="sub-menu">
-													<li class="nav-item  ">
-														<a href="navegacao?mods=ad&pag=lscons" class="nav-link "> <span class="title">Consultas</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="navegacao?mods=ad&pag=lsexam" class="nav-link "> <span class="title">Exames</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="navegacao?mods=ad&pag=lsesp" class="nav-link "> <span class="title">Especialidades</span>
-														</a>
-													</li>
-												</ul>
-			                                </li>
-											 <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Outros Serviços</span>
-			                                    </a>
-												 <ul class="sub-menu">
-												
-													<li class="nav-item  ">
-														<a href="add_patient.html" class="nav-link "> <span class="title">Urgencias</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="all_patients.html" class="nav-link "> <span class="title">Emergencias</span>
-														</a>
-													</li>
-												</ul>
-										
-			                                </li>
+			                                    </li>
+			                                    <li class="nav-item  ">
+			                                    	<a href="navegacao?mods=ad&pag=lsesp" class="nav-link "> <span class="title">Especialidades</span>
+													</a>
+												</li>
 	                            		</ul>
 		                             </li>
 								 </c:if>
@@ -104,23 +73,23 @@
 		                                <span class="arrow"></span>
 		                            	</a>
 			                            <ul class="sub-menu">
-			                                <li class="nav-item  ">
-	                                    <a href="schedule.html" class="nav-link "> <span class="title">Agenda do Doutor</span>
-	                                    </a>
-	                                </li>
-	                                <li class="nav-item  ">
-	                                    <a href="navegacaoag?mods=ag&pag=novoagen" class="nav-link "> <span class="title">Agendar Serviço</span>
-	                                    </a>
-	                                </li>
-	                                
-	                                <li class="nav-item  ">
-	                                    <a href="navegacaoag?mods=ag&pag=listagen" class="nav-link "> <span class="title">Agendamentos Consulta</span>
-	                                    </a>
-	                                </li>
-	                                <li class="nav-item  ">
-	                                    <a href="navegacaoag?mods=ag&pag=listagexa" class="nav-link "> <span class="title">Agendamentos Exames </span>
-	                                    </a>
-	                                </li>
+			                            
+		                                <li class="nav-item  ">
+		                                    <a href="navegacaoag?mods=ag&pag=novoagen" class="nav-link "> <span class="title">Agendar</span>
+		                                    </a>
+		                                </li>
+		                                
+		                                <li class="nav-item  ">
+		                                    <a href="navegacaoag?mods=ag&pag=listagen" class="nav-link "> <span class="title">Consultas</span>
+		                                    </a>
+		                                </li>
+		                                <li class="nav-item  ">
+		                                    <a href="navegacaoag?mods=ag&pag=listagexa" class="nav-link "> <span class="title">Exames </span>
+		                                    </a>
+		                                </li>
+		                                <li class="nav-item  ">
+	                                    	<a href="navegacaoag?mods=ag&pag=pac" class="nav-link "> <span class="title">Pacientes</span></a>
+		                                </li>
 		                               </ul>
 		                             </li>
 				    			 </c:if>
@@ -310,54 +279,7 @@
 		                               </ul>
 		                             </li>
 				    			 </c:if>
-				    			  
-				    			 
 							</c:forEach>
-	                         
-	                        <li class="nav-item  ">
-	                            <a href="#" class="nav-link nav-toggle"> <i class="material-icons material-icons fa fa-user-md"></i>
-	                                <span class="title">DOUTORES</span> <span class="arrow"></span>
-	                            </a>
-	                            <ul class="sub-menu">
-	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mods=ad&pag=doc" class="nav-link "> <span class="title">Listar de Doutores</span>
-	                                    </a>
-	                                </li>
-	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mods=ad&pag=agenddoc" class="nav-link "> <span class="title">Agenda de Doutores </span>
-	                                    </a>
-	                                </li>
-	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mods=ad&pag=novodoc" class="nav-link "> <span class="title">Add Doutor	</span>
-	                                    </a>
-	                                </li>	                            
-	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mods=ad&pag=profdoc" class="nav-link "> <span class="title">Perfil Doutor</span>
-	                                    </a>
-	                                </li>
-	                            </ul>
-	                        </li>
-	                        
-	                        <li class="nav-item  ">
-	                            <a href="#" class="nav-link nav-toggle"> <i class="material-icons material-icons fa fa-child"></i>
-	                                <span class="title">PACIENTES</span> <span class="arrow"></span>
-	                            </a>
-	                            <ul class="sub-menu">
-	                                <li class="nav-item  ">
-	                                    <a href="navegacaoag?mods=ag&pag=pac" class="nav-link "> <span class="title">Listar de Pacientes</span>
-	                                    </a>
-	                                </li>
-	                                <li class="nav-item  ">
-	                                    <a href="navegacaoag?mods=ag&pag=novopac" class="nav-link "> <span class="title">Add Paciente	</span>
-	                                    </a>
-	                                </li>
-	                            
-	                                <li class="nav-item  ">
-	                                    <a href="navegacaoag?mods=ag&pag=profpac" class="nav-link "> <span class="title">Perfil Paciente</span>
-	                                    </a>
-	                                </li>
-	                            </ul>
-	                        </li>
 	                        
 	                        <li class="nav-item  ">
 	                            <a href="#" class="nav-link nav-toggle"> <i class="material-icons material-icons fa fa-indent"></i>

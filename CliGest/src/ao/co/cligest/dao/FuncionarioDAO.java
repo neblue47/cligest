@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.sql.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ao.co.cligest.cripto.EncriptaDecriptaRSA;
 import ao.co.cligest.cripto.Seguranca;
 import ao.co.cligest.entidades.Funcionario;
@@ -23,7 +25,7 @@ public class FuncionarioDAO
 	
 	// 1 tabela - entidade 
 	
-	public int getIdEntidade(Funcionario fun)
+	public int getIdEntidade()
 	{
 		int ultimoId = -1;
 		String sql = "INSERT INTO TBLENTIDADE (EFECTIVIDADE) VALUE (1)";
@@ -212,7 +214,7 @@ public class FuncionarioDAO
 		}
 			return nome;
 	}
-	public String novo()
+	public String getNumDoC()
 	{
 		 
 		int fun = 0;
@@ -236,7 +238,34 @@ public class FuncionarioDAO
 				System.out.println("Erro finalizar: "+ef);
 			}
 		}
-			return "ATG0"+(fun+1);
+			return "CLIDOC0"+ StringUtils.leftPad(Integer.toString((fun+1)), 6, "0") ;
+	}
+	
+	public String getNumOutro()
+	{
+		 
+		int fun = 0;
+		String sql = "SELECT max(id_entidade) num FROM tblentidade";
+		try {
+			con = Conexao.getConexao();
+			PreparedStatement preparador = con.prepareStatement(sql);
+			ResultSet rs = preparador.executeQuery();
+			if(rs.last())
+				fun = rs.getInt("num");
+			
+			
+			 
+		}
+		catch(Exception e){}
+		finally{
+			try{
+				con.close();
+			}
+			catch(SQLException ef){
+				System.out.println("Erro finalizar: "+ef);
+			}
+		}
+			return "CLIFUN0"+(fun+1);
 	}
 	public java.sql.Date data_registo()
 	{
@@ -1550,7 +1579,7 @@ public class FuncionarioDAO
 		try {
 			con = Conexao.getConexao();
 			PreparedStatement ent = con.prepareStatement(sql);
-			ent.setInt(1, fun.getId());
+			ent.setInt(1, fun.getFK_entidade());
 			ent.setString(2, fun.getNum_ss());
 			ent.setString(3, fun.getNif());
 			ent.setString(4, fun.getNum_fun());
@@ -2385,6 +2414,9 @@ public class FuncionarioDAO
 				 f.setFK_entidade(rs.getInt("FK_entidade"));
 				 f.setNome(rs.getString("nome"));
 				 f.setApelido(rs.getString("ultimo_nome"));
+				 f.setNomeEsp(rs.getString("especialidade"));
+				 f.setNum_fun(rs.getString("numero_funcionario"));
+				 f.setTelefone(rs.getLong("telefone"));
 				 lista.add(f);
 			 }
 			 
@@ -2393,6 +2425,59 @@ public class FuncionarioDAO
 		}
 		return lista;
 	}
+
+	public void novoFuncionario(Funcionario fn) {
+		int id = getIdEntidade();
+		fn.setFK_entidade(id);
+		fn.setId(id);
+		cidadao(fn);
+		fun_funcionario(fn);
+		fun_naturalidade(fn);
+		fun_fone(fn);
+		fun_endereco(fn);
+		fun_email(fn);
+		fun_arquivos(fn);
+		System.out.println("FEITO OK");
+	}
 	
+public void cidadao(Funcionario fun){
+		
+	    String sql = "INSERT INTO TBLCIDADAO (fk_entidade," +"nome,nome_meio," + "ultimo_nome," + "data_nascimento,fk_estadocivil,fk_genero,fk_tipo_documento," 
+	    +   		 		"numero_documento,data_registo,fk_pais) " +
+	    		"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	    try {
+			 
+			 //1-tblcidadao
+	    	con = Conexao.getConexao();
+			 PreparedStatement cid = con.prepareStatement(sql);
+			 cid.setInt(1, fun.getFK_entidade());
+			 cid.setString(2, fun.getNome());
+			 cid.setString(3, fun.getNomem());
+			 cid.setString(4, fun.getApelido());
+			 cid.setDate(5, new Date( fun.getDataNasc().getTimeInMillis()));
+			 cid.setInt (6, fun.getEst_civil());
+			 cid.setInt(7, fun.getGenero());
+			 cid.setInt(8, fun.getTipo_doc());
+			 cid.setString(9, fun.getNum_doc());
+			 cid.setDate(10, new Formatando().data_registo());
+			 cid.setInt(11, 1);
+			 cid.execute();
+			 cid.close();
+			 System.out.println("Cadastro de sucesso...TBLCIDADAO"); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	    catch (Exception e) {
+	    	e.printStackTrace();
+		}
+	    finally{
+					try{
+						con.close();
+					}
+					catch(SQLException ef){
+						System.out.println("Erro finalizar: "+ef);
+					}
+			}
+	}
 
 }

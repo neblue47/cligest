@@ -98,7 +98,7 @@ public class LaboratorioController extends HttpServlet {
 				List<LaboratorioOutrosExames> lsOExames = new LaboratorioOutrosExamesDAO().buscarServicosExamesOutrosExame();
 				request.setAttribute("lsOExames", lsOExames);
 				
-				List<Exames> grExames = new ExamesDAO().buscagrupoexames();
+				List<Exames> grExames = new ExamesDAO().getGrupoExames();
 //				List<Exames> grsExames = new ExamesDAO().buscarsubgrupo();
 				request.setAttribute("grExames", grExames);
 				//
@@ -365,7 +365,7 @@ public class LaboratorioController extends HttpServlet {
 						atendido = lbDAO.buscarPacienteAtendidos();
 					}
 				
-					List<Exames> lsGrExame = new ExamesDAO().buscagrupoexames();
+					List<Exames> lsGrExame = new ExamesDAO().getGrupoExames();
 					List<Exames> exame = new ExamesDAO().buscarServicosExames();
 				
 					request.setAttribute("lsGrExame", lsGrExame);
@@ -383,7 +383,7 @@ public class LaboratorioController extends HttpServlet {
 					List<Exames> lsExames = new ExamesDAO().buscarServicosExamesClinico();
 					
 					List<Exames>amostraExames = new ExamesDAO().buscaAmostraExames();
-					List<Exames> grExames = new ExamesDAO().buscagrupoexames();
+					List<Exames> grExames = new ExamesDAO().getGrupoExames();
 					
 					if(cod!=null && !cod.equals("")){
 						int cod_e = Integer.parseInt(cod);
@@ -557,7 +557,7 @@ public class LaboratorioController extends HttpServlet {
 				
 				
 				if(tela!=null && (tela.equals("grupoExames") || tela!=null && tela.equals("confg"))){
-					List<Exames> grExames = new ExamesDAO().buscagrupoexames();
+					List<Exames> grExames = new ExamesDAO().getGrupoExames();
 				
 					String cod = request.getParameter("cod");
 					if(cod!=null && !cod.equals("")){
@@ -572,7 +572,7 @@ public class LaboratorioController extends HttpServlet {
 				
 				if(tela!=null && tela.equals("subgrupo")){
 					
-					List<Exames> grpExames = new ExamesDAO().buscagrupoexames();
+					List<Exames> grpExames = new ExamesDAO().getGrupoExames();
 					List<Exames> grExames = new ExamesDAO().buscarsubgrupo();
 					
 					String cod = request.getParameter("cod");
@@ -659,7 +659,7 @@ public class LaboratorioController extends HttpServlet {
 					List<Exames> lsExames = new ExamesDAO().buscarServicosExamesClinicoImag();
 					
 					List<Exames>amostraExames = new ExamesDAO().buscaAmostraExames();
-					List<Exames> grExames = new ExamesDAO().buscagrupoexames();
+					List<Exames> grExames = new ExamesDAO().getGrupoExames();
 //					List<Exames> grsExames = new ExamesDAO().buscarsubgrupo();
 					if(cod!=null && !cod.equals("")){
 						int cod_e = Integer.parseInt(cod);

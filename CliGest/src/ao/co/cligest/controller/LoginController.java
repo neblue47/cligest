@@ -92,7 +92,7 @@ public class LoginController extends HttpServlet {
 	    }
 		catch(Exception er)
 		{
-			System.out.print("Aqui: "+er);   
+			er.printStackTrace();
 			response.sendRedirect("login.jsp");
 		}
 	}

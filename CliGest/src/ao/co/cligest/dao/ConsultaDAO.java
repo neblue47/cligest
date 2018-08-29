@@ -36,7 +36,7 @@ public class ConsultaDAO
 			 preparador.execute();
 			 preparador.close();			
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		}
 		catch (Exception e) {	e.printStackTrace();	}
 		finally{
@@ -50,6 +50,261 @@ public class ConsultaDAO
 		
 	  }
 	
+	public int  novaConsultas(Triagem fun)
+	{
+		int ultimoId = xequeConsulta(fun.getFK_paciente(), fun.getId_cons_conf());;
+		String sql = "insert into tblconsulta (data_daconsulta,hora_daconsulta,fk_medico,fk_paciente,fk_servico, FK_cons_confirmada) values(?,?,?,?,?,?)";
+		try {
+			
+			if(ultimoId != 0)
+			{
+				return ultimoId;
+			}
+			else{
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps = con.prepareStatement(sql);
+				 ps.setDate(1, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+				 ps.setString(2, ft.getHoraAtual());
+				 ps.setInt(3,fun.getFK_doutor());
+				 ps.setInt(4, fun.getFK_paciente());
+				 ps.setInt(5, fun.getId_servico());
+				 ps.setInt(6, fun.getId_cons_conf());
+				 ps.execute();
+				 ResultSet rs = ps.executeQuery("SELECT LAST_INSERT_ID()");
+				 if(rs.next()){
+					 ultimoId = rs.getInt(1); 
+				 }
+				 ps.close();
+			}
+			 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (Exception e) {	e.printStackTrace();	}
+		finally{
+			try{
+				con.close();
+			}
+			catch(SQLException ef){
+				System.out.println("Erro finalizar: "+ef);
+			}
+		}
+		return ultimoId;
+	  }
+	
+	public void novaQueixaHistorial(Triagem t)
+	{
+		String sql = "";
+		try {
+			if(xequeHistorial(t.getId_consulta()) == 0 || xequeQueixas(t.getId_consulta())== 0)
+			{
+				sql = "insert into tblqueixaprincipal (FK_consulta,FK_doutor,FK_paciente,descricao) values (?,?,?,?)";
+				con = Conexao.getConexao();
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, t.getId_consulta());
+				ps.setInt(2, t.getFk_funcionario());
+				ps.setInt(3, t.getFK_paciente());
+				ps.setString(4, t.getQueixa());
+				ps.execute();
+				ps.close();
+				
+				sql = "insert into tblhistoriadadoenca (FK_consulta,FK_doutor,FK_paciente,historico_dadoenca) values (?,?,?,?)";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, t.getId_consulta());
+				ps.setInt(2, t.getFk_funcionario());
+				ps.setInt(3, t.getFK_paciente());
+				ps.setString(4, t.getHistorial());
+				ps.execute();
+				
+				ps.close();
+				con.close();
+			}
+			else{
+				actualizaQueixaHistorial(t);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void actualizaQueixaHistorial(Triagem t)
+	{
+		String sql = "";
+		try {
+			sql = "UPDATE tblqueixaprincipal SET descricao = ? WHERE FK_consulta = ?";
+			con = Conexao.getConexao();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, t.getQueixa());
+			ps.setInt(2, t.getId_consulta());
+			ps.execute();
+			ps.close();
+			
+			sql = "UPDATE tblhistoriadadoenca SET historico_dadoenca = ? WHERE FK_consulta = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, t.getHistorial());
+			ps.setInt(2, t.getId_consulta());
+			ps.execute();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	  
+	public int xequeConsulta(int codp, int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblconsulta WHERE fk_paciente = ? and FK_cons_confirmada = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codp);
+			 ps.setInt(2, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("id_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	
+	private int xequeHistorial(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblhistoriadadoenca WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	
+	private int xequeQueixas(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblqueixaprincipal WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	
+	private int xequeAntPessoal(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblantecedenteaessoal WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	
+	private int xequeAntFamiliar(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblantecedentefamiliar WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	
+	private int xequeRecomendacao(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblrecomendacao WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	
+	private int xequeTratamento(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tbltratamento WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
+	private int xequeExamFisicos(int codc)
+	{
+		int ultimo = 0;
+		String sql = "SELECT * FROM tblexamefisico WHERE FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, codc);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 ultimo = rs.getInt("FK_consulta");
+			 ps.close();
+			 con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ultimo;
+	}
 	public Triagem buscarOstriado(int cod)
 	{
 		Triagem pac = null;
@@ -179,19 +434,22 @@ public class ConsultaDAO
 		return t;
 	}
 	
-	public Triagem getQueixa(int cod){ 
+	public Triagem getQueixaHistorial(int cod){ 
 		Triagem t = null;
-		String sql = "SELECT * FROM tblqueixaprincipal where fk_consulta  = ?";
+		String sql = "SELECT * FROM   tblqueixaprincipal qx"
+				  + " INNER JOIN tblhistoriadadoenca ht ON qx.FK_consulta = ht.FK_consulta"
+				  + " where ht.FK_consulta  = ? or qx.FK_consulta = ?";
 		try
 		{
 			con = Conexao.getConexao();
 			 PreparedStatement preparador = con.prepareStatement(sql);
 			 preparador.setInt(1, cod);
+			 preparador.setInt(2, cod);
 			 ResultSet rs = preparador.executeQuery();
 			 if(rs.next()){
 				 t = new Triagem();
-				 t.setId_consulta(rs.getInt("fk_consulta"));
-				 t.setDescricao(rs.getString("descricao"));
+				 t.setQueixa(rs.getString("descricao"));
+				 t.setHistorial(rs.getString("historico_dadoenca"));
 			 }
 			  preparador.close(); 
 		}
@@ -1136,40 +1394,39 @@ public class ConsultaDAO
 		return rss;
 	}
 	
-	public void exam_fisicos(Triagem t)
+	public void novosExamesFisicos(Triagem t)
 	{
-		String sql = "insert into tblexamefisico "
-				+ "(fk_consulta,cabeca,pescoco,membro_superior,torax,abdomen,genito_urinario,mebro_inferior,objectivo_geral,sistema_nervoso)"
-				+ "values(?,?,?,?,?,?,?,?,?,?)";
-		try {
-			con = Conexao.getConexao();
-			 PreparedStatement preparador = con.prepareStatement(sql);
-			 preparador = con.prepareStatement(sql);
-			 preparador.setInt(1, t.getId_consulta());
-			 preparador.setString(2, t.getExa_cabeca());
-			 preparador.setString(3, t.getExa_pescoco());
-			 preparador.setString(4, t.getExa_membSup());
-			 preparador.setString(5, t.getExa_torax());
-			 preparador.setString(6, t.getExa_abdomen());
-			 preparador.setString(7, t.getExa_urinario());
-			 preparador.setString(8, t.getExa_membInf());
-			 preparador.setString(9, t.getObjectivo_geral());
-			 preparador.setString(10, t.getSistema_nervoso());
-			 preparador.execute(); 
-			 preparador.close();
-			
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-		catch (Exception e) {	e.printStackTrace();	}
-		finally{
-			try{
-				con.close();
+		String sql = "insert into tblexamefisico (fk_consulta,cabeca,pescoco,membro_superior,torax,abdomen,genito_urinario,mebro_inferior,objectivo_geral,sistema_nervoso) "
+				   + "values(?,?,?,?,?,?,?,?,?,?)";
+		if(xequeExamFisicos(t.getId_consulta()) == 0){
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps = con.prepareStatement(sql);
+				 ps.setInt(1, t.getId_consulta());
+				 ps.setString(2, t.getExa_cabeca());
+				 ps.setString(3, t.getExa_pescoco());
+				 ps.setString(4, t.getExa_membSup());
+				 ps.setString(5, t.getExa_torax());
+				 ps.setString(6, t.getExa_abdomen());
+				 ps.setString(7, t.getExa_urinario());
+				 ps.setString(8, t.getExa_membInf());
+				 ps.setString(9, t.getObjectivo_geral());
+				 ps.setString(10, t.getSistema_nervoso());
+				 ps.execute(); 
+				 ps.close();
+				 con.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			catch(SQLException ef){
-				System.out.println("Erro finalizar: "+ef);
-			}
+			 
 		}
+		else
+		{
+			atualizarExam_fisicos(t);
+		}
+		
 	}
 	
 	public void atualizarExam_fisicos(Triagem t)
@@ -1231,7 +1488,7 @@ public class ConsultaDAO
 			}
 		}
 	}
-	public void examesclinicos(Triagem t)
+	public void novoExamesclinicos(Triagem t)
 	{
 		String sql = "insert into tblexamesclinicos (fk_consulta,FK_servicodeanalise_clinica,FK_numero_requisicao) values(?,?,?)";
 		try {
@@ -3883,4 +4140,121 @@ public class ConsultaDAO
 			e.printStackTrace();
 		}
 	}
+
+	
+	public void novaAntecedentes(Triagem t)
+	{
+		String sql = "";
+		try {
+			if(xequeAntFamiliar(t.getId_consulta()) == 0 || xequeAntPessoal(t.getId_consulta())== 0)
+			{
+				sql = "insert into tblantecedenteaessoal (FK_consulta,FK_paciente,descricao) values (?,?,?)";
+				con = Conexao.getConexao();
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, t.getId_consulta());
+				ps.setInt(2, t.getFK_paciente());
+				ps.setString(3, t.getQueixa());
+				ps.execute();
+				ps.close();
+				
+				sql = "insert into tblantecedentefamiliar (FK_consulta,FK_paciente,descricao) values (?,?,?)";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, t.getId_consulta());
+				ps.setInt(2, t.getFK_paciente());
+				ps.setString(3, t.getHistorial());
+				ps.execute();
+				
+				ps.close();
+				con.close();
+			}
+			else{
+				actualizaAntedentes(t);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void actualizaAntedentes(Triagem t)
+	{
+		String sql = "";
+		try {
+			sql = "UPDATE tblantecedenteaessoal SET descricao = ? WHERE FK_consulta = ?";
+			con = Conexao.getConexao();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, t.getQueixa());
+			ps.setInt(2, t.getId_consulta());
+			ps.execute();
+			ps.close();
+			
+			sql = "UPDATE tblantecedentefamiliar SET descricao = ? WHERE FK_consulta = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, t.getHistorial());
+			ps.setInt(2, t.getId_consulta());
+			ps.execute();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void novaTratamentoRecomendacao(Triagem t)
+	{
+		String sql = "";
+		try {
+			if(xequeRecomendacao(t.getId_consulta()) == 0 || xequeTratamento(t.getId_consulta())== 0)
+			{
+				sql = "insert into tblrecomendacao (FK_consulta,FK_paciente,descricao_recomendacao) values (?,?,?)";
+				con = Conexao.getConexao();
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, t.getId_consulta());
+				ps.setInt(2, t.getFK_paciente());
+				ps.setString(3, t.getRecomendacao());
+				ps.execute();
+				ps.close();
+				
+				sql = "insert into tbltratamento (FK_consulta,FK_paciente,descricao_tratamento) values (?,?,?)";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, t.getId_consulta());
+				ps.setInt(2, t.getFK_paciente());
+				ps.setString(3, t.getTratamento());
+				ps.execute();
+				
+				ps.close();
+				con.close();
+			}
+			else{
+				actualizaAntedentes(t);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void actualizaTratamentoRecomendacao(Triagem t)
+	{
+		String sql = "";
+		try {
+			sql = "UPDATE tbltratamento SET descricao_tratamento = ? WHERE FK_consulta = ?";
+			con = Conexao.getConexao();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, t.getTratamento());
+			ps.setInt(2, t.getId_consulta());
+			ps.execute();
+			ps.close();
+			
+			sql = "UPDATE tblrecomendacao SET descricao_recomendacao = ? WHERE FK_consulta = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, t.getRecomendacao());
+			ps.setInt(2, t.getId_consulta());
+			ps.execute();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

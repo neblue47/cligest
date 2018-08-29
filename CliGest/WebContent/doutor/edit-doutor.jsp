@@ -161,7 +161,7 @@
                                             <div class="row">
                                                 <div class="offset-md-3 col-md-9">
                                                     <button type="submit" class="btn btn-info">Gravar</button>
-                                                    <button type="button" class="btn btn-default">Cancelar</button>
+                                                    <a  href="navegacao?mods=ad&pag=doc" class="btn btn-default">Cancelar</a>
                                                 </div>
                                             	</div>
                                         	</div>

@@ -1,8 +1,8 @@
-<form name="form1" method="post" action="AntecedenteController">
+<form name="form1" method="post" action="QueixaAtencedenteController">
 				<div >
 				 	<span> Pessoal </span>
 		  			<div id="agenda-perfil">	
-		      		 	<textarea name="descricao" id="antecedente" class="form-control" required="required" rows="10" > </textarea>
+		      		 	<textarea name="ant_pessoal" id="antecedente" class="form-control" required="required" rows="10" > </textarea>
 		      		 </div>
 				</div> 
 				<p></p>
@@ -16,13 +16,13 @@
 			 	<div >
 				 	<span> Familiar </span>
 		  			<div id="agenda-perfil">	
-		      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="10"> </textarea>
+		      		 	<textarea name="ant_familiar" id="historial" class="form-control" required="required" rows="10"> </textarea>
 		      		</div>
 				</div> 
 				<p></p>
 				<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
 			    <input type="hidden" name="funInt" value="${usuario}">
-			    <input type="hidden" name="conInt" value="${conslt}">
+			    <input type="hidden" name="conInt" value="${param.codc}">
 				<div class="pull-right">
 			   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
 					    Gravar

@@ -66,7 +66,7 @@ public class AgendaController extends HttpServlet {
 
 		if (ss != null) {
 			if (mod != null && mod.equals("ag")) {
-				
+				request.setAttribute("agendm", "active open");
 				// Inicio - Paciente
 				if (tela != null && (tela.equals("pac"))) {
 					List<Paciente> lsPaciente = new ArrayList<>();
@@ -134,7 +134,7 @@ public class AgendaController extends HttpServlet {
 					
 					Paciente pac = _pacienteDAO.getPerfilPaciente(codp);
 					List<Funcionario> lsDoutores = _funcionarioDAO.listaDoutoreTodos();
-					List<Exames> lsGrupo = _exameDAO.buscagrupoexames();
+					List<Exames> lsGrupo = _exameDAO.getGrupoExames();
 					
 					request.setAttribute("pac", pac);
 					request.setAttribute("lsDoutores", lsDoutores);

@@ -22,39 +22,50 @@ public class ExamesDAO {
 
 	private Connection con;
 	
-	 // Busca de Grupo de Exames
-    public List<Exames> buscagrupoexames(){
+	
+    public List<Exames> getGrupoExames(){
     List <Exames> lista = new ArrayList<Exames>();
-		String sql = "SELECT * FROM tblgrupodeanalises order by grupo_danalise"; 
+		String sql = "SELECT * FROM tbltipos_servico_exames order by tipos_servico_exames"; 
 		try {
 			 con = Conexao.getConexao();
-			PreparedStatement preparador = con.prepareStatement(sql);
-			 ResultSet rs = preparador.executeQuery();
+			PreparedStatement ps = con.prepareStatement(sql);
+			 ResultSet rs = ps.executeQuery();
 			 while(rs.next())
 			 {
 				 Exames pac = new Exames();
-				 pac.setId_grupo_analises_clinicas(rs.getInt("id_grupo_analises_clinicas"));  					
-				 pac.setGrupo_danalise(rs.getString("grupo_danalise"));				
+				 pac.setId_grupo_analises_clinicas(rs.getInt("id_tipos_servico_exames"));  					
+				 pac.setGrupo_danalise(rs.getString("tipos_servico_exames"));				
 				 lista.add(pac);
 			 }
-			 preparador.close();
+			 ps.close();
+			 con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
-		finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		return lista;
 	}
+    
+    public List<Exames> getExamesClinicosCadastrados(int tipoExame){
+        List <Exames> lista = new ArrayList<Exames>();
+    		String sql = "SELECT * FROM tblexamesclinicoscadastrados WHERE fk_tipo_serv_exames = ? order by exames_clinicos_cadastrados "; 
+    		try {
+    			 con = Conexao.getConexao();
+    			PreparedStatement ps = con.prepareStatement(sql);
+    			 ResultSet rs = ps.executeQuery();
+    			 while(rs.next())
+    			 {
+    				 Exames pac = new Exames();
+    				 pac.setId(rs.getInt("id_exames_clinicos_cadastrados"));
+    				 pac.setAnalise_clinica(rs.getString(rs.getString("exames_clinicos_cadastrados")));
+    				 lista.add(pac);
+    			 }
+    			 ps.close();
+    			 con.close();
+    		} catch (SQLException e) {
+    			e.printStackTrace();
+    		}
+    		return lista;
+    	}
     
     public List<Exames> buscarUnidade(){
         List <Exames> lista = new ArrayList<Exames>();
@@ -1893,7 +1904,7 @@ public class ExamesDAO {
     public List<Exames> buscarServicosExamesPorGrupo (int cod)
 	{
     	 List<Exames> lista = new ArrayList<Exames>(); 
-		String sql = "SELECT * FROM tblexamesclinicoscadastrados where fk_grupo = ?";
+		String sql = "SELECT * FROM tblexamesclinicoscadastrados where fk_tipo_serv_exames = ?";
 		try {
 			 con = Conexao.getConexao(); 
 			 PreparedStatement preparador = con.prepareStatement(sql);

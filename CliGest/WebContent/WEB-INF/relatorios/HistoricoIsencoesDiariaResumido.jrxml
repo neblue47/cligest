@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EncomendasRecebidas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12fce5e9-6188-4d6b-8d9c-8f610101c4c2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="5"/>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+  higr.categoriaisencao,
+  Count(higr.categoriaisencao) AS 'qdt_isencoes',
+  Sum(higr.total_isentado) AS 'total_isentado',
+  Count(Distinct(higr.FK_paciente)) AS 'numero_pacientes',
+  di.nome_comercial,
+  di.pais,
+  di.provincia,
+  di.bairro,
+  di.rua,
+  di.tel1,
+  di.tel2,
+  di.site,
+  di.email,
+  di.nif
+FROM
+  `vwrelhistoricoisencaodiaria` `higr`,
+  `vwdetalhesdainstituicao` `di`
+GROUP BY
+  higr.categoriaisencao]]>
+	</queryString>
+	<field name="categoriaisencao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qdt_isencoes" class="java.lang.Long"/>
+	<field name="total_isentado" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_pacientes" class="java.lang.Long"/>
+	<field name="nome_comercial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pais" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bairro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rua" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tel1" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tel2" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="site" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nif" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="valor_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_isentado}]]></variableExpression>
+	</variable>
+	<variable name="tqtd_isencoes" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qdt_isencoes}]]></variableExpression>
+	</variable>
+	<variable name="tqtd_pacientes" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{numero_pacientes}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="199" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="89" width="100" height="20" uuid="55cb93e5-b3ab-47c8-8a76-1d9390063650"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_comercial}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="23" y="8" width="230" height="80" uuid="eefb5437-3915-4b8a-aa07-168dd87f41a8"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="151" width="555" height="19" uuid="0bde55c6-bc9b-4eac-93ee-452713540d85"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[HISTÓRICO DE ISENÇÕES DIÁRIO RESUMIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="8" width="82" height="16" uuid="e35401e8-ad3b-4646-a346-15e1d13b694e"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Data de Emissão:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="444" y="8" width="87" height="16" uuid="de87c641-82ca-4eae-9683-c57abfca3ba9"/>
+				<textElement textAlignment="Right">
+					<font size="10" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="23" y="2" width="512" height="21" backcolor="#CCCCFF" uuid="82db2eee-2c60-49d4-8874-3cffd6aa5022"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="23" y="2" width="166" height="20" uuid="c0eab3f4-60a2-4312-ba01-bd54f6dfeb1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="2" width="115" height="20" uuid="fafadf4c-400a-40b9-8431-a820c02d7db7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº de PACIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="2" width="119" height="20" uuid="cf559718-633e-4916-84bb-cbe4a7d365c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="2" width="115" height="20" uuid="33df8153-6693-46e8-bff4-1469a53acedb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTD de ISENÇÕES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="22" width="512" height="1" uuid="815e8e42-91fb-4dfd-b48c-ce9958dcb30a"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="23" y="2" width="512" height="1" uuid="3b615e72-c928-41f1-9058-65f542c2276d"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement x="23" y="21" width="512" height="2" uuid="6a576cd8-ecc4-4aa8-8750-9305a8da299a"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField pattern="#,##0.00;(-#,##0.00)">
+				<reportElement x="23" y="2" width="166" height="20" uuid="0a02a1c1-4736-4054-8926-5de0af9db7d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoriaisencao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="304" y="2" width="115" height="20" uuid="9657c3fb-5c3d-48a8-a70b-0d151aa70519"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_pacientes}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="418" y="2" width="119" height="20" uuid="8b4c272b-8599-426e-9a14-8ab6fa80e872"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_isentado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="2" width="115" height="20" uuid="ce04e12f-576a-454c-bf3e-1ec62371548d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qdt_isencoes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="161" splitType="Stretch">
+			<rectangle>
+				<reportElement x="330" y="60" width="201" height="61" uuid="2b29802a-7a05-4722-a75d-1dcd2a1cb268"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="">
+				<reportElement x="462" y="65" width="65" height="16" uuid="0b71bf38-c48f-43c4-9334-ee7b62317c87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tqtd_isencoes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="338" y="65" width="104" height="16" uuid="87e76d3b-ea64-42c9-a044-17933db6d995"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTD ISENÇÕES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="83" width="104" height="16" uuid="c61ccece-9e1f-4414-804e-29f482cdc3ce"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTD PACIENTES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="101" width="104" height="16" uuid="cfb3f38b-c488-41b5-8678-cd1f66b5dd56"/>
+				<textElement verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR TOTAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="101" width="20" height="16" uuid="e8134037-1c00-4cb5-94c6-7bf74f262409"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KZ]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="462" y="83" width="65" height="16" uuid="f862d5f7-8913-4fb7-bfa5-ab7dd6f2bf48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tqtd_pacientes}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)">
+				<reportElement x="462" y="101" width="65" height="16" uuid="180c6115-53d3-4145-ba3a-c95122818c8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{valor_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="133" splitType="Stretch">
+			<staticText>
+				<reportElement x="243" y="80" width="21" height="12" forecolor="#000000" uuid="0e93bc4c-6b52-4b3c-8a50-66f399c43a58"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telfs:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="72" width="510" height="1" forecolor="#999999" uuid="9c6b380b-fda2-4765-96d2-9f9a1f3f8f85"/>
+			</line>
+			<textField>
+				<reportElement x="379" y="80" width="152" height="12" forecolor="#000000" uuid="4b6a3362-4352-49a1-80ac-2969568df2b8"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{site}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="88" width="152" height="12" forecolor="#000000" uuid="757eebab-7825-4d97-a747-1bad58bf9e28"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="80" width="72" height="12" forecolor="#000000" uuid="81afa243-f547-4e9a-9842-9c3d7d3312f9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tel1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="88" width="72" height="12" forecolor="#000000" uuid="be4db48c-2df2-499e-a744-cc688f8e2469"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tel2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="80" width="160" height="12" forecolor="#000000" uuid="453ae69d-3a4f-4ab4-a3e8-7d9abfb8c415"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="88" width="153" height="12" forecolor="#000000" uuid="82dd4d7e-e8af-4a6e-a833-b5e8ff2540ac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="121" width="202" height="12" uuid="82558137-0169-4ad6-88a5-51f5a803f533"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desenvolvido por: www.angotech.co.ao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="80" width="19" height="12" uuid="bf8c9c21-0d3d-4465-9642-a2165f74463a"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rua:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="88" width="26" height="12" uuid="f87b4757-bf24-40d4-84dc-e7e899c7e782"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="101" width="100" height="12" uuid="2d49222e-b1b9-4703-92b5-9d8eef12913d"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provincia}+" - "+$F{pais}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="243" y="101" width="21" height="12" uuid="812ba8e2-699c-443b-b8f2-ad83f05dc3cf"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="266" y="101" width="72" height="12" uuid="7baa4a32-17b6-478e-b31f-b2074dddc5c7"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nif}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

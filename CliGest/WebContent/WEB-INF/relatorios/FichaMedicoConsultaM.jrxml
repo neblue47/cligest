@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaMedicoConsulta" pageWidth="612" pageHeight="1100" columnWidth="532" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="20" uuid="fa4c44f8-3f63-4570-8804-3fbe4c5412ce">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexaoNova"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="32af75fe-b860-4556-939a-00eaf1abf0f2">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexaoNova"/>
+		<queryString>
+			<![CDATA[select descricao_cid
+from vwhipoteses]]>
+		</queryString>
+		<field name="descricao_cid" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="descricao_cid">
+			<groupExpression><![CDATA[$F{descricao_cid}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="6933d406-1317-4489-a3e5-f4257f428c48">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexaoNova"/>
+		<queryString>
+			<![CDATA[select vwhipoteses.descricao_cid
+from vwhipoteses]]>
+		</queryString>
+		<field name="descricao_cid" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="descricao_cid">
+			<groupExpression><![CDATA[$F{descricao_cid}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="logoImage" class="java.awt.Image"/>
+	<parameter name="cod_consulta" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM  vwrelatorioconsultadopaciente
+  WHERE id_consulta = $P{cod_consulta}]]>
+	</queryString>
+	<field name="id_consulta" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_medico" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_c_medico" class="java.lang.String"/>
+	<field name="FK_servico" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="servico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="historico_doenca" class="java.lang.String"/>
+	<field name="queixa_principal" class="java.lang.String"/>
+	<field name="consulta_recomendacao" class="java.lang.String"/>
+	<field name="consulta_tratamento" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_cabeca" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_pescoco" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_membro_superior" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_torax" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_abdomen" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_genito_urinario" class="java.lang.String"/>
+	<field name="consulta_exame_fisico_membro_inferior" class="java.lang.String"/>
+	<field name="FK_paciente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NumeroProcesso" class="java.lang.String"/>
+	<field name="n_c_paciente" class="java.lang.String"/>
+	<field name="idade" class="java.lang.Integer"/>
+	<field name="data_daconsulta" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora_daconsulta" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="endereco_paciente" class="java.lang.String"/>
+	<field name="telefone_paciente" class="java.lang.Long"/>
+	<field name="temperatura" class="java.lang.String"/>
+	<field name="tensao" class="java.lang.String"/>
+	<field name="respiracao" class="java.lang.String"/>
+	<field name="pulso" class="java.lang.String"/>
+	<field name="peso" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="altura" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="imc" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado_do_paciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnostico_preliminar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora_triagem" class="java.sql.Time"/>
+	<field name="diagnostico" class="java.lang.String"/>
+	<field name="hipotese" class="java.lang.String"/>
+	<field name="exame_clinico" class="java.lang.String"/>
+	<field name="farmaco" class="java.lang.Object"/>
+	<group name="n_c_medico">
+		<groupExpression><![CDATA[$F{n_c_medico}]]></groupExpression>
+	</group>
+	<group name="servico">
+		<groupExpression><![CDATA[$F{servico}]]></groupExpression>
+	</group>
+	<group name="historico_doenca">
+		<groupExpression><![CDATA[$F{historico_doenca}]]></groupExpression>
+	</group>
+	<group name="queixa_principal">
+		<groupExpression><![CDATA[$F{queixa_principal}]]></groupExpression>
+	</group>
+	<group name="consulta_recomendacao">
+		<groupExpression><![CDATA[$F{consulta_recomendacao}]]></groupExpression>
+	</group>
+	<group name="consulta_tratamento">
+		<groupExpression><![CDATA[$F{consulta_tratamento}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_cabeca">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_cabeca}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_pescoco">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_pescoco}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_membro_superior">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_membro_superior}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_torax">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_torax}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_abdomen">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_abdomen}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_genito_urinario">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_genito_urinario}]]></groupExpression>
+	</group>
+	<group name="consulta_exame_fisico_membro_inferior">
+		<groupExpression><![CDATA[$F{consulta_exame_fisico_membro_inferior}]]></groupExpression>
+	</group>
+	<group name="NumeroProcesso">
+		<groupExpression><![CDATA[$F{NumeroProcesso}]]></groupExpression>
+	</group>
+	<group name="n_c_paciente">
+		<groupExpression><![CDATA[$F{n_c_paciente}]]></groupExpression>
+	</group>
+	<group name="data_daconsulta">
+		<groupExpression><![CDATA[$F{data_daconsulta}]]></groupExpression>
+	</group>
+	<group name="hora_daconsulta">
+		<groupExpression><![CDATA[$F{hora_daconsulta}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="393" splitType="Stretch">
+			<rectangle>
+				<reportElement x="260" y="79" width="270" height="70" uuid="0107e1fe-188f-458d-a732-e5a60bd2a7de"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="271" y="85" width="250" height="18" uuid="49c6a57f-5304-4f07-9fc3-d9070268b334"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{n_c_paciente}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="111" width="100" height="18" uuid="0ff36bb4-a964-4aae-a992-35858e6d422b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[Número de Processo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="271" y="127" width="250" height="18" uuid="956eeaf3-2917-44aa-a03d-fd3213b0860c"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NumeroProcesso}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="240" height="80" uuid="daaf7cd9-b08c-4df4-a0c5-bc3d013f1aba">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="260" y="154" width="270" height="41" uuid="720ce16d-9de2-4f4d-970e-4ffbe906f60a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="271" y="158" width="150" height="18" uuid="231764b8-d49a-4a46-b218-cbe46c7d85b2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[Médico(a) Responsável]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="271" y="176" width="250" height="18" uuid="92e96997-ebd0-4ea2-baf8-904384d3bbff"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{n_c_medico}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="272" width="78" height="20" uuid="2edb9c75-8e1e-4698-b6fe-08295d7c418e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora da Consulta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="254" width="78" height="20" uuid="f4747100-649a-4203-afb1-7563ef017c26"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da Consulta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="193" width="78" height="20" uuid="9f080cb6-a56d-44eb-9f8b-41e6aa6a6bce"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idade]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="81" y="272" width="119" height="20" uuid="b1c54a29-d8c7-4e70-86df-df74f0be498f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{hora_daconsulta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="81" y="254" width="119" height="20" uuid="f0b9bbbd-627c-4527-8b3e-efd27f1a6588"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{data_daconsulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="193" width="100" height="20" uuid="39254b17-234f-46de-99ea-e9797828aa4a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{idade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="214" width="78" height="20" uuid="ca332540-4798-4167-9e6a-6c6a1586a8f4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="235" width="78" height="20" uuid="5fda6cd5-5415-41ce-b5c8-a742178a1596"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="214" width="119" height="20" uuid="1f7a7501-448f-4263-9cb1-5e5d6f013490"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{telefone_paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="235" width="179" height="20" uuid="7d76dfd0-cb0e-43f5-a96c-4a7a5fd3cf8f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{endereco_paciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="150" y="299" width="380" height="40" uuid="0ba6330d-e83d-494d-b76b-7a2a2d8ee2a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="26" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[FICHA DE ATENDIMENTO MÉDICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="357" width="179" height="30" uuid="3ca95992-56f3-4290-b4ea-eff8dae56fdc"/>
+				<textElement>
+					<font fontName="Calibri" size="18" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Consulta de Fisiatria]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="578" splitType="Stretch">
+			<rectangle>
+				<reportElement x="277" y="481" width="255" height="24" backcolor="#F7F7F7" uuid="8528fae2-a85a-45c5-8086-d3c694e2f5d3"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="277" y="297" width="255" height="24" backcolor="#F7F7F7" uuid="f24afa97-074c-4d19-9868-0c0e88f0289c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="277" y="205" width="255" height="24" backcolor="#F7F7F7" uuid="72deca5e-fee6-4582-8b65-9a37158397f0"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="2" width="255" height="24" backcolor="#F7F7F7" uuid="9ef4371f-fd6a-418c-b31b-eb52b1c76534"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="276" y="115" width="255" height="24" backcolor="#F7F7F7" uuid="526e3d43-41b3-4e2a-90df-e84d5fe6cb01"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="115" width="255" height="24" backcolor="#F7F7F7" uuid="63592df2-8305-457b-b762-e54d698fd022"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="50" width="80" height="20" uuid="bb0d51be-cef7-419c-a6c3-946c50b545ad"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*Pulso(P/M)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="29" width="80" height="20" uuid="02fdb758-deb8-46a6-abaa-1d911bfa14fc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*Temperatura(ºC)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="71" width="80" height="20" uuid="5e17d825-1c98-4402-9b76-aae83659aa90"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*Respiração(bpm)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="30" width="50" height="20" uuid="c37c6089-bd3c-48a7-9c42-382671c97a48"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*Peso(Kg)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="51" width="50" height="20" uuid="30d73a0f-9969-4f21-9267-5ff949ea6249"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*Altura(m)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="70" width="50" height="20" uuid="a9463f56-4e10-45ce-9a22-81281735c106"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*IMC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="91" width="80" height="20" uuid="7259bf9d-ac74-4336-b2d1-945382158432"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[*Tensão Arterial]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="30" width="50" height="19" uuid="06c2db54-e7bb-49e1-b9a0-597ecf65635c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{temperatura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="51" width="50" height="19" uuid="c911addb-b537-4a4d-b18e-37648615eb99"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{pulso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="71" width="50" height="20" uuid="f205e9fb-4b86-4baf-ada7-0bd665b99d44"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{respiracao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="91" width="50" height="20" uuid="dad307ca-2a21-41df-845b-a983e489e733"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{tensao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="30" width="40" height="20" uuid="cb278411-9c2f-46e1-99e4-50ef65b7d456"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="51" width="40" height="21" uuid="7e1c315f-a182-4a28-89e6-1719a91df716"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{altura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="70" width="40" height="20" uuid="c539eb70-528c-4d2c-9fd3-961075e7a853"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{imc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="116" width="220" height="20" uuid="fdd97b97-75ea-4ee4-a1c6-84d5839892fd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUEIXAS E HISTORIAL DA DOENÇA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="246" width="255" height="24" backcolor="#F7F7F7" uuid="b2b44d92-0810-49f2-942a-6cf8c882ce76"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="9" y="247" width="96" height="20" uuid="9ace7712-c278-4543-ad10-ffa3f04086e5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXAME FÍSICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="11" y="274" width="239" height="31" uuid="f33f2c09-010a-46c3-9bab-a2fa375e02f6"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Cabeça: ".toUpperCase()+$F{consulta_exame_fisico_cabeca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="306" width="239" height="31" uuid="bf4f6bba-0e20-4e27-b540-e87efbf51662"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Pescoço: ".toUpperCase()+$F{consulta_exame_fisico_pescoco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="338" width="239" height="31" uuid="c6b402dd-0983-44f4-ba48-6572cd2e8cf3"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Membros Superiores: ".toUpperCase()+$F{consulta_exame_fisico_membro_superior}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="370" width="241" height="28" uuid="8ecd58ce-c8d6-4ea5-b019-cb1034e48839"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Membros Inferiores: ".toUpperCase()+$F{consulta_exame_fisico_membro_inferior}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="398" width="240" height="28" uuid="3c40acbf-285e-48c0-9455-b4e080283fc2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Tórax: ".toUpperCase()+$F{consulta_exame_fisico_torax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="427" width="240" height="25" uuid="46881568-fd98-4aa9-8609-d17ef2a16fac"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Abdómen: ".toUpperCase()+$F{consulta_exame_fisico_abdomen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="453" width="240" height="32" uuid="ab9d75b3-9876-4d3e-adb6-3837a1c2724c"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Genito Urinário: ".toUpperCase()+$F{consulta_exame_fisico_genito_urinario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="146" width="239" height="42" uuid="0d4e2586-9467-4d6d-9ea1-9f758df193f6"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Queixas Principais: ".toUpperCase()+$F{queixa_principal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="191" width="239" height="52" uuid="ea8c83e8-553b-4b57-b115-7c370a041b3a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["*Historial da Doença: ".toUpperCase()+$F{historico_doenca}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="276" y="2" width="255" height="24" backcolor="#F7F7F7" uuid="43484f0c-90d9-4393-b481-a41935212e95"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="285" y="5" width="96" height="20" uuid="164fda4a-cd7d-480f-b3c5-07a150ed1c40"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HIPOTESE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="285" y="324" width="236" height="60" uuid="51e99ed2-8c6b-4fa7-9132-3918cb8c3583"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consulta_tratamento}+"."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="285" y="116" width="115" height="20" uuid="1fa14d6b-d3a9-4aab-85c0-a02cfe90090a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIAGNÓSTICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="285" y="415" width="237" height="60" uuid="97abe3f4-f64e-480a-81ca-284db53ec20c"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consulta_recomendacao}+"."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="3" width="95" height="20" uuid="1346773c-1291-4a07-b205-688d155b068d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SINAIS VITAIS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="283" y="142" width="238" height="58" uuid="aca748c9-2347-4626-992b-4593dd5f0f7a"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico}+"."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="206" width="115" height="20" uuid="0f05c0d3-7c84-4bed-aa72-c9b3dc4cc98d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXAME CLÍNICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="298" width="115" height="20" uuid="f0a20120-ffe1-4148-a901-2c46a853f920"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRATAMENTO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="277" y="388" width="255" height="24" backcolor="#F7F7F7" uuid="6730092b-7986-4e24-9f05-19f546a7bd9e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="286" y="389" width="115" height="20" uuid="904637c7-2209-491e-ab22-7c5b155a3f7c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECOMENDAÇÕES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="286" y="30" width="236" height="81" uuid="33a79796-2af9-4893-a798-50c6d660db2a"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hipotese}+"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="233" width="235" height="57" uuid="57ae84d0-d9aa-4b66-84d7-fa2682b92bc6"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{exame_clinico}+"."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="482" width="115" height="20" uuid="46d26b0e-a2a6-40ab-99d0-0f30f0850eb4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECEITUÁRIO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="285" y="510" width="236" height="60" uuid="c24321e9-94ab-4a83-b2f2-6cb5c850b6e7"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{farmaco}+"."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="5" width="204" height="40" uuid="f3383be3-c88b-4a68-8ae4-bd6b39d6120f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[Rua: xxxxxxxxxxxxxxxxx
+Bairro: xxxxxxxx, Município de Viana
+Desenvolvido por: www.angotech.co.ao
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="7" width="110" height="40" uuid="d95e588a-e6a9-4d49-988a-4ad3cd3aa768"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[Telfs: 923 999999
+          912 888888
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="7" width="152" height="40" uuid="a01abb49-e1c1-4281-b2fb-1b5ce6525c42"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8"/>
+				</textElement>
+				<text><![CDATA[www.exemplo.com
+E- mail: exemplo@hotmail.com
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="2" width="532" height="1" uuid="d8888111-faf3-466d-96a3-2e91d250cec9">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="51">
+			<staticText>
+				<reportElement x="413" y="0" width="100" height="20" uuid="5931babb-3d0b-4245-80fc-f374ca45a2fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Médico(a)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="370" y="31" width="161" height="1" uuid="b509e246-570a-4085-8762-8c0e028691e1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="405" y="32" width="100" height="19" uuid="6bf6ba77-a05e-4ee9-816d-15a07da87bae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{n_c_medico}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

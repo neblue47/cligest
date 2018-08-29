@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CodigoBarra" language="groovy" pageWidth="170" pageHeight="70" columnWidth="170" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b8e64fb5-9cf6-44da-9497-5bee8cd541c8">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_amostra" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+  `a`.`id_amostra`,
+  `s`.`analise_clinica`,
+  `a`.`codigo_barra_exame`,
+  `c`.`NomeCompleto`
+FROM
+  `tblamostra` `a`
+  JOIN `tblservicosdeexamesclinicos` `s` ON `a`.`fk_exame` =
+    `s`.`id_servicodeanalise_clinica`
+  JOIN `tblnumerodoexame` ON `a`.`FK_requisicao_exame` =
+    `tblnumerodoexame`.`id_numero_do_exame`
+  JOIN `vwcidadaopacientenomecompleto` `c`
+    ON `tblnumerodoexame`.`FK_paciente` = `c`.`Entidade`
+where id_amostra = $P{id_amostra}]]>
+	</queryString>
+	<field name="id_amostra" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="analise_clinica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo_barra_exame" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NomeCompleto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="-4" width="161" height="20" uuid="0c69252e-6a8a-4072-8511-3bf2e0959783"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NomeCompleto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="9" y="14" width="161" height="15" uuid="993864da-8b21-4be8-9ee2-fe546dfda0a8"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{analise_clinica}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<componentElement>
+				<reportElement x="-1" y="3" width="171" height="26" backcolor="#FFFFFF" uuid="7be08650-6160-4a75-bee1-fbb247723acd"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128A" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{codigo_barra_exame}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="-1" y="18" width="171" height="20" uuid="98680475-c595-4238-a086-b49331b12212"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_barra_exame}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

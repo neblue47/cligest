@@ -22,11 +22,10 @@
                             <div class="card card-box">
                                 <div class="card-head">
                                     <header>Dados do Doutor</header>
-                                      
-				                         
                                 </div>
                                 <div class="card-body" id="bar-parent">
-                                    <form action="#" id="form_sample_1" class="form-horizontal" method="post">
+                                    <form action="DoutorController" id="form_sample_1" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                       <div >
                                         <div class="form-body">
                                         <div class="form-group row">
                                                 <label class="control-label col-md-3">Primeiro Nome
@@ -48,10 +47,8 @@
                                                 </label>
                                                 <div class="col-md-5">
                                                     <div class="input-group date form_date " data-date="" data-date-format="dd/MM/yyyy" data-link-field="dtp_input2" data-link-format="dd/MM/yyyy">
-		                                                <input class="form-control input-height" size="16" placeholder="data de nascimento" type="text" value="">&nbsp;
-		                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+		                                                <input name="dtNascido" class="form-control input-height" size="16" placeholder="data de nascimento" type="date" value="">&nbsp;
 	                                            	</div>
-	                                            	<input type="hidden" id="dtp_input2" value="" />
 	                                            </div>
                                             </div>
                                             <div class="form-group row">
@@ -81,11 +78,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="control-label col-md-3">Titulo
+                                                <label class="control-label col-md-3">BI / Passaporte.
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="designation" data-required="1" placeholder="titulo" class="form-control input-height" /> </div>
+                                                    <input name="contacto" type="text" placeholder="numero do BI/PassaPorte" class="form-control input-height" /> </div>
+                                                </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Especialidade
@@ -94,15 +92,12 @@
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" name="especialidade">
                                                         <option value="">Selecione...</option>
-                                                        <option value="Category 1">Neurology</option>
-                                                        <option value="Category 2">Orthopedics</option>
-                                                        <option value="Category 3">Gynaecology</option>
-                                                        <option value="Category 3">Microbiology</option>
-                                                        <option value="Category 3">Radiotherapy</option>
-                                                        <option value="Category 3">Pharmacy</option>
+                                                        <c:forEach items="${lsEspm}" var="at">
+                                                         <option value="${at.especialidade }">${at.nomeEsp }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
-                                            </div>
+                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Contacto
                                                     <span class="required"> * </span>
@@ -110,29 +105,7 @@
                                                 <div class="col-md-5">
                                                     <input name="contacto" type="text" placeholder="numero para contacto" class="form-control input-height" /> </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Senha
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <input type="password" name="pswd" data-required="1" placeholder="digita senha" class="form-control input-height" autocomplete="off"/> </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Confirma Senha
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <input type="text" name="cnfmPwd" data-required="1" placeholder="confirma senha" class="form-control input-height" autocomplete="off"/> </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Email
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <div class="input-group">
-                                                        
-                                                        <input type="text" class="form-control input-height" name="email" placeholder="endereco electronico"> </div>
-                                                </div>
-                                            </div>
+                                            
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3">Morada
                                                     <span class="required"> * </span>
@@ -142,13 +115,6 @@
                                                 </div>
                                             </div>
                                             
-                                            <div class="form-group row">
-												<label class="control-label col-md-3">Outros 
-												</label>
-												<div class="col-md-5">
-													<textarea name="address" class="form-control-textarea" placeholder="Education" rows="5"></textarea>
-												</div>
-											</div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Upload Foto
                                                 </label>
@@ -161,7 +127,7 @@
                                             <div class="row">
                                                 <div class="offset-md-3 col-md-9">
                                                     <button type="submit" class="btn btn-info">Gravar</button>
-                                                    <button type="button" class="btn btn-default">Cancelar</button>
+                                                    <a  href="navegacao?mods=ad&pag=doc" class="btn btn-default">Cancelar</a>
                                                 </div>
                                             	</div>
                                         	</div>

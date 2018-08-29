@@ -32,7 +32,7 @@
     <link href="theme/css/theme-color.css" rel="stylesheet" type="text/css" />
     <link href="theme/css/login.css" rel="stylesheet" type="text/css"/>
 	<!-- favicon -->
-    <link rel="shortcut icon" href="theme/img/favicon.ico" /> 
+    <link rel="shortcut icon" href="theme/img/logocligest1.ico" /> 
  </head>
  <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
@@ -122,6 +122,17 @@
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'profdoc'}">
             	<jsp:include page="doutor/profile-doutor.jsp" />
+            </c:if>
+            
+            <!-- SERVICOS -->
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'lscons'}">
+            	<jsp:include page="adm-sistema/servico/all-servicos.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'novocons'}">
+            	<jsp:include page="adm-sistema/servico/new-servico-consulta.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'editcons'}">
+            	<jsp:include page="adm-sistema/servico/edit-servico-consulta.jsp" />
             </c:if>
             
            <!-- PACIENTES -->

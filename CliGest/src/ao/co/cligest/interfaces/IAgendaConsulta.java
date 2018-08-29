@@ -23,6 +23,7 @@ public interface IAgendaConsulta {
 	List<Paciente> listaPagoTriado();
 	List<Paciente> listaPagoNaoTriado();
 	Triagem getSinais(String codc);
+	int getServicoConfirmadaPorId(int codcs);
 	
 	
 	

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PerfilProduto" language="groovy" pageWidth="595" pageHeight="466" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ec0153f-a4c2-496e-8638-8b51a81302f5">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<parameter name="id_produto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoProduto" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM vwlistadeprodutoscadastrados
+WHERE id_produto = $P{id_produto}]]>
+	</queryString>
+	<field name="id_produto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_comercial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="forma_farmaceutica" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dosagem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="preco_dcompra" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="preco_dvenda" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_taxa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_de_taxa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taxa" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taxa_emkz" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo_barra" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="requer_receita" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_embalagem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="embalagem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_quimico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_dosagem" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_forma_farmaceutica" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="imagem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_funcionario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inactivo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="389" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="54" y="116" width="143" height="19" forecolor="#999999" uuid="fb8f912f-ce22-4551-9478-d5e55226a667"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO DO PRODUTO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="54" y="141" width="445" height="237" uuid="e0dfddea-f2fe-4f62-bb96-9c3cdc00f1ac"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="211" y="141" width="153" height="236" backcolor="#6699FF" uuid="baad4f18-1049-4482-93cc-b88a848c6eb7"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineColor="rgba(227, 227, 227, 0.8901961)"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="211" y="140" width="153" height="20" forecolor="#333333" uuid="56bd7f2e-421e-43e7-be3a-3dbed12dee8c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<line>
+				<reportElement x="211" y="181" width="288" height="1" backcolor="#E3FFFF" uuid="14899502-31f1-4cd3-a0ed-7021ba96cc20"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="160" width="288" height="1" uuid="b24f7ff6-682f-468e-8a99-1ecc2f3a0f91"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="200" width="288" height="1" uuid="1f707cfd-05bb-429c-8637-976a3c8fe076"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="219" width="288" height="1" uuid="afab7094-35d7-4670-9a19-252a4b901c8c"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineStyle="Solid" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="240" width="288" height="1" uuid="a677fe53-463f-4436-9254-0c6ff2c732e6"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="259" width="288" height="1" uuid="23b9d980-0570-4e93-982d-359abcbc53bc"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="280" width="288" height="1" uuid="8fd3b3d9-d2d7-4b93-bb5e-ba6b07ff4369"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="300" width="288" height="1" uuid="5eea87ad-5fa2-461d-93ac-8949dc236c18"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="319" width="288" height="1" uuid="137ac53c-15a8-4672-a01d-32f556acbabb"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="340" width="288" height="1" uuid="4b7699d9-16fc-4daf-b426-65cd6e82469f"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="359" width="288" height="1" uuid="20c6311c-0b5f-42a2-a4a1-90b6e935a641"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="377" width="288" height="1" uuid="396d9041-d4c9-4005-8989-1d4d4c17ef0f"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="211" y="141" width="1" height="237" uuid="3ecf84d3-833e-490f-8475-b5668da9f94d"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="364" y="140" width="1" height="237" uuid="3314561a-9420-48ad-a42e-f133abb96c62"/>
+				<graphicElement>
+					<pen lineWidth="0.75" lineColor="#E3E3E3"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="365" y="140" width="134" height="20" uuid="459a33ac-1642-429d-8dc6-af3b40a0655d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_produto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="161" width="135" height="20" uuid="98e993cc-110a-45de-bddc-7a1205ca6a88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{codigo_barra} == "" ? "000000000000" : $F{codigo_barra})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="181" width="135" height="20" uuid="47550e66-dc5c-4872-8cfa-6c5e77360915"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_comercial}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="199" width="135" height="20" uuid="a03a826c-7d0f-4de4-85ab-0bf2fd00d466"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_quimico}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="219" width="135" height="20" uuid="39eaa195-680a-4441-b081-794582411734"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{forma_farmaceutica}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="239" width="135" height="21" uuid="0c2b1ce5-1bab-4417-b008-cd7540dbe946"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dosagem}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="339" width="135" height="21" uuid="13b13a78-69db-44cd-9865-6acd9852891e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{requer_receita} == 0 ? "Não" : "Sim")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="359" width="135" height="18" uuid="970a5d68-b567-4263-afcd-3eab40665e19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{inactivo} == 0 ? "Não" : "Sim")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="365" y="259" width="134" height="20" uuid="de915b6f-037d-41af-ab48-0d73e702214d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{embalagem}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;(###0.00)" isBlankWhenNull="true">
+				<reportElement x="364" y="299" width="135" height="20" uuid="dcd7c9cc-68ca-485d-8846-714458d76073"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kz "+$F{preco_dvenda}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="364" y="319" width="135" height="20" uuid="2ff2eddf-ed75-4297-b61b-afb9d17dce2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{taxa}+" %"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+				<reportElement x="364" y="280" width="135" height="20" uuid="d8021cae-cfac-416f-85aa-d0dacc7b1344"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Kz "+$F{preco_dcompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="211" y="161" width="153" height="20" forecolor="#333333" uuid="738b6190-3b47-44d6-954e-a7d43277ae44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código Barra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="212" y="181" width="153" height="20" forecolor="#333333" uuid="e689ccea-815f-4927-b509-b3da90cd2c57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Comercial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="199" width="153" height="20" forecolor="#333333" uuid="df50e816-b468-4ff1-bf40-0a25b326d3fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Químico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="280" width="153" height="20" forecolor="#333333" uuid="f9f3dbc4-ac35-451a-b51c-32d9e9c8bc61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Custo de Compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="219" width="153" height="20" forecolor="#333333" uuid="f0a5fd45-16f5-4659-84be-600a012e13ba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma Farmacéutica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="239" width="153" height="20" forecolor="#333333" uuid="dbdb9d34-c91a-4efb-9bac-f942455e3097"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apresentação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="259" width="153" height="20" forecolor="#333333" uuid="42b457ab-573d-4166-a32f-0fb8ff16303f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Embalagem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="299" width="153" height="20" forecolor="#333333" uuid="3dcd3a74-6831-42c4-94fe-7096cf2f785f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Preço de venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="319" width="153" height="20" forecolor="#333333" uuid="90775fee-2969-4d0b-9f51-6eeedbf66250"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Taxa %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="339" width="153" height="20" forecolor="#333333" uuid="c08e7955-e39d-4fde-a3d1-f6ccc825a89f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Requer Receita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="357" width="153" height="20" forecolor="#333333" uuid="04f3f3e2-5253-4f52-b26f-ff5f76afc5f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inactivo]]></text>
+			</staticText>
+			<image>
+				<reportElement x="7" y="0" width="100" height="50" uuid="416b4422-8aad-4c54-bcce-5d93617f6ed9"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="54" y="134" width="131" height="1" uuid="98cb9953-c702-4282-b71e-e323fa26a398"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="93" y="199" width="92" height="121" uuid="699a40fd-c0c4-4176-95cd-8979e39d6200"/>
+				<imageExpression><![CDATA[$P{logoProduto}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="379" y="48" width="120" height="20" forecolor="#6699FF" backcolor="#6699FF" uuid="f6250cb9-ffb8-425c-ad4c-5a168f66d1d3"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_comercial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="48" width="57" height="20" forecolor="#999999" uuid="afcfdf07-a2fc-4470-a1d0-7627d8f602fe"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUTO:]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement x="47" y="123" width="4" height="5" forecolor="#999999" backcolor="#999999" uuid="cd65f509-6041-42c8-a34c-38f5de85c775"/>
+				<graphicElement>
+					<pen lineColor="#999999"/>
+				</graphicElement>
+			</ellipse>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

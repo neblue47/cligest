@@ -346,6 +346,40 @@ public class ProdutosDAO {
 		return lista;
 	}
 	
+	public List <Produtos> getProdutoIniciais (String aux)
+	{
+		List <Produtos> lista = new ArrayList<Produtos>();
+		String sql = "SELECT * FROM vwlistadeprodutoscadastrados where nome_comercial Like ?  order by id_produto ";
+		try {
+			con = Conexao.getConexao();
+			 PreparedStatement preparador = con.prepareStatement(sql);
+			 preparador.setString(1, aux+"%");
+			 ResultSet rs = preparador.executeQuery();
+			 while(rs.next())
+			 {
+				 Produtos pd = new Produtos();
+				 pd.setId_produto(rs.getInt("id_produto"));
+				 pd.setNome_comercial(rs.getString("nome_comercial")+" "+rs.getString("forma_farmaceutica")+" "+rs.getString("dosagem"));
+				 pd.setValor_forma_farmaceutica(rs.getString("forma_farmaceutica"));
+				 pd.setValor_dosagem(rs.getString("dosagem"));
+				 pd.setPreco_dcompra(rs.getDouble("preco_dcompra"));
+				 pd.setPreco_dvenda(rs.getDouble("preco_dvenda"));
+				 pd.setTaxas(rs.getDouble("taxa"));
+				 pd.setTaxa_emkz(rs.getDouble("taxa_emkz"));
+				 lista.add(pd);
+			 }
+			 preparador.close();
+			 con.close();
+		}  
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		
+		return lista;
+	}
+	
 	public void XeqQtdPrd(String aux){
 		String sql = "Select * from tblprodutoemestoque where nome_comercial Like ? and quantidade_produto = 0";
 		try {

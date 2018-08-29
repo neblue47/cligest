@@ -28,25 +28,23 @@
 	                        <div class="white-box">
 								<div class="cardbox">
 			                    <div class="header">
-			                        <h4 class="font-bold">DADOS DO PACIENTE</h4>
+			                        <h4 class="font-bold center">DADOS DO PACIENTE</h4>
 			                    </div>
 				                    <div class="body">
 				                        <div class=" ">
 				                                <!-- .row -->
 				                                <div class="row text-center m-t-10">
-				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Nome</strong>
-				                                        <p>Alexandre João</p>
+				                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Nome</strong>
+				                                        <p>${perfil.nome } ${perfil.nomem } ${perfil.apelido }</p>
 				                                    </div>
-				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Ocupação</strong>
-				                                        <p>Engenheiro</p>
-				                                    </div>
+				                                     
 				                                </div>
 				                                 <div class="row text-center m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Genero</strong>
-				                                        <p>Masculino</p>
+				                                        <p>${perfil.nomegenero }</p>
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Idade</strong>
-				                                        <p>2 Anos e 7 Meses</p>
+				                                        <p>${perfil.idade }</p>
 				                                    </div>
 				                                </div>
 				                                <!-- /.row -->
@@ -54,7 +52,7 @@
 				                                <!-- .row -->
 				                                <div class="row text-center m-t-10">
 				                                    <div class="col-md-12"><strong>Contacto</strong>
-				                                        <p>244 9234 044 415</p>
+				                                        <p>${perfil.editfone }</p>
 				                                    </div>
 				                                </div>
 				                                <!-- /.row -->
@@ -62,8 +60,8 @@
 				                                <!-- .row -->
 				                                <div class="row text-center m-t-10">
 				                                    <div class="col-md-12"><strong>Morada</strong>
-				                                        <p>345, Sarju Appt., Mota Varacha, Surat
-				                                            <br> Gujarat, India.</p>
+				                                        <p>${perfil.endereco }
+				                                          </p>
 				                                    </div>
 				                                </div>
 				                            </div>
@@ -126,14 +124,14 @@
 														<div >
 														 	<span> Queixas Principais</span>
 												  			<div id="agenda-perfil">	
-												      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="5" readonly="readonly">${queixa}</textarea>
+												      		 	<textarea name="descricao"class="form-control" required="required" rows="5" readonly="readonly">${queixas.queixa}</textarea>
 												      		 </div>
 														</div> 
 														 <br>
 													 	<div >
 														 	<span> Historial da Doença Actual</span>
 												  			<div id="agenda-perfil">	
-												      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="5" readonly="readonly">${historial}</textarea>
+												      		 	<textarea name="historia" class="form-control" required="required" rows="5" readonly="readonly">${queixas.historial}</textarea>
 												      		</div>
 														</div> 
 												
@@ -168,40 +166,40 @@
                                                      <div class="form formLogin">
 	                                                     <div >
 											       	   		<span>Exame Objectivo Geral</span>
-											      		 	<textarea name="objectivo" id="objectivo" class="form-control" readonly="readonly">${fisicos.objectivo_geral  }</textarea>
+											      		 	<textarea name="objectivo"  class="form-control" readonly="readonly">${exmFs.objectivo_geral  }</textarea>
 											      		 </div>
 											      		 <div >
 											       	   		<span>Cabeca</span>
-											      		 	<textarea name="cabecao" id="cabecao" class="form-control" readonly="readonly">${fisicos.exa_cabeca }</textarea>
+											      		 	<textarea name="cabecao"  class="form-control" readonly="readonly">${exmFs.exa_cabeca }</textarea>
 											      		 </div>
 											      		 <div>
 											       	   		<span>Pescoco</span>
-											      		 	<textarea name="pescoco" id="pescoco" class="form-control" readonly="readonly">${fisicos.exa_pescoco }</textarea>
+											      		 	<textarea name="pescoco" class="form-control" readonly="readonly">${exmFs.exa_pescoco }</textarea>
 											      		 </div>
 											      		  <div>
 											       	   		<span>Torax</span>
-											      		 	<textarea name="torax" id="torax" class="form-control" readonly="readonly">${fisicos.exa_torax }</textarea>
+											      		 	<textarea name="torax"   class="form-control" readonly="readonly">${exmFs.exa_torax }</textarea>
 											      		 </div>
 											      		 <div>
 											       	   		<span>Abdomen</span>
-											      		 	<textarea name="abdomem" id="abdomem" class="form-control" readonly="readonly">${fisicos.exa_abdomen }</textarea>
+											      		 	<textarea name="abdomem"  class="form-control" readonly="readonly">${exmFs.exa_abdomen }</textarea>
 											      		 </div>	
 											      		 <div>
 											       	   		<span>Genito Urinário</span>
-											      		 	<textarea name="urinatio" id="urinatio" class="form-control" readonly="readonly">${fisicos.exa_urinario }</textarea>
+											      		 	<textarea name="urinatio"  class="form-control" readonly="readonly">${exmFs.exa_urinario }</textarea>
 											      		 </div>
 											      		 <div>
 											       	   		<span>Membros Superiores</span>
-											      		 	<textarea name="membrosup" id="membrosup" class="form-control" readonly="readonly">${fisicos.exa_membSup }</textarea>
+											      		 	<textarea name="membrosup"   class="form-control" readonly="readonly">${exmFs.exa_membSup }</textarea>
 											      		 </div>
 											      		 
 											      		  <div>
 											       	   		<span>Membros Inferiores</span>
-											      		 	<textarea name="membrosinf" id="membrosinf" class="form-control" readonly="readonly">${fisicos.exa_membInf }</textarea>
+											      		 	<textarea name="membrosinf" id="membrosinf" class="form-control" readonly="readonly">${exmFs.exa_membInf }</textarea>
 											      		 </div>
 											      		<div >
 											       	   		<span>Sistema Nervoso</span>
-											      		 	<textarea name="sistema" id="sistema" class="form-control" readonly="readonly">${fisicos.sistema_nervoso }</textarea>
+											      		 	<textarea name="sistema" id="sistema" class="form-control" readonly="readonly">${exmFs.sistema_nervoso }</textarea>
 											      		 </div>
                                                      </div>
                                                      <div class="form formRegister">
@@ -427,16 +425,17 @@
                                                       <br> 
                                                     <div class="row  m-t-10">
 				                                    <div class="col-lg-12  "><strong>Grupo de Exame</strong>
-				                                    <select class="form-control  center" name="estado"  >
+				                                    <select class="form-control  center" name="tipoExam"  >
                                                         <option  value="">Selecione...</option>
-                                                        <option  value="1">Exames Laboratorial</option>
-                                                        <option  value="2">Exames Imagiologico</option>
+                                                        <c:forEach items="${tipoExames }" var="at">
+                                                        <option  value="${at.id_grupo_analises_clinicas }">${at.grupo_danalise }</option>
+                                                        </c:forEach>
                                                     </select>  
 				                                    </div>
 				                                 	
 				                                	</div>
 				                                	<br>
-                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"  >
+                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"  id="examsTable">
 					                                        <thead>
 					                                            <tr>
 					                                            	<th class="center"> # </th>
@@ -463,12 +462,29 @@
 																	<td class="center">3</td>
 																	<td> TAC</td>
 																	<td  class="center">
-																		<input type="checkbox" name="">
+																		<input type="checkbox" name="id_exame">
 																	</td>
 																</tr>
 																 
 															</tbody>
-					                                    </table> 
+					                                    </table>
+					                                    <div class="card-head">
+                                            			 	Observação 
+                                       				 		</div>
+											      		 	<textarea name="observacao"  class="form-control" rows="5"  ></textarea>
+					                                    <p></p>
+					                                    
+													<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+												    <input type="hidden" name="funInt" value="${usuario}">
+												    <input type="hidden" name="conInt" value="${param.codc}">
+													<div class="pull-right">
+												   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
+														    Gravar
+													  </button>
+													  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
+														  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
+													  </button>
+													</div> 
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_8">
@@ -486,23 +502,23 @@
                                                       <div >
 													 	<strong> Tratamento </strong>
 											  			<div id="agenda-perfil">	
-											      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="10" readonly="readonly"></textarea>
+											      		 	<textarea name="descricao"   class="form-control" required="required" rows="10" readonly="readonly"></textarea>
 											      		 </div>
 													</div> 
 													<br>
 												 	<div >
 													 	<strong>  Recomendações</strong>
 											  			<div id="agenda-perfil">	
-											      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="10" readonly="readonly"></textarea>
+											      		 	<textarea name="historia"   class="form-control" required="required" rows="10" readonly="readonly"></textarea>
 											      		</div>
 													</div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                     <form name="form1" method="post" action="QueixaHistorController">
+                                                     <form name="form1" method="get" action="TratamentosController">
 														<div >
 														 	<strong> Tratamentos</strong>
 												  			<div id="agenda-perfil">	
-												      		 	<textarea name="descricao" id="queixas1" class="form-control" required="required" rows="10" >${queixa}</textarea>
+												      		 	<textarea name="tratamento" id="tratamento" class="form-control" required="required" rows="10" >${queixa}</textarea>
 												      		 </div>
 														</div> 
 														<p></p>
@@ -516,13 +532,13 @@
 													 	<div >
 														 	<strong> Recomendações</strong>
 												  			<div id="agenda-perfil">	
-												      		 	<textarea name="historia" id="historial" class="form-control" required="required" rows="10">${historial}</textarea>
+												      		 	<textarea name="recomendacao" id="recomendacao" class="form-control" required="required" rows="10">${historial}</textarea>
 												      		</div>
 														</div> 
 														<p></p>
 														<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
 													    <input type="hidden" name="funInt" value="${usuario}">
-													    <input type="hidden" name="conInt" value="${conslt}">
+													    <input type="hidden" name="conInt" value="${param.codc}">
 														<div class="pull-right">
 													   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
 															    Gravar
@@ -580,14 +596,14 @@
                                             			 Medicamentos 
                                        				   </div>
 							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
-							                                   <input type="text" class="form-control " name="produto" placeholder="pesquiar por doenças no CID">  
+							                                   <input type="text" class="form-control " id="produto" placeholder="pesquiar por doenças no CID">  
 							                                </div>
 							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
-							                                	<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> </button>
+							                                	<button type="button" class="btn btn-success btn-sm" onclick="addNoCarrinho()"> <i class="fa fa-plus"></i> </button>
 							                                </div>
 							                            </form>
                                                        <div class="table-scrollable">  
-		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="tableProd">
 		                                                    <thead>
 		                                                        <tr align="center">
 		                                                            <th width="40%">Descricao</th>
@@ -597,18 +613,7 @@
 		                                                        </tr>
 		                                                    </thead>
 		                                                    <tbody>
-		                                                        <tr>
-		                                                            <td>Mebocaino 500mg- Sharop</td>
-		                                                            <td align="center" ><input type="text" class="form-control" value="" style="width: 100px; text-align: center;"></td>
-		                                                            <td align="center"><input type="text" class="form-control" value="" style="width: 50px; text-align: center;"></td>
-		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-		                                                        </tr>
-		                                                        <tr>
-		                                                            <td>Provitaminal 250mg- Sharop</td>
-		                                                            <td align="center" ><input type="text" class="form-control" value="" style="width: 100px; text-align: center;"></td>
-		                                                            <td align="center"><input type="text" class="form-control" value="" style="width: 50px; text-align: center;"></td>
-		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-		                                                        </tr>
+		                                                         
 		                                                    </tbody>
 		                                                </table>
 		                                            </div>
@@ -677,6 +682,61 @@
   display: block;
 }
 </style>
+<script>
+ $(document).ready(function(){
+	 $('select[name=tipoExam]').on('change',function(){
+			$.ajax({
+				type: 'GET',
+				url : 'AjaxExameController',
+				data: 'grExames='+$('select[name=tipoExam]').val(),
+				success: function (dados){
+					$("#examsTable tbody tr").remove();
+					var pegados = dados.split(";");
+					if(dados!='')
+					{
+						
+						for(var i=0;i<pegados.length-1;i++)
+						{
+							$("#examsTable tbody")
+							    .append("<tr>"+
+		                                    "<td class='center'><div>"+(i+1)+"</div></td> "+
+		                                    "<td class='left'><div>"+pegados[i].split("|")[1]+"</div></td> "+
+		                                    "<td class='center' align='center'><div><input type='checkbox' name='id_exame' value='"+pegados[i].split("|")[0]+"'/> </div></td>"+
+		                                 "</tr>");
+						}
+				}
+					
+				}
+			});		
+		})
+	});
+ $(document).on('click','#trlinha',function(){
+		 $(this).closest('tr').remove();
+	 });
+ function addNoCarrinho()
+ {
+		$.ajax({
+			type: 'GET',
+			url : 'AjaxCarrinhoController',
+			data: 'produto='+$('#produto').val()+"&acao=add",
+			success: function (dados){
+				if(dados!='')
+				{
+					
+				console.log(dados);
+						$("#tableProd tbody")
+						    .append("<tr>"+
+	                                    "<td class='left'>"+dados+"<input type='hidden' name='id_produto' class='form-control' style='width: 100px; text-align: center;'/> </td> "+
+	                                    "<td class='center' align='center'><div><input type='text' name='possologia' class='form-control' style='width: 100px; text-align: center;'/> </div></td>"+
+	                                    "<td class='center' align='center'><div><input type='text' name='qtd' class='form-control' style='width: 50px; text-align: center;'/> </div></td>"+
+	                                    "<td class='center'><a href='#' title='eliminar' id='trlinha'><i class='fa fa-times' aria-hidden='true'></i></a></td>"+
+	                                 "</tr>");
+			    }
+				
+			}
+		});	
+ }
+ </script>
 <script>
 //Toggle Function
 $(document).on('click','.toggle',function(){ 

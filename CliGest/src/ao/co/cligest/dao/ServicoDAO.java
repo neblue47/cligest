@@ -263,7 +263,7 @@ public class ServicoDAO {
 					 ser.setId_especialidade(rs.getInt("fk_especialidade"));
 					 ser.setEspecialidade(rs.getString("especialidade"));
 					 ser.setTaxa(rs.getFloat("taxa"));
-					 ser.setPreco(rs.getDouble("preco"));
+					 ser.setPreco(rs.getDouble("preco_acrescido"));
 					 ser.setDescricao(rs.getString("descricao"));
 //					 ser.setTipo_de_servico(rs.getString("tipo_de_servico"));
 					 ser.setNome_categoria(rs.getString("categoriadeservico"));

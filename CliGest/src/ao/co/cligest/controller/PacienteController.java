@@ -30,7 +30,7 @@ import ao.co.cligest.entidades.Paciente;
 public class PacienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PacienteDAO _pacienteDAO = new PacienteDAO();
-	private String saveFile = "C:/cligestFile/";
+	private String saveFile = "c:/cligestFile/";
 	String arquivo = "";
 	Formatando ft = new Formatando();  
     /**

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ColherSangue" language="groovy" pageWidth="210" pageHeight="150" orientation="Landscape" columnWidth="170" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5fc8e098-b164-4efa-933f-7e69c24f51b9">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_sangue_colhido" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from vwsangue_colhido_cbarra_completo where id_sangue_colhido = $P{id_sangue_colhido}]]>
+	</queryString>
+	<field name="id_sangue_colhido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_NomeDador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_grupoDoDador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="volumeDoado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidadeBaloes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoBarra" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataRecebido" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Codigo_Barra_Completo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="56" height="12" uuid="508269d6-e2a6-4345-97d1-c0cc4b458ba4"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Código Barra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="3" width="60" height="12" uuid="418014ac-33f5-45ba-bf00-734f4d89ec50"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Volume Doado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="14" width="34" height="12" uuid="d488fd5a-ceb0-4920-bc6f-9c210b20a9e0"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Codigo_Barra_Completo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="2" width="60" height="17" uuid="7af5ef6d-f4a5-449a-85eb-636473665468"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{volumeDoado}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="0" width="62" height="14" uuid="17a47129-af95-4a9b-bb28-0bc062f2b2ce"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Codabar" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{Codigo_Barra_Completo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

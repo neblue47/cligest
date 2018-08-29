@@ -1,45 +1,45 @@
-<form name="form1" method="post" action="ExamesFisicosController">
+<form name="form1" method="post" action="ExamesConsultaController">
 				 <div >
 	       	   		<span>Exame Objectivo Geral</span>
-	      		 	<textarea name="objectivo" id="objectivo" class="form-control" >${fisicos.objectivo_geral  }</textarea>
+	      		 	<textarea name="objectivo" id="objectivo" class="form-control" ></textarea>
 	      		 </div>
 	      		 <div >
 	       	   		<span>Cabeca</span>
-	      		 	<textarea name="cabecao" id="cabecao" class="form-control">${fisicos.exa_cabeca }</textarea>
+	      		 	<textarea name="cabeca" id="cabecao" class="form-control"></textarea>
 	      		 </div>
 	      		 <div>
 	       	   		<span>Pescoco</span>
-	      		 	<textarea name="pescoco" id="pescoco" class="form-control">${fisicos.exa_pescoco }</textarea>
+	      		 	<textarea name="pescoco" id="pescoco" class="form-control"></textarea>
 	      		 </div>
 	      		  <div>
 	       	   		<span>Torax</span>
-	      		 	<textarea name="torax" id="torax" class="form-control">${fisicos.exa_torax }</textarea>
+	      		 	<textarea name="torax" id="torax" class="form-control"></textarea>
 	      		 </div>
 	      		 <div>
 	       	   		<span>Abdomen</span>
-	      		 	<textarea name="abdomem" id="abdomem" class="form-control">${fisicos.exa_abdomen }</textarea>
+	      		 	<textarea name="abdomen" id="abdomem" class="form-control"></textarea>
 	      		 </div>	
 	      		 <div>
 	       	   		<span>Genito Urinário</span>
-	      		 	<textarea name="urinatio" id="urinatio" class="form-control">${fisicos.exa_urinario }</textarea>
+	      		 	<textarea name="urinario" id="urinatio" class="form-control"></textarea>
 	      		 </div>
 	      		 <div>
 	       	   		<span>Membros Superiores</span>
-	      		 	<textarea name="membrosup" id="membrosup" class="form-control">${fisicos.exa_membSup }</textarea>
+	      		 	<textarea name="membrosup" id="membrosup" class="form-control"></textarea>
 	      		 </div>
 	      		 
 	      		  <div>
 	       	   		<span>Membros Inferiores</span>
-	      		 	<textarea name="membrosinf" id="membrosinf" class="form-control">${fisicos.exa_membInf }</textarea>
+	      		 	<textarea name="membrosinf" id="membrosinf" class="form-control"></textarea>
 	      		 </div>
 	      		<div >
 	       	   		<span>Sistema Nervoso</span>
-	      		 	<textarea name="sistema" id="sistema" class="form-control">${fisicos.sistema_nervoso }</textarea>
+	      		 	<textarea name="sistemanev" id="sistema" class="form-control"> </textarea>
 	      		 </div>
 				<p></p>
 				<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
 			    <input type="hidden" name="funInt" value="${usuario}">
-			    <input type="hidden" name="conInt" value="${conslt}">
+			    <input type="hidden" name="conInt" value="${param.codc}">
 				<div class="pull-right">
 			   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
 					    Gravar

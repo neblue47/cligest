@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listaDeSangueColhido" language="groovy" pageWidth="350" pageHeight="850" columnWidth="310" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0ea3682-9186-4edc-99e2-8d102433fd1a">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM tblsangue_colhido_do_dador res inner join tblgrupo_sanguineo tblgs on res.fk_grupoDoDador = tblgs.id_grupo_sanguineo LEFT JOIN vwsangueaceite sa ON sa.fk_dador = res.id_sangue_colhido LEFT JOIN vwsanguerejeitado sr ON sr.fk_dador = res.id_sangue_colhido WHERE res.id_sangue_colhido NOT IN ( SELECT fk_dador FROM vwsangueaceite ) and res.id_sangue_colhido NOT IN ( SELECT fk_dador FROM vwsanguerejeitado )]]>
+	</queryString>
+	<field name="id_sangue_colhido" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_NomeDador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_grupoDoDador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_rhDoDador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="volumeDoado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidadeBaloes" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigoBarra" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataRecebido" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_grupo_sanguineo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grupo_sanguineo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="recebe_de" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="doa_para" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_factor_rh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_aglutinogenio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_aglutininas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_doador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="referenciaDoDoador" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataDeExpiracaoDoSangueDoDoador" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_funcionario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricaDoSangue" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_dador" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fk_gruposanguineo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rejeitado_ou_aceite" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="n_c_funcionario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FK_entidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome_meio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ultimo_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_nascimento" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_documento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="seguranca_social" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nif" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_funcionario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numero_ordem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="salario" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="profissao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pais" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="especialidade" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_especialidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="39" width="68" height="20" forecolor="#000000" uuid="ea6ba0af-f826-4898-9383-3feb8be511f5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Código Barra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="39" width="38" height="20" forecolor="#000000" uuid="cd965c4d-0dae-423f-8eae-5f365c391ff1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Volume]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="39" width="79" height="15" forecolor="#000000" uuid="68883f1c-06c5-4941-96f9-7bb67689e4ed"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Grupo Sanguíneo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="39" width="71" height="15" forecolor="#000000" uuid="e3eb9ffb-60bf-475f-a2b1-cad551a586d1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Processado em]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="39" width="48" height="15" forecolor="#000000" uuid="681f802f-16d7-4320-97dc-54691e5253ee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Descricão]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="0" width="203" height="16" uuid="b50e75c4-ea16-42fd-bc2e-666390fe11b0"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<text><![CDATA[Lista Geral dos Sangues Colhidos]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="191" y="6" width="55" height="12" uuid="87a23a7c-18db-4ec1-b35c-1a627983cc14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataRecebido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="25" width="73" height="14" uuid="38fb4f62-e007-4112-9257-e96207989a9c"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoBarra}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="0" y="5" width="70" height="20" uuid="5892648c-6b68-485c-b87c-76b0b6ab8c84"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{codigoBarra}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="73" y="5" width="33" height="13" uuid="08a49c6c-0474-49ce-bc8c-8e2cf1470930"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{volumeDoado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="5" width="67" height="12" uuid="7d5664c1-5546-4b05-ab69-e24e5527be10"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupo_sanguineo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="8" width="37" height="12" uuid="e8c5ecb1-b70e-4da5-b8c3-8917c2776b30"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="1" y="3" width="100" height="20" uuid="4dc08d8a-370d-48d2-9935-4a7bb59d6a41"/>
+			</frame>
+			<line>
+				<reportElement x="0" y="1" width="310" height="1" uuid="e0e5add9-ecc6-41e4-8ad1-bb8412db25f8"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="42" width="125" height="12" uuid="9a16f9c0-56ce-40b6-a0d4-0779d7200bfe"/>
+				<textElement>
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desenvolvido por: Angotech]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

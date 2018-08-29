@@ -494,6 +494,23 @@ public int inserirmarcacao(Paciente mc){
 			}
 			return ultimoId;
 		}
+		@Override
+		public int getServicoConfirmadaPorId(int codcs)
+		{
+			int ultimoId = 0;
+			String sql = "SELECT * FROM tblconsultaconfirmada WHERE id_consulta_confirmada = ?";
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps.setInt(1, codcs);
+				 ResultSet rs = ps.executeQuery();
+				 if(rs.next())
+					 ultimoId = rs.getInt("FK_servico");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return ultimoId;
+		}
 
 
 		@Override
@@ -565,6 +582,7 @@ public int inserirmarcacao(Paciente mc){
 					 pac.setValor_tmp(rs.getString("temperatura"));
 					 pac.setValor_pulso(rs.getString("pulso"));
 					 pac.setValor_tns(rs.getString("tensao_sistolica"));
+					 pac.setTensao_diastolica(rs.getString("tensao_diastolica"));
 					 pac.setValor_resp(rs.getString("respiracao"));
 					// pac.setEstado(rs.getString("estado_do_paciente"));
 					 pac.setDescricao(rs.getString("diagnostico_preliminar"));

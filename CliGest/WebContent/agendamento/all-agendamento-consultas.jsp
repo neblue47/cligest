@@ -44,13 +44,13 @@
                                         <tr class="odd gradeX">
 												<td class="patient-img">
 													 <c:if test="${pc.confirmado }">
-														<a target="_blank" href="GeradoRelatorio?nomeRelat=ConsultasAgendadaA5&cod_param=${pc.FK_consulta_marcada}" class="btn btn-success btn-xs" title="Gerar Comprovativo">
-		  													<i class="fa fa-times-circle-o"></i> 
+														<a target="_blank" href="GeradoRelatorio?nomeRelat=ConsultasConfirmadaA5&cod_param=${pc.FK_consulta_confirmada}" class="btn btn-success btn-xs" title="Gerar Comprovativo">
+		  													<i class="fa fa-print"></i> 
 	 													 </a>
 													 </c:if>
 													 <c:if test="${not pc.confirmado }">
 														<a target="_blank" href="GeradoRelatorio?nomeRelat=ConsultasAgendadaA5&cod_param=${pc.FK_consulta_marcada}" class="btn btn-warning btn-xs" title="Gerar Comprovativo">
-		  													<i class="fa fa-times-circle-o"></i> 
+		  													<i class="fa fa-print"></i> 
 	 													 </a>
 													 </c:if>
 												</td>

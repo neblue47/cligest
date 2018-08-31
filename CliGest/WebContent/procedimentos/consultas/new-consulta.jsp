@@ -66,7 +66,22 @@
 				                                </div>
 				                            </div>
 				                    	</div>
+				                    	 
 			                		</div>
+			                		<div class=" ">
+				                    	 <div class="center">
+										   	  <button type="button" class="btn btn-success btn-sm" name="salvar">
+												    Finalizar a Consulta
+											  </button>
+													  
+										 </div> 
+										  <div class="center">
+										   	  <button type="button" class="btn btn-default btn-sm" name="salvar">
+												    Cancelar a Consulta
+											  </button>
+													  
+										 </div>
+				                    	 </div>
 	                        	</div>
 	                   	 </div>
                         <div class="col-md-8 col-xs-12">

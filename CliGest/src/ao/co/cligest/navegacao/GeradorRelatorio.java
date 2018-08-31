@@ -1,6 +1,7 @@
 package ao.co.cligest.navegacao;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.HashMap;
@@ -16,6 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import ao.co.cligest.dao.Conexao;
 import ao.co.cligest.dao.Formatando;
@@ -35,14 +42,14 @@ import ao.co.cligest.util.RelatorioUtil;
  * Servlet implementation class RelatorioController
  */  
 @WebServlet("/GeradoRelatorio")
-public class GeradoRelatorio extends HttpServlet 
+public class GeradorRelatorio extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
        
 	Connection con = Conexao.getConexao();
 	RelatorioUtil rutil = new RelatorioUtil();
 //	String logoImage = "logoGesthosp.png";
-    public GeradoRelatorio() {
+    public GeradorRelatorio() {
         super();
         // TODO Auto-generated constructor stub
     }

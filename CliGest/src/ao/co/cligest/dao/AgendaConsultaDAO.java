@@ -443,6 +443,7 @@ public int inserirmarcacao(Paciente mc){
 					 p.setFK_doutor(rs.getInt("FK_doutor"));
 					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
 					 p.setConfirmado(confirmado);
+					 p.setFK_consulta_confirmada(confirmado);
 					 lista.add(p);
 				 }
 			} catch (Exception e) {

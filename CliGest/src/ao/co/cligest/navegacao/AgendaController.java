@@ -89,6 +89,9 @@ public class AgendaController extends HttpServlet {
 					saida.forward(request, response);
 				}
 				if (tela != null && (tela.equals("editpac"))) {
+					String  codp = request.getParameter("codp");
+					Paciente pac = _pacienteDAO.getPerfilPaciente(codp);
+					request.setAttribute("pac", pac);
 					saida = request.getRequestDispatcher("index.jsp?mods=ag&pag=editpac");
 					saida.forward(request, response);
 				}

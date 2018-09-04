@@ -3274,9 +3274,11 @@ public List<Paciente> buscarpacientePlano()
 	        		perfil.setEmail(rs.getString("email"));
 	        		perfil.setEditfone(rs.getLong("telefone"));
 	        		perfil.setNomegenero(rs.getString("genero"));
+	        		perfil.setGenero(rs.getInt("FK_genero"));
 	        		perfil.setFK_paciente(rs.getInt("FK_entidade"));
 	        		perfil.setSanguineo(rs.getString("grupo_sanguineo"));
-	        		perfil.setEndereco(ft.transforma(rs.getString("endereco")+" "+rs.getString("bairro")+" "+rs.getString("provincia")));
+	        		perfil.setFK_sanguineo (rs.getInt("FK_grupo_sanguineo"));
+	        		perfil.setEndereco(ft.transforma(rs.getString("endereco")+", "+rs.getString("provincia")));
 	        		Calendar data = Calendar.getInstance();
 	        		data.setTime(rs.getDate("data_nascimento"));
 	        		perfil.setDataNasc(data);

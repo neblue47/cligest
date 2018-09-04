@@ -11,7 +11,7 @@
 
 <c:if test="${not empty msgOks}">
 	<div class="alert alert-success in">
-	   <strong>Salvo!</strong> Doutor eliminado com sucesso.
+	   <strong>Eliminado!</strong> Doutor eliminado com sucesso.
 	 </div>
 	 <c:remove var="msgOk"/> 
 </c:if>

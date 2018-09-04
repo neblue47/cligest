@@ -243,10 +243,10 @@ public class AcessosDAO {
 		return lista;
 	}
 	
-	public List<Diverso>AcessoTelasPrivLogin (int idUsuario)
+	public List<Diverso>AcessoTelasPrivPai(int idUsuario)
 	{
 		List <Diverso> lista = new ArrayList<Diverso>();
-		String sql = "select * from vwperfilacessos where id_utilizador = ?  and obs_tela = 2 and fk_modulo = 3 order by fk_tela";
+		String sql = "select * from vwprivilegios where FK_grupo = ? AND tela_pai = 0 order by tela";
 		try {
 			 con = Conexao.getConexao();
 			 PreparedStatement pr = con.prepareStatement(sql);
@@ -256,13 +256,42 @@ public class AcessosDAO {
 			 {
 				 Diverso md = new Diverso();
 				 md.setId_mod(rs.getInt("fk_modulo"));
-				 md.setModulo(rs.getString("modulo"));
-				 md.setMdlink(rs.getString("controller"));
-				 md.setCodCl(rs.getString("modcod"));
 				 md.setTela(rs.getString("tela"));
-				 md.setCodTela(rs.getString("cod_tela"));
-				 md.setId_tela(rs.getInt("fk_tela"));
-				  
+				 md.setLinktela(rs.getString("link"));
+				 md.setNivel(rs.getInt("nivel"));
+				 md.setTela_pai(rs.getInt("tela_pai"));
+				 md.setId_tela(rs.getInt("FK_tela"));
+				 lista.add(md);
+				 
+			 }
+			 pr.close();
+			 con.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+	public List<Diverso>AcessoTelasPriv(int idUsuario)
+	{
+		List <Diverso> lista = new ArrayList<Diverso>();
+		String sql = "select * from vwprivilegios where FK_grupo = ? AND tela_pai <> 0 order by tela";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement pr = con.prepareStatement(sql);
+			 pr.setInt(1, idUsuario);
+			 ResultSet rs = pr.executeQuery();
+			 while(rs.next())
+			 {
+				 Diverso md = new Diverso();
+				 md.setId_mod(rs.getInt("fk_modulo"));
+				 md.setTela(rs.getString("tela"));
+				 md.setLinktela(rs.getString("link"));
+				 md.setNivel(rs.getInt("nivel"));
+				 md.setTela_pai(rs.getInt("tela_pai"));
+				 md.setId_tela(rs.getInt("FK_tela"));
 				 lista.add(md);
 				 
 			 }

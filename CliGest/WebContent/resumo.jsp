@@ -14,7 +14,7 @@
                             </ol>
                         </div>
                     </div>
-                   
+                     <c:if test="${grupo == 1 }">
                      <!-- start widget -->
 					<div class="state-overview">
 							<div class="row">
@@ -31,11 +31,8 @@
 						                    45% Increase in 28 Days
 						                  </span>
 						            </div>
-						            <!-- /.info-box-content -->
 						          </div>
-						          <!-- /.info-box -->
 						        </div>
-						        <!-- /.col -->
 						        <div class="col-xl-3 col-md-6 col-12">
 						          <div class="info-box bg-orange">
 						            <span class="info-box-icon push-bottom"><i class="material-icons fa fa-child"></i></span>
@@ -85,11 +82,8 @@
 						                    50% Increase in 28 Days
 						                  </span>
 						            </div>
-						            <!-- /.info-box-content -->
 						          </div>
-						          <!-- /.info-box -->
 						        </div>
-						        <!-- /.col -->
 						      </div>
 						</div>
 					<!-- end widget -->
@@ -131,6 +125,7 @@
                         </div>
                     </div>
                      <!-- Chart end --> 
+                     </c:if>
                      <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="card  card-box">

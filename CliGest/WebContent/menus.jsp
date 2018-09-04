@@ -24,44 +24,41 @@
 							<!-- start sidebar menu ADMINISTRACAƒO -->
 							<c:forEach var="md" items="${AcessoMudulos}">
 								 <c:if test="${md.codCl eq 'ad'}" >
-								 	<li class="nav-item start  ">
+								 	<li class="nav-item start ${admings}">
 		                            	<a href="#" class="nav-link nav-toggle ">
 		                                <i class="material-icons fa fa-cogs"></i>
 		                                <span class="title"> ${md.modulo} </span>
 		                                <span class="arrow"></span>
 		                            	</a>
 			                             <ul class="sub-menu">
-										   <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Dados da Instituição</span>
-			                                    </a>
-												 <ul class="sub-menu">
-													<li class="nav-item  ">
-														<a href="#" class="nav-link "> <span class="title">Configurar</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="#" class="nav-link "> <span class="title">Visualizar</span>
-														</a>
-													</li>
-												</ul>
-			                                </li>
-			                                 
+											   <li class="nav-item  ">
+				                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Acessos</span></a>
+													 <ul class="sub-menu">
+														<li class="nav-item  ">
+															<a href="navegacao?mods=ad&pag=usersprv" class="nav-link "> <span class="title">Privilegios</span></a>
+														</li>
+														<li class="nav-item  ">
+															<a href="navegacao?mods=ad&pag=usersgrp" class="nav-link "> <span class="title">Grupos</span></a>
+														</li>
+														<li class="nav-item  ">
+														 	<a href="navegacao?mods=ad&pag=users" class="nav-link nav-toggle"> <span class="title">Utilizadores</span></a>
+			                                  		    </li>
+													</ul>
+				                                </li>
+			                                  <li class="nav-item  ">
+				                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Cadastros Basicos</span></a>
+													 <ul class="sub-menu">
+														<li class="nav-item  "> 
+					                                    <a href="navegacao?mods=ad&pag=lscons" class="nav-link nav-toggle"> <span class="title">Serviços</span></a>
+					                                    </li>
+					                                    <li class="nav-item  ">
+					                                    	<a href="navegacao?mods=ad&pag=lsesp" class="nav-link "> <span class="title">Especialidades</span></a>
+														</li>
+													</ul>
+				                                </li>
 			                                    <li class="nav-item  ">
-				                                    <a href="navegacao?mods=ad&pag=doc" class="nav-link nav-toggle"> <span class="title">Medicos</span>
-				                                    </a>
+				                                    <a href="navegacao?mods=ad&pag=doc" class="nav-link nav-toggle"> <span class="title">Medicos</span></a>
 			                                    </li>
-			                                    <li class="nav-item  ">
-													<a href="navegacao?mods=ad&pag=doc" class="nav-link nav-toggle"> <span class="title">Utilizadores</span>
-				                                    </a>
-			                                    </li>
-			                                    <li class="nav-item  "> 
-			                                    <a href="navegacao?mods=ad&pag=lscons" class="nav-link nav-toggle"> <span class="title">Serviços</span>
-			                                    </a>
-			                                    </li>
-			                                    <li class="nav-item  ">
-			                                    	<a href="navegacao?mods=ad&pag=lsesp" class="nav-link "> <span class="title">Especialidades</span>
-													</a>
-												</li>
 	                            		</ul>
 		                             </li>
 								 </c:if>
@@ -73,7 +70,6 @@
 		                                <span class="arrow"></span>
 		                            	</a>
 			                            <ul class="sub-menu">
-			                            
 		                                <li class="nav-item  ">
 		                                    <a href="navegacaoag?mods=ag&pag=novoagen" class="nav-link "> <span class="title">Agendar</span>
 		                                    </a>
@@ -208,7 +204,6 @@
 		                            	</a>
 		                            	
 			                             <ul class="sub-menu">
-			                           
 			                                <li class="nav-item ">
 			                                    <a href="navegacaopd?mods=pd&pag=triapac" class="nav-link ">
 			                                        <span class="title">Triagem</span>
@@ -244,21 +239,7 @@
 													</li>
 												</ul>
 			                                </li>
-											 <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Outros Serviços</span>
-			                                    </a>
-												 <ul class="sub-menu">
-												
-													<li class="nav-item  ">
-														<a href="add_patient.html" class="nav-link "> <span class="title">Urgencias</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="all_patients.html" class="nav-link "> <span class="title">Emergencias</span>
-														</a>
-													</li>
-												</ul>
-			                                </li>
+											
 	                            		</ul>
 		                             </li>
 				    			 </c:if>
@@ -294,7 +275,6 @@
 	                                    <a href="navegacao?mod=ng&pesquisar=grcid" class="nav-link "> <span class="title">Grupos CIDs 	</span>
 	                                    </a>
 	                                </li>
-	                            
 	                                <li class="nav-item  ">
 	                                    <a href="navegacao?mod=ng&pesquisar=catcid" class="nav-link "> <span class="title">Categorias CIDs </span>
 	                                    </a>

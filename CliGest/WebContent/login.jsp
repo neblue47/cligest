@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <span class="fa fa-lock" aria-hidden="true"></span>
-                                <input name="senha" type="text" class="form-control" id="inputSuccess5" aria-describedby="inputSuccess5Status" placeholder="Senha de Utilizador">
+                                <input name="senha" type="password" class="form-control" id="inputSuccess5" aria-describedby="inputSuccess5Status" placeholder="Senha de Utilizador">
                             </div>
                             <div class="form-group">
                                 <div class="">

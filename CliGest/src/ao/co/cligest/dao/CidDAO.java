@@ -1534,7 +1534,7 @@ public class CidDAO {
 		return listarCid;
 	}
 	
-	public List<Cid> buscarCid(String valor)
+	public List<Cid> getCIDConsultas(String valor)
 	{
 		List<Cid> listarCid = new ArrayList<Cid>();
 		
@@ -1608,6 +1608,40 @@ public class CidDAO {
 			}
 		}
 		return listarCid;
+	}
+	
+	public Cid getCidPNome(String aux)
+	{
+		Cid cidlist = new Cid();	
+		
+		String sql = "SELECT * FROM TBLCID WHERE DESCRICAO_CID LIKE ?";
+		
+		try {
+			con = Conexao.getConexao();
+			PreparedStatement preparador = con.prepareStatement(sql);
+			preparador.setString(1, aux);
+			ResultSet rs = preparador.executeQuery();
+			if (rs.next()){
+				cidlist.setCodigocid(rs.getString("cid"));
+				cidlist.setDescricao(rs.getString("descricao_cid"));  
+			}
+			preparador.close();
+			
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				con.close();
+			}
+			catch(SQLException ef){
+				System.out.println("Erro finalizar: "+ef);
+			}
+		}
+		return cidlist;
 	}
 	
 	public Cid umCid(int cidid) 

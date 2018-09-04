@@ -9,7 +9,7 @@ public class GrupoDAO
 { 
 	private Connection con ;
 	
-	public List<Grupos> buscaModulo ()
+	public List<Grupos> getModulos ()
 	{
 		List <Grupos> lista = new ArrayList<Grupos>();
 		String sql = "SELECT * FROM TBLMODULO ";
@@ -26,11 +26,9 @@ public class GrupoDAO
 			 }
 			 preparador.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally{
@@ -43,29 +41,29 @@ public class GrupoDAO
 		}
 		return lista;
 	}
-	public List<Grupos> buscaTelas (int md,int gr)
+	public List<Grupos> getFuncionalidadesTela (int md,int gr)
 	{
 		List <Grupos> lista = new ArrayList<Grupos>();
 		String sql = "SELECT * from tbltela WHERE FK_modulo = ? AND id_tela NOT IN(SELECT FK_tela FROM tblprevilegioatribuido WHERE FK_grupo = ?)";
 		try {
 			con = Conexao.getConexao();
-			 PreparedStatement preparador = con.prepareStatement(sql);
-			 preparador.setInt(1, md);
-			 preparador.setInt(2,gr);
-			 ResultSet rs = preparador.executeQuery();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, md);
+			 ps.setInt(2,gr);
+			 ResultSet rs = ps.executeQuery();
 			 while(rs.next())
 			 {
 				 Grupos fun = new Grupos();
 				 fun.setId_tela(rs.getInt("id_tela"));
 				 fun.setTela(rs.getString("tela"));
+				 fun.setDescricao(rs.getString("designacao"));
 				 lista.add(fun);
 			 }
-			 preparador.close();
+			 ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally{
@@ -78,7 +76,7 @@ public class GrupoDAO
 		}
 		return lista;
 	}
-	public List<Grupos> buscaGrupos ()
+	public List<Grupos> getGrupoPrivilegios ()
 	{
 		List <Grupos> lista = new ArrayList<Grupos>();
 		String sql = "SELECT * FROM TBLGRUPO";
@@ -353,19 +351,17 @@ public class GrupoDAO
 		}
 	}
 	
-	public void add_funcionalidade(Grupos gr)
+	public void addPrivilegiosGrupo(Grupos gr)
 	{
-		String sql = "INSERT INTO TBLPREVILEGIOATRIBUIDO (fk_grupo,fk_funcionario,data,fk_tela,fk_modulo,fk_funcionalidade) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO TBLPREVILEGIOATRIBUIDO (fk_grupo,fk_tela,fk_modulo,FK_funcionario) VALUES (?,?,?,?)";
 		try {
 			con = Conexao.getConexao();
 			PreparedStatement ent = con.prepareStatement(sql);
 			
 			ent.setInt(1, gr.getFk_grupo());
-			ent.setInt(2, gr.getFk_funcionario());
-			ent.setDate(3, gr.getDt_registo());
-			ent.setInt(4, gr.getFk_telas());
-			ent.setInt(5, gr.getFk_modulos());
-			ent.setInt(6, 0);
+			ent.setInt(2, gr.getFk_telas());
+			ent.setInt(3, gr.getFk_modulos());
+			ent.setInt(4, gr.getFk_funcionario());
 			ent.execute();
 			ent.close();
 			System.out.println("Cadastro de sucesso...TBLPREVILEGIOATRIBUIDO"); 

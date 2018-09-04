@@ -39,6 +39,8 @@ public class Diverso implements Serializable{
 	 private String linktela;
 	 private String codTela;
 	 private String imagens_tela;
+	 private int nivel;
+	 private int tela_pai;
 	 
 	 private Integer id_mes;
 	 private String mes;
@@ -822,5 +824,17 @@ public class Diverso implements Serializable{
 	public String toUpper()
 	{
 		return String.valueOf(modulo).toUpperCase();
+	}
+	public int getNivel() {
+		return nivel;
+	}
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+	public int getTela_pai() {
+		return tela_pai;
+	}
+	public void setTela_pai(int tela_pai) {
+		this.tela_pai = tela_pai;
 	}
 }

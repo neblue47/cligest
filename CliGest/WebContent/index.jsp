@@ -71,13 +71,13 @@
                                 
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="lock_screen.html">
+                                    <a href=""  data-toggle="modal" data-target="#modalLoginForm">
                                         <i class="icon-lock"></i> Alterar Senha
                                     </a>
                                 </li>
                                 <li>
                                     <a href="LoginController?acao=out">
-                                        <i class="icon-logout"></i> Log Out </a>
+                                        <i class="icon-logout"></i> Sair </a>
                                 </li>
                             </ul>
                         </li>
@@ -103,25 +103,36 @@
             
             <!-- DOUTORES -->
             <c:if test="${param.mods eq 'ad' && param.pag eq 'doc'}">
-            	<jsp:include page="doutor/all-doutores.jsp" />
+            	<jsp:include page="adm-sistema/doutor/all-doutores.jsp" />
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'novodoc'}">
-            	<jsp:include page="doutor/new-doutor.jsp" />
+            	<jsp:include page="adm-sistema/doutor/new-doutor.jsp" />
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'editdoc'}">
-            	<jsp:include page="doutor/edit-doutor.jsp" />
+            	<jsp:include page="adm-sistema/doutor/edit-doutor.jsp" />
             </c:if>
+            
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'users'}">
+            	<jsp:include page="adm-sistema/utilizadores/all-utilizadores.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'novousers'}">
+            	<jsp:include page="adm-sistema/utilizadores/new-utilizador.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'editusers'}">
+            	<jsp:include page="adm-sistema/utilizadores/edit-utilizador.jsp" />
+            </c:if>
+            
             <c:if test="${param.mods eq 'ad' && param.pag eq 'profdoc'}">
-            	<jsp:include page="doutor/profile-doutor.jsp" />
+            	<jsp:include page="adm-sistema/doutor/profile-doutor.jsp" />
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'agenddoc'}">
-            	<jsp:include page="doutor/agenda-view.jsp" />
+            	<jsp:include page="adm-sistema/doutor/agenda-view.jsp" />
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'profdoc'}">
-            	<jsp:include page="doutor/profile-doutor.jsp" />
+            	<jsp:include page="adm-sistema/doutor/profile-doutor.jsp" />
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'profdoc'}">
-            	<jsp:include page="doutor/profile-doutor.jsp" />
+            	<jsp:include page="adm-sistema/doutor/profile-doutor.jsp" />
             </c:if>
             
             <!-- SERVICOS -->
@@ -133,6 +144,20 @@
             </c:if>
             <c:if test="${param.mods eq 'ad' && param.pag eq 'editcons'}">
             	<jsp:include page="adm-sistema/servico/edit-servico-consulta.jsp" />
+            </c:if>
+            
+            <!-- GRUPO DE PRIVILEGIOS -->
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'usersgrp'}">
+            	<jsp:include page="adm-sistema/acessos/all-grupos.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'novousersgrp'}">
+            	<jsp:include page="adm-sistema/acessos/new-grupo.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'editusersgrp'}">
+            	<jsp:include page="adm-sistema/acessos/new-grupo.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'usersprv'}">
+            	<jsp:include page="adm-sistema/acessos/new-privilegio.jsp" />
             </c:if>
             
            <!-- PACIENTES -->
@@ -207,7 +232,7 @@
             	<jsp:include page="pagamentos/exames/all-pacientesHis.jsp" />
             </c:if>
             <!-- end page content -->
-             
+             <jsp:include page="shared/alterar-senha.jsp" />
         </div>
         <!-- end page container -->
         <!-- start footer -->
@@ -254,6 +279,7 @@
 <!--     <script src="assets/login.js"></script> -->
     <script src="assets/pages.js" ></script>
     <!-- end js include path -->
-    
+   
+   
   </body>
 </html>

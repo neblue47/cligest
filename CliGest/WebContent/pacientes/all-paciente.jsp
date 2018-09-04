@@ -110,5 +110,8 @@
     <script src="assets/datatables/jquery.dataTables.min.js" ></script>
  	<script src="assets/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>
     <script src="assets/table_data.js" ></script>
+    <script type="text/javascript">
+     
+    </script>
     
     

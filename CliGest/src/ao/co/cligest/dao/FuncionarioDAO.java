@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+ 
 import ao.co.cligest.cripto.EncriptaDecriptaRSA;
 import ao.co.cligest.cripto.Seguranca;
 import ao.co.cligest.entidades.Funcionario;
@@ -625,6 +626,7 @@ public class FuncionarioDAO
 				 fun.setApelido(rs.getString("ULTIMO_NOME"));
 				 fun.setNome_us(rs.getString("NOME_USUARIO"));
 				 fun.setNomgrupo(rs.getString("GRUPO"));
+				 fun.setNum_fun(rs.getString("numero_funcionario"));
 				 lista.add(fun);
 			 }
 			 preparador.close();
@@ -2430,6 +2432,8 @@ public class FuncionarioDAO
 		int id = getIdEntidade();
 		fn.setFK_entidade(id);
 		fn.setId(id);
+		String hashsenha =  EncriptaDecriptaRSA.criptografa(fn.getSenha());
+		fn.setSenha(hashsenha);
 		cidadao(fn);
 		fun_funcionario(fn);
 		fun_naturalidade(fn);
@@ -2437,9 +2441,14 @@ public class FuncionarioDAO
 		fun_endereco(fn);
 		fun_email(fn);
 		fun_arquivos(fn);
+		NovoUsurioRSA(fn); 
+		
 		System.out.println("FEITO OK");
 	}
 	
+ 
+	
+	 
 public void cidadao(Funcionario fun){
 		
 	    String sql = "INSERT INTO TBLCIDADAO (fk_entidade," +"nome,nome_meio," + "ultimo_nome," + "data_nascimento,fk_estadocivil,fk_genero,fk_tipo_documento," 

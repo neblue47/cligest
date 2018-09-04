@@ -1718,7 +1718,7 @@ public class ConsultaDAO
 	{
 		String sql = "insert into tblhipotese (fk_consulta,cid_hipotese) values(?,?)";
 		try {
-			con = Conexao.getConexao();
+			 con = Conexao.getConexao();
 			 PreparedStatement preparador = con.prepareStatement(sql);
 			 preparador = con.prepareStatement(sql);
 			 preparador.setInt(1, t.getId_consulta());
@@ -4255,6 +4255,70 @@ public class ConsultaDAO
 			e.printStackTrace();
 		}
 	}
+
+	public void novaHipoteseDoenca(Triagem tn) {
+		String sql = "insert into tblhipotese (fk_consulta,cid_hipotese) values(?,?)";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps = con.prepareStatement(sql);
+			 ps.setInt(1, tn.getId_consulta());
+			 ps.setString(2, tn.getFk_cid());
+			 ps.execute();
+			 ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		novaHipoteseDoencaObs(tn);
+	}
 	
+	public void novaHipoteseDoencaObs(Triagem tn) {
+		
+		if(xequeHipoteseObs(tn.getId_consulta())>0){
+			String sql = "UPDATE tblhipoteseobs SET obs_hipotese = ? WHERE  FK_consulta = ?";
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps = con.prepareStatement(sql);
+				 ps.setString(1, tn.getDescricao());
+				 ps.setInt(2, tn.getId_consulta());
+				 ps.execute();
+				 ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 }
+		else{
+			String sql = "insert into tblhipoteseobs (fk_consulta,obs_hipotese) values(?,?)";
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ps = con.prepareStatement(sql);
+				 ps.setInt(1, tn.getId_consulta());
+				 ps.setString(2, tn.getDescricao());
+				 ps.execute();
+				 ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	 
+	int xequeHipoteseObs (int cons){
+		String sql = "SELECT * FROM tblhipoteseobs WHERE  FK_consulta = ?";
+		try {
+			 con = Conexao.getConexao();
+			 PreparedStatement ps = con.prepareStatement(sql);
+			 ps = con.prepareStatement(sql);
+			 ps.setInt(1, cons);
+			 ResultSet rs = ps.executeQuery();
+			 if(rs.next())
+				 return rs.getInt("FK_consulta");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 }

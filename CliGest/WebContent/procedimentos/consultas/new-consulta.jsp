@@ -70,7 +70,7 @@
 			                		</div>
 			                		<div class=" ">
 				                    	 <div class="center">
-										   	  <button type="button" class="btn btn-success btn-sm" name="salvar">
+										   	  <button type="button" class="btn btn-success btn-sm" onclick="FinalizarConsulta(${param.codc})">
 												    Finalizar a Consulta
 											  </button>
 													  
@@ -259,60 +259,7 @@
 											        </div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                      	 
-                                       				    <form class="row   m-t-10">
-                                       				         <div class="card-head">
-                                            			 Hipoteses de Doenças 
-                                       				   </div>
-							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
-							                                   <input type="text" class="form-control " name="doenca" placeholder="pesquiar por doenças no CID">  
-							                                </div>
-							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
-							                                	<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> </button>
-							                                </div>
-							                            </form>
-                                                       <div class="table-scrollable">  
-		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
-		                                                    <thead>
-		                                                        <tr >
-		                                                            <th align="center">#</th>
-		                                                            <th>CID</th>
-		                                                            <th>Descrição</th>
-		                                                        </tr>
-		                                                    </thead>
-		                                                    <tbody>
-		                                                        <tr>
-		                                                            <td align="center">1</td>
-		                                                            <td>Mark</td>
-		                                                            <td>Otto</td>
-		                                                        </tr>
-		                                                        <tr>
-		                                                            <td align="center">2</td>
-		                                                            <td>Jacob</td>
-		                                                            <td>Thornton</td>
-		                                                        </tr>
-		                                                    </tbody>
-		                                                </table>
-		                                            </div>
-		                                             
-		                                             <div >
-											       	   		<div class="card-head">
-                                            			 	Observação 
-                                       				 		</div>
-											      		 	<textarea name="objectivo"  class="form-control" rows="10"  >${fisicos.objectivo_geral  }</textarea>
-											        </div>
-											        <p></p>
-													<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
-												    <input type="hidden" name="funInt" value="${usuario}">
-												    <input type="hidden" name="conInt" value="${conslt}">
-													<div class="pull-right">
-												   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
-														    Gravar
-													  </button>
-													  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
-														  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
-													  </button>
-													</div>
+                                                        <jsp:include page="tab-hipotese.jsp"/>	 
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_6">
@@ -349,57 +296,7 @@
 											        </div>
                                                     </div>
                                                      <div class="form formRegister">
-                                                        
-                                       				    <form class="row   m-t-10">
-                                       				         <div class="card-head">
-                                            			Diagnósticos 
-                                       				   </div>
-							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
-							                                   <input type="text" class="form-control " name="doenca" placeholder="pesquiar por doenças no CID">  
-							                                </div>
-							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
-							                                	<button type="button" class="btn btn-success btn-sm"> <i class="fa fa-plus"></i> </button>
-							                                </div>
-							                          
-							                            </form>
-                                                        <div class="table-scrollable">  
-		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
-		                                                    <thead>
-		                                                        <tr >
-		                                                            <th align="center">#</th>
-		                                                            <th>Descrição da Doença</th>
-		                                                        </tr>
-		                                                    </thead>
-		                                                    <tbody>
-		                                                        <tr>
-		                                                            <td align="center">1</td>
-		                                                            <td>Otto</td>
-		                                                        </tr>
-		                                                        <tr>
-		                                                            <td align="center">2</td>
-		                                                            <td>Thornton</td>
-		                                                        </tr>
-		                                                    </tbody>
-		                                                </table>
-		         										</div>
-		                                             <div >
-											       	   		<div class="card-head">
-                                            			 	Observação 
-                                       				 		</div>
-											      		 	<textarea name="objectivo"  class="form-control" rows="10"  >${fisicos.objectivo_geral  }</textarea>
-											        </div>
-											        <p></p>
-													<input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
-												    <input type="hidden" name="funInt" value="${usuario}">
-												    <input type="hidden" name="conInt" value="${conslt}">
-													<div class="pull-right">
-												   	  <button type="submit" class="btn btn-success btn-sm" name="salvar">
-														    Gravar
-													  </button>
-													  <button type="button" class="btn btn-primary btn-sm" onclick="limparH()">
-														  <span class="fa fa-eraser" aria-hidden="true"></span> Limpar
-													  </button>
-													</div>
+                                       				      <jsp:include page="tab-diagnostico.jsp"/>
                                                      </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_6_7">
@@ -588,12 +485,6 @@
 		                                                            <td align="center">10</td>
 		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 		                                                        </tr>
-		                                                        <tr>
-		                                                            <td>Provitaminal 250mg- Sharop</td>
-		                                                            <td align="center">12h/12h</td>
-		                                                            <td align="center">1</td>
-		                                                            <td align="center"><a href="#" title="eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-		                                                        </tr>
 		                                                    </tbody>
 		                                                </table>
 		                                            </div>
@@ -602,12 +493,12 @@
 											       	   		<div class="card-head">
                                             			 	Observação 
                                        				 		</div>
-											      		 	<textarea name="objectivo"  class="form-control" rows="5" readonly="readonly">${fisicos.objectivo_geral  }</textarea>
+											      		 	<textarea name="objectivo"  class="form-control" rows="5" readonly="readonly">${fisicos.objectivo_geral}</textarea>
 											        </div>
                                                     </div>
                                                      <div class="form formRegister">
                                                       <form class="row   m-t-10">
-                                       				   <div class="card-head">
+                                       				   <div class="card-head col-lg-12 col-md-12 col-sm-8 col-xs-12">
                                             			 Medicamentos 
                                        				   </div>
 							                                <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">  
@@ -616,6 +507,7 @@
 							                                <div class="col-lg-1 col-md-12 col-sm-2 col-xs-12"> 
 							                                	<button type="button" class="btn btn-success btn-sm" onclick="addNoCarrinho()"> <i class="fa fa-plus"></i> </button>
 							                                </div>
+							                                
 							                            </form>
                                                        <div class="table-scrollable">  
 		                                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="tableProd">
@@ -697,6 +589,11 @@
   display: block;
 }
 </style>
+ <link href="assets/js-autocomplete/jquery-ui.css" rel="stylesheet" type="text/css"/>
+ <link href="assets/js-autocomplete/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="assets/js-autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="assets/js-autocomplete/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="assets/js-autocomplete/autocompletar.js"></script> 
 <script>
  $(document).ready(function(){
 	 $('select[name=tipoExam]').on('change',function(){
@@ -717,7 +614,7 @@
 		                                    "<td class='center'><div>"+(i+1)+"</div></td> "+
 		                                    "<td class='left'><div>"+pegados[i].split("|")[1]+"</div></td> "+
 		                                    "<td class='center' align='center'><div><input type='checkbox' name='id_exame' value='"+pegados[i].split("|")[0]+"'/> </div></td>"+
-		                                 "</tr>");
+		                                "</tr>");
 						}
 				}
 					
@@ -728,28 +625,72 @@
  $(document).on('click','#trlinha',function(){
 		 $(this).closest('tr').remove();
 	 });
+ 
  function addNoCarrinho()
  {
 		$.ajax({
 			type: 'GET',
 			url : 'AjaxCarrinhoController',
-			data: 'produto='+$('#produto').val()+"&acao=add",
+			data: 'addproduto='+$('#produto').val(),
 			success: function (dados){
 				if(dados!='')
 				{
-					
-				console.log(dados);
-						$("#tableProd tbody")
-						    .append("<tr>"+
-	                                    "<td class='left'>"+dados+"<input type='hidden' name='id_produto' class='form-control' style='width: 100px; text-align: center;'/> </td> "+
-	                                    "<td class='center' align='center'><div><input type='text' name='possologia' class='form-control' style='width: 100px; text-align: center;'/> </div></td>"+
-	                                    "<td class='center' align='center'><div><input type='text' name='qtd' class='form-control' style='width: 50px; text-align: center;'/> </div></td>"+
+					$('#produto').val('');	
+					$("#tableProd tbody")
+						    .append("<tr class='center'>"+
+	                                    "<td class='left'>"+dados+"<input type='hidden' name='produto' value="+dados+" class='form-control' style='width: 100px; text-align: center;'/> </td> "+
+	                                    "<td class='center' align='center'><input type='text' name='possologia' class='form-control' style='width: 100%; text-align: center;'/> </td>"+
+	                                    "<td class='center' align='center'><input type='text' name='qtd' class='form-control' style='width: 50px; text-align: center;'/> </td>"+
 	                                    "<td class='center'><a href='#' title='eliminar' id='trlinha'><i class='fa fa-times' aria-hidden='true'></i></a></td>"+
 	                                 "</tr>");
 			    }
 				
 			}
 		});	
+ }
+ 
+
+ function extrairAcentos(texto)
+ {
+	 var textoLimpo = texto.toLowerCase();
+	 textoLimpo = textoLimpo.replace('á','a');  
+     textoLimpo = textoLimpo.replace('à','a');  
+     textoLimpo = textoLimpo.replace('ã','a');  
+     textoLimpo = textoLimpo.replace('â','a');  
+     textoLimpo = textoLimpo.replace('é','e');  
+     textoLimpo = textoLimpo.replace('è','e');  
+     textoLimpo = textoLimpo.replace('ê','e');  
+     textoLimpo = textoLimpo.replace('í','i');  
+     textoLimpo = textoLimpo.replace('ì','i');  
+     textoLimpo = textoLimpo.replace('î','i');  
+     textoLimpo = textoLimpo.replace('ó','o');  
+     textoLimpo = textoLimpo.replace('ò','o');  
+     textoLimpo = textoLimpo.replace('ô','o');  
+     textoLimpo = textoLimpo.replace('õ','o');  
+     textoLimpo = textoLimpo.replace('ú','u');  
+     textoLimpo = textoLimpo.replace('ù','u');  
+     textoLimpo = textoLimpo.replace('û','u');  
+     textoLimpo = textoLimpo.replace('ü','u');  
+     textoLimpo = textoLimpo.replace('ç','c'); 
+	 return textoLimpo.toUpperCase();
+ }
+ function FinalizarConsulta(codcs)
+ {
+	  var enca = "";
+	  swal({
+		  title: "",
+		  text: "Pretende finalizar a consulta?",
+		  icon: "info",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			enca = "AgendaConsultaController?acao=confirmar&codcs="+codcs;
+		  }  
+		  location.href= enca; 
+		});
+	  
  }
  </script>
 <script>
@@ -790,6 +731,7 @@ $(document).on('click','.toggle',function(){
 	       // window.localStorage.removeItem("activeTab");
 	    }
 	});
+ 
 </script>
 
  

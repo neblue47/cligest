@@ -359,7 +359,7 @@ public class ProdutosDAO {
 			 {
 				 Produtos pd = new Produtos();
 				 pd.setId_produto(rs.getInt("id_produto"));
-				 pd.setNome_comercial(rs.getString("nome_comercial")+" "+rs.getString("forma_farmaceutica")+" "+rs.getString("dosagem"));
+				 pd.setNome_comercial(rs.getString("nome_comercial")+" "+rs.getString("dosagem")+" "+rs.getString("forma_farmaceutica"));
 				 pd.setValor_forma_farmaceutica(rs.getString("forma_farmaceutica"));
 				 pd.setValor_dosagem(rs.getString("dosagem"));
 				 pd.setPreco_dcompra(rs.getDouble("preco_dcompra"));

@@ -1309,6 +1309,7 @@ public class Paciente implements Serializable {
 				private float taxaIsencaoConsulta;
 				private double precoUnitario;
 				private double taxaEmkz;
+				private int FK_sanguineo;
 				
 				public float getTaxaIsencaoConsulta() {
 					return taxaIsencaoConsulta;
@@ -1560,6 +1561,14 @@ public class Paciente implements Serializable {
 
 				public void setFK_status(int fK_status) {
 					FK_status = fK_status;
+				}
+
+				public int getFK_sanguineo() {
+					return this.FK_sanguineo;
+				}
+				public void setFK_sanguineo(int FK_sanguineo) {
+					this.FK_sanguineo= FK_sanguineo;
+					
 				}
 				
 				

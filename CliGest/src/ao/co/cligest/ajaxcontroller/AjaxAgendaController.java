@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ao.co.cligest.dao.AgendaConsultaDAO;
+import ao.co.cligest.dao.GrupoDAO;
 import ao.co.cligest.entidades.Exames;
+import ao.co.cligest.entidades.Grupos;
 import ao.co.cligest.entidades.Paciente;
 import ao.co.cligest.interfaces.IAgendaConsulta;
 
@@ -22,7 +24,8 @@ import ao.co.cligest.interfaces.IAgendaConsulta;
 @WebServlet("/AjaxAgendaController")
 public class AjaxAgendaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private IAgendaConsulta _agendaConsulta = new AgendaConsultaDAO();   
+    private IAgendaConsulta _agendaConsulta = new AgendaConsultaDAO();  
+    private GrupoDAO _GrupoDAO = new GrupoDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,7 +38,19 @@ public class AjaxAgendaController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		PrintWriter out =  response.getWriter();
+		StringBuilder sb = new StringBuilder();
+		String modulo = request.getParameter("modulo");
+		String grupo = request.getParameter("grupo");
+		if(modulo!=null){
+			List<Grupos> funcionalidades = _GrupoDAO.getFuncionalidadesTela(Integer.parseInt(modulo), Integer.parseInt(grupo));
+			 for(Grupos g : funcionalidades){
+				 sb.append(g.getId_tela()+"|"+g.getTela()+"|"+g.getDescricao()+";");
+			 }
+		}
+		response.setContentType("text/plain");  
+	  	response.setCharacterEncoding("UTF-8"); 
+		out.write(sb.toString());
 	}
 
 	/**

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import ao.co.cligest.dao.AgendaConsultaDAO;
 import ao.co.cligest.dao.ConfirmarDAO;
 import ao.co.cligest.dao.FuncionarioDAO;
+import ao.co.cligest.dao.GrupoDAO;
 import ao.co.cligest.dao.ServicoDAO;
 import ao.co.cligest.entidades.Funcionario;
 import ao.co.cligest.entidades.Paciente;
@@ -22,7 +23,7 @@ import ao.co.cligest.util.MetodosBuscas;
 
 /**
  * 
- * @author NELSON DIWIDI - ANGOTECH
+ * @author NELSON DIWIDI - ND SOLUCOES
  * @manutencao NELSON DIWIDI
  *
  */
@@ -34,6 +35,7 @@ public class AdministracaoController extends HttpServlet {
     private FuncionarioDAO _funcionarioDAO = new FuncionarioDAO();
 	private ServicoDAO _servicoDAO = new ServicoDAO();
     private MetodosBuscas _metodos = new MetodosBuscas();
+    private GrupoDAO _grupo = new GrupoDAO();
    
     public AdministracaoController() {
         super();
@@ -46,6 +48,7 @@ public class AdministracaoController extends HttpServlet {
 		String tela = request.getParameter("pag");
 		
 		if(ss!=null){
+			request.setAttribute("admings", "active open");
 			// Inicio - Doutor
 			if (tela != null && (tela.equals("doc"))) {
 				List<Funcionario> lsDoutores = _funcionarioDAO.listaDoutoreTodos();
@@ -121,8 +124,44 @@ public class AdministracaoController extends HttpServlet {
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editesp");
 				saida.forward(request, response);
 			}
+			
+			// Cadastro de Grupos de Privilegios - Acessos
+			if (tela != null && (tela.equals("usersgrp"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=usersgrp");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("novousersgrp"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=novousersgrp");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("editusersgrp"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editusersgrp");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("users"))) {
+				request.setAttribute("lsUsers", _funcionarioDAO.buscaUsuario());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=users");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("novousers"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=novousers");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("editusers"))) {
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editusers");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("usersprv"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				request.setAttribute("lsModulos", _grupo.getModulos());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=usersprv");
+				saida.forward(request, response);
+			}
 			if(mod!=null && mod.equals("ng"))
 			{
+				request.removeAttribute("admings");
 				List<Paciente> agendados =  _agendaConsulta.listaConsultaAgendada();
 				request.setAttribute("listaPac", agendados);
 				saida = request.getRequestDispatcher("index.jsp?mods=ng");

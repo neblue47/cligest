@@ -11,9 +11,9 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li><a class="parent-item" href="">Pacientes</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                <li><a class="parent-item" href="">Agendamento</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Novo Paciente</li>
+                                <li class="active">Pacientes</li>
                             </ol>
                         </div>
                     </div>
@@ -59,8 +59,9 @@
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" name="genero" required="required">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
+                                                        <c:forEach items="${lsGenero }" var="at">
+                                                         <option value="${at.genero }" >${at.nomgenero }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
@@ -71,10 +72,9 @@
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" name="estadoCvl" required="required">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Solterio (a)</option>
-                                                        <option value="2">Divorciado (a)</option>
-                                                        <option value="3">Casado (a)</option>
-                                                        <option value="4">Uniao de Facto</option>
+                                                        <c:forEach items="${lsEstadoC }" var="at">
+                                                         <option value="${at.est_civil }"  >${at.nomeEC }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
@@ -103,10 +103,9 @@
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" name="tpDocumento" required="required">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Bilhete de Identidade</option>
-                                                        <option value="4">Cartao de Residencia</option>
-                                                        <option value="3">Cedula Pessoal</option>
-                                                        <option value="2">Passaporte</option>
+                                                        <c:forEach items="${lsDoc }" var="at">
+                                                         <option value="${at.tipo_doc }"   >${at.nomeDoc }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>

@@ -58,8 +58,9 @@
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" name="genero">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
+                                                        <c:forEach items="${lsGenero }" var="at">
+                                                         <option value="${at.genero }" >${at.nomgenero }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
@@ -70,10 +71,9 @@
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" name="estadoCvl">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Solterio (a)</option>
-                                                        <option value="2">Divorciado (a)</option>
-                                                        <option value="3">Casado (a)</option>
-                                                        <option value="4">Uniao de Facto</option>
+                                                        <c:forEach items="${lsEstadoC }" var="at">
+                                                         <option value="${at.est_civil }"  >${at.nomeEC }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
@@ -82,8 +82,9 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input name="contacto" type="text" placeholder="numero do BI/PassaPorte" class="form-control input-height" /> </div>
+                                                    <input name="contacto" type="text" placeholder="numero do BI/PassaPorte" class="form-control input-height" /> 
                                                 </div>
+                                            </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Especialidade
@@ -105,7 +106,19 @@
                                                 <div class="col-md-5">
                                                     <input name="contacto" type="text" placeholder="numero para contacto" class="form-control input-height" /> </div>
                                             </div>
-                                            
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Grupo Privilegios
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="grupo">
+                                                        <option value="">Selecione...</option>
+                                                        <c:forEach items="${lsGrupos}" var="at">
+                                                         <option value="${at.id_grupo }">${at.nomgrupo }</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                             </div>
                                              <div class="form-group row">
                                                 <label class="control-label col-md-3">Morada
                                                     <span class="required"> * </span>

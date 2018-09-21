@@ -122,6 +122,21 @@
             	<jsp:include page="adm-sistema/utilizadores/edit-utilizador.jsp" />
             </c:if>
             
+            <!-- CID  -->
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'cids'}">
+            	<jsp:include page="cid-doenca/all-cid-doencas.jsp" />
+            </c:if>
+            
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'usersgrpss'}">
+            	<jsp:include page="adm-sistema/acessos/all-grupos.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'usersgrps'}">
+            	<jsp:include page="adm-sistema/acessos/all-grupos.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'ad' && param.pag eq 'usersgrpsss'}">
+            	<jsp:include page="adm-sistema/acessos/all-grupos.jsp" />
+            </c:if>
+            
             <c:if test="${param.mods eq 'ad' && param.pag eq 'profdoc'}">
             	<jsp:include page="adm-sistema/doutor/profile-doutor.jsp" />
             </c:if>
@@ -199,8 +214,8 @@
             <c:if test="${param.mods eq 'pd' && param.pag eq 'conspac'}">
             	<jsp:include page="procedimentos/consultas/all-consultas.jsp" /> 
             </c:if>
-            <c:if test="${param.mods eq 'pd' && param.pag eq 'newcons'}">
-            	<jsp:include page="procedimentos/consultas/new-consulta.jsp" /> 
+            <c:if test="${param.mods eq 'pd' && param.pag eq 'hstconspac'}">
+            	<jsp:include page="procedimentos/consultas/all-consultasHis.jsp" /> 
             </c:if>
             
             <!-- URGENCIAS / EMERGENCIAS -->

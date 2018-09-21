@@ -100,6 +100,11 @@ public class ProcedimentoController extends HttpServlet {
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=conspac");
 					saida.forward(request, response);
 				}
+				if (tela != null && (tela.equals("hstconspac"))) {
+					request.setAttribute("lsSiTriado", _agendaConsulta.listaPacientesConsultados());
+					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=hstconspac");
+					saida.forward(request, response);
+				}
 				if (tela != null && (tela.equals("newcons"))) {
 					String codp =request.getParameter("codp");
 					String codc =request.getParameter("codc");

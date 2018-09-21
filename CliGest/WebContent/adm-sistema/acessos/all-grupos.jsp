@@ -42,7 +42,7 @@
 					                                        
 					                                   
 					                                    </div>
-					                                    <table class="table display" id="example1" style="width:100%;">
+					                                    <table class="table display" id="example1" style="width:100%;" data-page-length="5">
 					                                        <thead>
 					                                            <tr>
 					                                                <th style="width: 75%"> Descrição </th>

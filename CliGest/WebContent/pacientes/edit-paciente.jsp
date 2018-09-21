@@ -6,14 +6,14 @@
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Editar Dados do Paciente</div>
+                                <div class="page-title">Editar Paciente</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li><a class="parent-item" href="">Pacientes</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                <li><a class="parent-item" href="">Agendamento</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Editar Paciente</li>
+                                <li class="active">Pacientes</li>
                             </ol>
                         </div>
                     </div>
@@ -26,21 +26,22 @@
 				                         
                                 </div>
                                 <div class="card-body" id="bar-parent">
-                                    <form action="#" id="form_sample_1" class="form-horizontal" method="post">
+                                    <form action="PacienteEditController" id="form_sample_1" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                    
                                         <div class="form-body">
                                         <div class="form-group row">
                                                 <label class="control-label col-md-3">Primeiro Nome
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="primeiroNome" data-required="1" placeholder="digite o primeiro nome" class="form-control input-height" /> </div>
+                                                    <input type="text" name="primeiroNome" data-required="1" value="${pac.nome }" class="form-control input-height" /> </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Ultimo Nome
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" name="ultimoNome" data-required="1" placeholder="digite o ultimo nome" class="form-control input-height" /> </div>
+                                                    <input type="text" name="ultimoNome" data-required="1" value="${pac.apelido }" class="form-control input-height" /> </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="control-label col-md-3">Data de Nascimento
@@ -48,10 +49,8 @@
                                                 </label>
                                                 <div class="col-md-5">
                                                     <div class="input-group date form_date " data-date="" data-date-format="dd/MM/yyyy" data-link-field="dtp_input2" data-link-format="dd/MM/yyyy">
-		                                                <input class="form-control input-height" size="16" placeholder="data de nascimento" type="text" value="">&nbsp;
-		                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+		                                                <input name="dtNascido" class="form-control input-height" size="16" placeholder="data de nascimento" type="date" value="<fmt:formatDate value="${pac.dataNasc.time}" pattern="yyyy-MM-dd" />">&nbsp;
 	                                            	</div>
-	                                            	<input type="hidden" id="dtp_input2" value="" />
 	                                            </div>
                                             </div>
                                             <div class="form-group row">
@@ -59,42 +58,12 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <select class="form-control input-height" name="genero">
+                                                    <select class="form-control input-height" name="genero" required="required">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Masculino</option>
-                                                        <option value="2">Feminino</option>
+                                                        <c:forEach items="${lsGenero }" var="at">
+                                                         <option value="${at.genero }" <c:if test="${pac.genero == at.genero}"> selected</c:if> >${at.nomgenero }</option>
+                                                        </c:forEach>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Idade
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <input type="text" name="idade" data-required="1" placeholder="idade" class="form-control input-height" /> </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Contacto
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <input name="contacto" type="text" placeholder="numero para contacto" class="form-control input-height" /> </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="control-label col-md-3">Email
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <div class="input-group">
-                                                        
-                                                        <input type="text" class="form-control input-height" name="email" placeholder="endereco electronico"> </div>
-                                                </div>
-                                            </div>
-                                             <div class="form-group row">
-                                                <label class="control-label col-md-3">Morada
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-5">
-                                                    <textarea name="address" placeholder="morada" class="form-control-textarea" rows="5" ></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -102,21 +71,21 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <select class="form-control input-height" name="estadoCvl">
+                                                    <select class="form-control input-height" name="estadoCvl" required="required">
                                                         <option value="">Selecione...</option>
-                                                        <option value="1">Solterio (a)</option>
-                                                        <option value="2">Divorciado (a)</option>
-                                                        <option value="3">Casado (a)</option>
-                                                        <option value="4">Uniao de Facto</option>
+                                                        <c:forEach items="${lsEstadoC }" var="at">
+                                                         <option value="${at.est_civil }" <c:if test="${pac.nomeEC == at.nomeEC}"> selected</c:if> >${at.nomeEC }</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
-                                                <label class="control-label col-md-3">Gropo Sanguineo
+                                                <label class="control-label col-md-3">Grupo Sanguineo
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <select class="form-control input-height" name="gruposag">
-                                                        <option value="">Selecione...</option>
+                                                    <select class="form-control input-height" name="gruposag" required="required">
+                                                        <option value="0">Selecione...</option>
                                                         <option value="1">A+</option>
                                                         <option value="2">A-</option>
                                                         <option value="3">B+</option>
@@ -129,14 +98,57 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="control-label col-md-3">Upload Foto
+                                                <label class="control-label col-md-3">Tipo Documento
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="tpDocumento" required="required">
+                                                        <option value="">Selecione...</option>
+                                                        <c:forEach items="${lsDoc }" var="at">
+                                                         <option value="${at.tipo_doc }"   >${at.nomeDoc }</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Numero
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="numDocumento" data-required="1" value="${pac.numero_doc }" class="form-control input-height" /> 
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Contacto
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input name="contacto" type="text" value="${pac.telefone }" class="form-control input-height" /> </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="control-label col-md-3">Email
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control input-height" name="email" value="${pac.email }"> </div>
+                                                </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3">Morada
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <textarea name="morada" placeholder="morada" class="form-control-textarea" rows="5" >${pac.endereco }</textarea>
+                                                </div>
+                                            </div>
+                                            <input type="hidden"  name="pacId" value="${pac.FK_paciente }">
+                                             <div class="form-group row">
+                                                <label class="control-label col-md-3"> Foto
                                                 </label>
                                                 <div class="compose-editor">
-                                                  <input type="file" class="default" multiple>
+                                                  <input type="file" class="file-input" name="logotipo" id="foto" accept="image/*" >
                                               </div>
                                             </div>
-                                            
-                                             
 											<div class="form-actions">
                                             <div class="row">
                                                 <div class="offset-md-3 col-md-9">
@@ -154,3 +166,4 @@
                 </div>
             </div>
             <!-- end page content -->
+  

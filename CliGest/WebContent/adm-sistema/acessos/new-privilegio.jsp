@@ -34,7 +34,7 @@
                                                     <select class="form-control input-height" name="grupos">
                                                         <option value="">Selecione...</option>
                                                         <c:forEach items="${lsGrupos }" var="at">
-                                                         <option value="${at.id_grupo }">${at.nomgrupo }</option>
+                                                         <option value="${at.id_grupo }" <c:if test="${param.codgr ==  at.id_grupo}">selected</c:if> >${at.nomgrupo }</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>

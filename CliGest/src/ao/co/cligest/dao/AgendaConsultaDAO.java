@@ -180,6 +180,7 @@ public int inserirmarcacao(Paciente mc){
 					 p.setFK_doutor(rs.getInt("FK_doutor"));
 					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
 					 p.setConfirmado(confirmado);
+					 p.setFK_consulta_confirmada(confirmado);
 					 lista.add(p);
 				 }
 			} catch (Exception e) {
@@ -230,7 +231,8 @@ public int inserirmarcacao(Paciente mc){
 		public List<Paciente> listaConsultaConfirmadaPago() {
 			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
 					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
-					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada ";
+					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
+					   + " JOIN `tblfactura` `fc` ON `fcs`.`FK_factura` = `fc`.`id_factura` ORDER BY `fc`.`id_factura` DESC";
 			List<Paciente> lista = new ArrayList<>();
 			try {
 				 con = Conexao.getConexao();
@@ -256,6 +258,7 @@ public int inserirmarcacao(Paciente mc){
 					 p.setFK_consulta_confirmada(confirmado);
 					 p.setConfirmado(confirmado);
 					 p.setPreco(rs.getDouble("sub_total"));
+					 p.setNumero_doc(rs.getString("numero_factura"));
 					 lista.add(p);
 				 }
 			} catch (Exception e) {
@@ -308,7 +311,8 @@ public int inserirmarcacao(Paciente mc){
 			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
 					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
 					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
-					   + " JOIN tbltriagem trg ON cf.id_consulta_confirmada = trg.FK_consulta_confirmada ";
+					   + " JOIN tbltriagem trg ON cf.id_consulta_confirmada = trg.FK_consulta_confirmada "
+					   + " WHERE cf.id_consulta_confirmada NOT IN (SELECT FK_consulta_confirmada FROM tblconsultafinalizada)";
 			List<Paciente> lista = new ArrayList<>();
 			try {
 				 con = Conexao.getConexao();
@@ -337,6 +341,50 @@ public int inserirmarcacao(Paciente mc){
 					 p.setPreco(rs.getDouble("sub_total"));
 					 p.setStatus(retornaStatus(rs.getInt("FK_estado_paciente")));
 					 p.setFK_status(rs.getInt("FK_estado_paciente"));
+					 lista.add(p);
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return lista;
+		}
+		@Override
+		public List<Paciente> listaPacientesConsultados() {
+			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
+					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
+					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
+					   + " JOIN tbltriagem trg ON cf.id_consulta_confirmada = trg.FK_consulta_confirmada "
+					   + " JOIN tblconsultafinalizada cff ON cf.id_consulta_confirmada = cff.FK_consulta_confirmada ORDER BY cff.data desc"
+					   ;
+			List<Paciente> lista = new ArrayList<>();
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())
+				 {
+					 Paciente p = new Paciente();
+					 p.setNome_paciente(rs.getString("NomeCompleto"));
+					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setServico(rs.getString("servico"));
+					 p.setNomegenero(rs.getString("genero"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setFK_consulta_confirmada(confirmado);
+					 p.setConfirmado(confirmado);
+					 p.setPreco(rs.getDouble("sub_total"));
+					 p.setStatus(retornaStatus(rs.getInt("FK_estado_paciente")));
+					 p.setFK_status(rs.getInt("FK_estado_paciente"));
+					 p.setFK_consulta(rs.getInt("FK_consulta"));
 					 lista.add(p);
 				 }
 			} catch (Exception e) {

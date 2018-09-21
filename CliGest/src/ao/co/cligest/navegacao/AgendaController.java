@@ -51,6 +51,7 @@ public class AgendaController extends HttpServlet {
 	private ExamesDAO _exameDAO = new ExamesDAO();
 	private IAgendaConsulta _agendaConsulta = new AgendaConsultaDAO();
 	private IAgendaExame _agendaExame = new AgendaExameDAO();
+	private MetodosBuscas _metodos = new MetodosBuscas();
 	
 	
 	public AgendaController() {
@@ -85,6 +86,11 @@ public class AgendaController extends HttpServlet {
 					saida.forward(request, response);
 				}
 				if (tela != null && (tela.equals("novopac"))) {
+					request.setAttribute("lsEspm", _metodos.buscaEspecialidade());
+					request.setAttribute("lsFuncao", _metodos.buscaFuncao());
+					request.setAttribute("lsGenero", _metodos.buscaGeneros());
+					request.setAttribute("lsEstadoC", _metodos.buscaEstadoCivil());
+					request.setAttribute("lsDoc", _metodos.buscaTipoDocumento());
 					saida = request.getRequestDispatcher("index.jsp?mods=ag&pag=novopac");
 					saida.forward(request, response);
 				}
@@ -92,6 +98,9 @@ public class AgendaController extends HttpServlet {
 					String  codp = request.getParameter("codp");
 					Paciente pac = _pacienteDAO.getPerfilPaciente(codp);
 					request.setAttribute("pac", pac);
+					request.setAttribute("lsEstadoC", _metodos.buscaEstadoCivil());
+					request.setAttribute("lsDoc", _metodos.buscaTipoDocumento());
+					request.setAttribute("lsGenero", _metodos.buscaGeneros());
 					saida = request.getRequestDispatcher("index.jsp?mods=ag&pag=editpac");
 					saida.forward(request, response);
 				}

@@ -8,7 +8,8 @@
 $(document).ready(function() {
 	'use strict';
     $('#example1').DataTable( {
-        "scrollX": true
+        "scrollY": true
+         
     } );
     
     var table = $('#example2').DataTable( {

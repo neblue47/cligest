@@ -74,7 +74,7 @@
                                         <div class="col-md-3 col-sm-3 col-xs-3">
                                             <ul class="nav nav-tabs tabs-left" id="myTab">
                                                 <li class="nav-item">
-                                                    <a href="#tab_6_1" data-toggle="tab" class="active"> CASH  </a>
+                                                    <a href="#tab_6_1" data-toggle="tab" class="active"> NUMERÁRIO  </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#tab_6_2" data-toggle="tab"> MULTICAIXA </a>
@@ -98,7 +98,7 @@
 											                 </div>
 											                 
 											                  <div class="form-group input-group">
-											                      <input name = "mtreceber"  type="text"  class="form-control remove-radius"  required="required" placeholder="AKZ 0,00" />
+											                      <input name = "mtreceber"  type="text" value="${pagmt.preco }"  class="form-control remove-radius"  required="required" placeholder="AKZ 0,00" />
 											                 </div>
 												        </div>
 												        </div>

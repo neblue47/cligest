@@ -1,1 +1,1 @@
-url:localhost-:banco:gestclinica-:user:root-:pass:sistema47
+url:localhost-:banco:gestclinicabd-:user:root-:pass:sistema47

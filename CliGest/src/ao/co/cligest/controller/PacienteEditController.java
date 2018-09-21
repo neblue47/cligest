@@ -20,25 +20,24 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
 import ao.co.cligest.dao.Formatando;
-import ao.co.cligest.dao.FuncionarioDAO;
 import ao.co.cligest.dao.PacienteDAO;
-import ao.co.cligest.entidades.Funcionario;
 import ao.co.cligest.entidades.Paciente;
 
 /**
- * Servlet implementation class FuncionarioController
+ * Servlet implementation class EditPacienteController
  */
-@WebServlet("/DoutorController")
-public class DoutorController extends HttpServlet {
+@WebServlet("/PacienteEditController")
+public class PacienteEditController extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	private FuncionarioDAO _funcionarioDAO = new FuncionarioDAO();
+	private PacienteDAO _pacienteDAO = new PacienteDAO();
 	private String saveFile = "c:/cligestFile/";
 	String arquivo = "";
-	Formatando ft = new Formatando();     
+	Formatando ft = new Formatando();  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DoutorController() {
+    public PacienteEditController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,7 +57,7 @@ public class DoutorController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8"); 
 		PrintWriter out = response.getWriter(); 
 		HttpSession ss = request.getSession();
-		Funcionario fn = new Funcionario();
+		Paciente p = new Paciente();
 		
 		try {
 			boolean ismultipart = ServletFileUpload.isMultipartContent(request);
@@ -82,51 +81,29 @@ public class DoutorController extends HttpServlet {
 					String dtNascido	= ft.dataToPadrao(itm.get(2).getString("UTF-8"));
 					int genero 			= Integer.parseInt(itm.get(3).getString("UTF-8"));
 					int estadocvl 		= Integer.parseInt(itm.get(4).getString("UTF-8"));
-					String num_doc 		= itm.get(5).getString("UTF-8");
-					int especia  		= Integer.parseInt(itm.get(6).getString("UTF-8"));
-					long contacto 		= Long.parseLong(itm.get(7).getString("UTF-8"));
-					int grupo  		= Integer.parseInt(itm.get(8).getString("UTF-8"));
-					String morada 	= itm.get(9).getString("UTF-8");
-					String nomeUS = primeironome.split(" ")[0].toLowerCase().trim() + "."+ultimonome.toLowerCase().trim();
-					String senha = primeironome.toLowerCase().substring(0,1)+ultimonome.toLowerCase().substring(0,1)+ "123456";
-	
+					int gruposg 		= Integer.parseInt(itm.get(5).getString("UTF-8"));
+					int tpdocum 		= Integer.parseInt(itm.get(6).getString("UTF-8"));
+					String numdocum 	= itm.get(7).getString("UTF-8");
+					long contacto 		= Long.parseLong(itm.get(8).getString("UTF-8"));
+					String email 		= itm.get(9).getString("UTF-8");
+					String morada 		= itm.get(10).getString("UTF-8");
+					int pacID	 		= Integer.parseInt(itm.get(11).getString("UTF-8"));
 					arquivo 			= ft.novoGUID();
-					for(FileItem fi : itm)
-					{
-						
-						System.out.println("POS: "+a+" campo: "+fi.getFieldName());
-						a++;
-					}
-					String numFun  	= _funcionarioDAO.getNumDoC();
-					fn.setNome(primeironome);
-					fn.setNomem("");
-					fn.setApelido(ultimonome);
-					fn.setDataNasc(ft.data(dtNascido));
-					fn.setGenero(genero);
-					fn.setEst_civil(estadocvl);
-					fn.setNomeDoc(numFun);
-					fn.setTelefone(contacto);
-					
-					fn.setTipo_doc(1);
-					fn.setEmail("teste@cligest.com");
-					fn.setEndereco(morada);
-					fn.setProfissao(6);
-					fn.setNum_doc(num_doc);
-					fn.setFuncao(1);
-					fn.setEspecialidade(especia);
-					fn.setNomeArq(arquivo);
-					fn.setArquivo(1);
-					fn.setNum_ss(numFun);
-					fn.setNif(numFun);
-					fn.setNum_fun(numFun);
-					fn.setNumOrdem(numFun);
-					fn.setSalario(0);
-					fn.setPais(1);
-					fn.setProvincia(1);
-					
-					fn.setFk_grupo(especia);
-					fn.setSenha(senha);
-					fn.setNome_us(nomeUS);
+					p.setNome(primeironome);
+					p.setNomem("");
+					p.setApelido(ultimonome);
+					p.setDataNasc(ft.data(dtNascido));
+					p.setGenero(genero);
+					p.setEst_civil(estadocvl);
+					p.setNumero_doc(numdocum);
+					p.setTelefone(contacto);
+					p.setTipo_doc(tpdocum);
+					p.setEmail(email);
+					p.setEndereco(morada);
+					p.setGruposg(gruposg);
+					p.setNomeArq(arquivo);
+					p.setFK_entidade(pacID);
+					p.setId_entidade(pacID);
 				}
 				catch(NumberFormatException er){out.print("Errror 2" +er);} 
 				
@@ -147,14 +124,14 @@ public class DoutorController extends HttpServlet {
 						break;
 					}
 				}
-				_funcionarioDAO.novoFuncionario(fn);
+				//_pacienteDAO.editarPaciente(p);
 				ss.setAttribute("msgOk", "msgOK");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ss.setAttribute("msgNOK", "msgNOK");
 		}
-		response.sendRedirect("navegacao?mods=ad&pag=doc");
+		response.sendRedirect("navegacaoag?mods=ag&pag=pac");
 	}
 	
 	private File checkExist(String fileName) {
@@ -186,5 +163,4 @@ public class DoutorController extends HttpServlet {
 		}
 	
 	}
-
 }

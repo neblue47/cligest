@@ -59,6 +59,9 @@ public class AdministracaoController extends HttpServlet {
 			if (tela != null && (tela.equals("novodoc"))) {
 				request.setAttribute("lsEspm", _metodos.buscaEspecialidade());
 				request.setAttribute("lsFuncao", _metodos.buscaFuncao());
+				request.setAttribute("lsGenero", _metodos.buscaGeneros());
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				request.setAttribute("lsEstadoC", _metodos.buscaEstadoCivil());
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=novodoc");
 				saida.forward(request, response);
 			}
@@ -154,11 +157,39 @@ public class AdministracaoController extends HttpServlet {
 				saida.forward(request, response);
 			}
 			if (tela != null && (tela.equals("usersprv"))) {
+				String codgr = request.getParameter("codgr");
 				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
 				request.setAttribute("lsModulos", _grupo.getModulos());
+				request.setAttribute("codgr", codgr);
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=usersprv");
 				saida.forward(request, response);
 			}
+			
+			if (tela != null && (tela.equals("cids"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				request.setAttribute("lsModulos", _grupo.getModulos());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cids");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("cidscap"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				request.setAttribute("lsModulos", _grupo.getModulos());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cidscap");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("cidscat"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				request.setAttribute("lsModulos", _grupo.getModulos());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cidscat");
+				saida.forward(request, response);
+			}
+			if (tela != null && (tela.equals("cidsgrp"))) {
+				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
+				request.setAttribute("lsModulos", _grupo.getModulos());
+				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cidsgrp");
+				saida.forward(request, response);
+			}
+			
 			if(mod!=null && mod.equals("ng"))
 			{
 				request.removeAttribute("admings");

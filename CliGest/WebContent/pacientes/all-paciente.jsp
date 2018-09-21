@@ -12,7 +12,7 @@
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li><a class="parent-item" href="">Pacientes</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                <li><a class="parent-item" href="">Agendamento</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
                                 <li class="active">Pacientes</li>
                             </ol>
@@ -41,7 +41,7 @@
 					                                        
 					                                         
 					                                    </div>
-					                                    <table class="table display" id="example1" style="width:100%;">
+					                                    <table class="table display" id="example1" style="width:100%;" data-page-length="5">
 					                                        <thead>
 					                                            <tr>
 					                                            	 
@@ -58,9 +58,9 @@
 					                                        <c:forEach var="pc" items="${lsPaciente }">
 					                                        	<tr class="odd gradeX">
 																	 
-																	<td>${pc.nome }</td>
+																	<td> <b>${pc.nome }</b></td>
 																	<td class="center">${pc.nomegenero }</td>
-																	<td><a href="#">${pc.telefone } </a></td>
+																	<td class="center"> ${pc.telefone }  </td>
 																	<td class="center"><fmt:formatDate value="${pc.dataNasc.time}" pattern="dd/MM/yyyy"/></td>
 																	<td class="center">${pc.idade}</td>
 																	<td class="center">${pc.sanguineo }</td>
@@ -77,9 +77,6 @@
 				                                                                <a href="navegacaoag?mods=ag&pag=novoagencon&codp=${pc.FK_paciente }"><i class="fa fa-stethoscope"></i> Consulta </a>
 				                                                            </li>
 				                                                            
-				                                                            <li>
-				                                                                <a href="navegacaoag?mods=ag&pag=novoagenexa&codp=${pc.FK_paciente }"><i class="fa fa-medkit"></i> Exame </a>
-				                                                            </li>
 				                                                            <li>
 				                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Eliminar </a>
 				                                                            </li>

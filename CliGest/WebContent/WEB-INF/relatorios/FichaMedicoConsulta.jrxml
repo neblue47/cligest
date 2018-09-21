@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaAtendimentoMedico" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12fce5e9-6188-4d6b-8d9c-8f610101c4c2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="44"/>
@@ -53,7 +54,6 @@ WHERE id_consulta = $P{cod_consulta}]]>
 	<field name="historico_doenca" class="java.lang.String"/>
 	<field name="queixa_principal" class="java.lang.String"/>
 	<field name="consulta_recomendacao" class="java.lang.String"/>
-	<field name="consulta_tratamento" class="java.lang.String"/>
 	<field name="consulta_exame_fisico_cabeca" class="java.lang.String"/>
 	<field name="consulta_exame_fisico_pescoco" class="java.lang.String"/>
 	<field name="consulta_exame_fisico_membro_superior" class="java.lang.String"/>
@@ -237,7 +237,7 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				<text><![CDATA[Médico(a) Responsável]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="22" y="58" width="100" height="17" uuid="55cb93e5-b3ab-47c8-8a76-1d9390063650"/>
+				<reportElement x="26" y="62" width="100" height="17" uuid="55cb93e5-b3ab-47c8-8a76-1d9390063650"/>
 				<textElement textAlignment="Center">
 					<font size="10" isBold="false"/>
 				</textElement>
@@ -286,7 +286,7 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				<textFieldExpression><![CDATA[$F{hora_daconsulta}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="29" y="7" width="100" height="50" uuid="eefb5437-3915-4b8a-aa07-168dd87f41a8"/>
+				<reportElement x="49" y="7" width="70" height="50" uuid="eefb5437-3915-4b8a-aa07-168dd87f41a8"/>
 				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
 			</image>
 			<staticText>
@@ -653,11 +653,6 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				<text><![CDATA[Tratamento]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="58" y="335" width="450" height="13" uuid="bbb9923c-4a60-4130-9bbf-59b33afb980d"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{consulta_tratamento}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="58" y="376" width="450" height="13" uuid="421f36c7-419d-46aa-98ec-820fc47e4456"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{consulta_recomendacao}]]></textFieldExpression>
@@ -735,13 +730,6 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="23" y="42" width="202" height="12" uuid="82558137-0169-4ad6-88a5-51f5a803f533"/>
-				<textElement>
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Desenvolvido por: www.angotech.co.ao]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="23" y="8" width="19" height="12" uuid="bf8c9c21-0d3d-4465-9642-a2165f74463a"/>
 				<textElement>
 					<font size="7" isBold="true"/>
@@ -776,20 +764,6 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nif}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="445" y="41" width="80" height="12" forecolor="#333333" uuid="8342d7d0-ad5f-44ba-bd60-a8afefef5d8f"/>
-				<textElement textAlignment="Right">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="527" y="41" width="20" height="12" forecolor="#333333" uuid="8c31baed-a893-46e7-a4e5-ef301b97b581"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageFooter>
 	<lastPageFooter>
@@ -801,26 +775,12 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tel1}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="23" y="117" width="202" height="12" uuid="937a2bcf-7ac7-49d5-8547-4567caddebaa"/>
-				<textElement>
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Desenvolvido por: www.angotech.co.ao]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="49" y="93" width="153" height="12" forecolor="#000000" uuid="9a09b393-9c24-4f39-b052-4bd6ac3b0728"/>
 				<textElement verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="516" y="116" width="20" height="12" forecolor="#333333" uuid="f60587dc-8ce5-40db-b967-036fc691f5e7"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="42" y="83" width="160" height="12" forecolor="#000000" uuid="1e6cbfab-b593-49d8-ad7e-19d051d526a4"/>
@@ -898,19 +858,12 @@ WHERE id_consulta = $P{cod_consulta}]]>
 				</textElement>
 				<text><![CDATA[NIF:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="434" y="116" width="80" height="12" forecolor="#333333" uuid="a17ade01-f358-45d6-a0f8-ef380c8d72a8"/>
-				<textElement textAlignment="Right">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="372" y="10" width="158" height="14" uuid="14910801-c71e-488f-b120-51f98ab54a30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[O(A) Profissional]]></text>
+				<text><![CDATA[Medico Assistente]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="266" y="104" width="72" height="12" uuid="8da8aa85-7c7f-47ed-aea8-7dbeb8b69106"/>

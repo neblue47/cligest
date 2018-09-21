@@ -84,7 +84,7 @@ public class GeradorRelatorio extends HttpServlet
 		 //String logoImage = getServletContext().getRealPath("/WEB-INF/relatorios/logoGesthosp.jpg");
 		 
 		 // IMAGEM DA DADIVA
-		 String logoImage = getServletContext().getRealPath("/WEB-INF/relatorios/caridade.jpg");
+		 String logoImage = getServletContext().getRealPath("/WEB-INF/relatorios/logoDoc.jpg");
 		 
 		 // Imagem do Produto
 		 String imgProd = getServletContext().getRealPath("/icons/caridade.jpg");

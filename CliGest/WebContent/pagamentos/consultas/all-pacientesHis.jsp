@@ -24,7 +24,7 @@
                                     <header></header>
                                 </div>
                                 <div class="card-body ">
-                                   <table class="table display" id="example1" style="width:100%;">
+                                   <table class="table display" id="example1" style="width:100%;" data-page-length="5">
                                         <thead>
                                             <tr>
                                             	<th class="center">  </th>
@@ -46,9 +46,9 @@
 												<td>Dr. ${pc.nome_doutor}</td>
 												<td>${pc.servico}</td>
 												<td class="center">
-													<a target="_blank" href=""  class="btn btn-danger btn-xs" title="Gerar Comprovativo">
-														<i class="fa fa-print"></i>
-													</a>
+													<a target="_blank" href="GeradoRelatorio?nomeRelat=PagamentoConsultaA4&cod_param=${pc.numero_doc}" class="btn btn-success btn-xs" title="Gerar Comprovativo">
+		  													<i class="fa fa-print"></i> 
+	 												</a>
 													 
 												</td>
 											</tr>

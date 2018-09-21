@@ -67,8 +67,8 @@ public class LoginController extends HttpServlet {
 			{
 				Usuario us = uDao.autenticado(usu);
 				List<Diverso>AcessoMudulos = new AcessosDAO().AcessoModulosLogin(us.getFk_grupo());
-				List<Diverso>AcessoTelasPai   = new AcessosDAO().AcessoTelasPrivPai(us.getFk_grupo());
-				List<Diverso>AcessoTelas   = new AcessosDAO().AcessoTelasPriv(us.getFk_grupo());
+				//List<Diverso>AcessoTelasPai   = new AcessosDAO().AcessoTelasPrivPai(us.getFk_grupo());
+				//List<Diverso>AcessoTelas   = new AcessosDAO().AcessoTelasPriv(us.getFk_grupo());
 				//List<Diverso>AcessoConfigTelas   = new AcessosDAO().AcessoTelasConfigLogin(us.getFK_entidade());
 				
 				sessao.setAttribute("nomeUsa", us.getNome());
@@ -77,8 +77,8 @@ public class LoginController extends HttpServlet {
 //				sessao.setAttribute("nivelUs", us.getNivel());
 				
 				sessao.setAttribute("AcessoMudulos", AcessoMudulos);
-				sessao.setAttribute("AcessoTelasPai", AcessoTelasPai);
-				sessao.setAttribute("AcessoTelas", AcessoTelas);
+				//sessao.setAttribute("AcessoTelasPai", AcessoTelasPai);
+				//sessao.setAttribute("AcessoTelas", AcessoTelas);
 //				sessao.setAttribute("AcessoPrivTelas", AcessoPrivTelas);
 //				sessao.setAttribute("AcessoConfigTelas", AcessoConfigTelas);
 			 

@@ -7,14 +7,14 @@
                     <div class="page-bar">
                         <div class="page-title-breadcrumb">
                             <div class=" pull-left">
-                                <div class="page-title">Lista  de Utilizadores</div>
+                                <div class="page-title">Lista  de Doenças</div>
                             </div>
                             <ol class="breadcrumb page-breadcrumb pull-right">
                                 <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="navegacao?mods=ng">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li><a class="parent-item" href="">Acessos</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                <li><a class="parent-item" href="">CIDs</a>&nbsp;<i class="fa fa-angle-right"></i>
                                 </li>
-                                <li class="active">Lista  de Utilizadores</li>
+                                <li class="active">CID Doenças</li>
                             </ol>
                         </div>
                     </div>
@@ -28,13 +28,7 @@
 					                                <div class="card-head">
 					                                    <header></header>
 					                                    <div class=" " style="float: right;">
-					                                        <div class="">
-					                                            <div class="btn-group btn-sm">
-					                                                <a href="navegacao?mods=ad&pag=novousers" id="addRow" class="btn btn-info">
-					                                                     <i class="fa fa-plus"></i> Novo
-					                                                </a>
-					                                            </div>
-					                                        </div>
+					                                         
 					                                    </div>
 					                                </div>
 					                                <div class="card-body ">

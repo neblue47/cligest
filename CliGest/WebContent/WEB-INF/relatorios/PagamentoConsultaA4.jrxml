@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PagamentoConsultaA4" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12fce5e9-6188-4d6b-8d9c-8f610101c4c2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="14"/>
@@ -162,13 +163,6 @@ where numero_factura = $P{numero_factura};]]>
 				<textFieldExpression><![CDATA["Venda a"+" "+$F{metodo_depagameto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="22" y="58" width="100" height="17" uuid="55cb93e5-b3ab-47c8-8a76-1d9390063650"/>
-				<textElement textAlignment="Center">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nome_comercial}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="349" y="80" width="179" height="18" uuid="3871471e-4bad-4aee-b883-08538103ec10"/>
 				<textElement>
 					<font size="11" isBold="true"/>
@@ -194,13 +188,6 @@ where numero_factura = $P{numero_factura};]]>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="338" y="28" width="193" height="20" forecolor="#CC0000" uuid="b2c8bd2e-df1d-4963-9705-146d0b281c42"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[2ª Via]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="28" y="114" width="42" height="13" uuid="e1ca5ab7-550d-4d06-96bf-e7cf1c420347"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" isBold="false"/>
@@ -208,7 +195,7 @@ where numero_factura = $P{numero_factura};]]>
 				<text><![CDATA[Registo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="28" y="85" width="48" height="13" uuid="6ca337ea-24ba-4aa0-8c6b-f16866db1838"/>
+				<reportElement x="28" y="85" width="59" height="13" uuid="6ca337ea-24ba-4aa0-8c6b-f16866db1838"/>
 				<textElement verticalAlignment="Middle" markup="none">
 					<font size="10" isItalic="false"/>
 				</textElement>
@@ -229,19 +216,12 @@ where numero_factura = $P{numero_factura};]]>
 				<textFieldExpression><![CDATA[$F{idade}+" "+"Anos"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="76" y="85" width="102" height="13" uuid="307f35ad-25be-4819-8b55-d3f847b14307"/>
+				<reportElement x="87" y="85" width="102" height="13" uuid="307f35ad-25be-4819-8b55-d3f847b14307"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_factura}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="28" y="128" width="42" height="13" uuid="621be9ff-4f0c-4cc5-8836-791da21f1285"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="SansSerif" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Sector:]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="349" y="99" width="179" height="18" uuid="83393b1b-1601-4344-8bf4-d0ab1079172c"/>
 				<textElement verticalAlignment="Top">
@@ -257,14 +237,14 @@ where numero_factura = $P{numero_factura};]]>
 				<text><![CDATA[Plano:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="349" y="117" width="89" height="14" uuid="2842ca87-85db-4fe6-ad31-05669941e1e9"/>
+				<reportElement x="349" y="117" width="101" height="14" uuid="2842ca87-85db-4fe6-ad31-05669941e1e9"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Entidade / Convênio:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="435" y="117" width="93" height="14" uuid="99e200bb-46d9-4640-91f8-4dc019f91b02"/>
+				<reportElement x="450" y="117" width="78" height="14" uuid="99e200bb-46d9-4640-91f8-4dc019f91b02"/>
 				<textElement verticalAlignment="Top" markup="none">
 					<font fontName="SansSerif" size="10"/>
 				</textElement>
@@ -409,13 +389,6 @@ where numero_factura = $P{numero_factura};]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="23" y="50" width="202" height="12" uuid="da834085-4dc0-4510-9b91-91646853cb86"/>
-				<textElement>
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Desenvolvido por: www.angotech.co.ao]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="379" y="17" width="152" height="12" forecolor="#000000" uuid="d7d25e0c-e129-444f-b6e9-d50bbc920911"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -465,30 +438,16 @@ where numero_factura = $P{numero_factura};]]>
 				</textElement>
 				<text><![CDATA[NIF:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="431" y="50" width="80" height="12" forecolor="#333333" uuid="89eab14f-5d9e-47a4-97f0-b34bf44bf076"/>
-				<textElement textAlignment="Right">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="513" y="50" width="20" height="12" forecolor="#333333" uuid="0125e0b0-106c-4b37-8b51-81528b93ff03"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageFooter>
 	<lastPageFooter>
-		<band height="202">
+		<band height="196">
 			<staticText>
 				<reportElement x="366" y="77" width="158" height="14" uuid="62f8d633-892d-4c50-ba53-78fe1ad4c4aa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
-				<text><![CDATA[O(A) Profissional]]></text>
+				<text><![CDATA[Assistente de Atendimento]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="366" y="103" width="158" height="14" uuid="f7a6a3fd-2bf1-4235-b5d6-1a858f1622fa"/>
@@ -537,13 +496,6 @@ where numero_factura = $P{numero_factura};]]>
 					<font size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Rua:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="23" y="184" width="202" height="12" uuid="572392fa-3f27-45d5-8e5e-5e04cf3c2c7e"/>
-				<textElement>
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Desenvolvido por: www.angotech.co.ao]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="243" y="164" width="21" height="12" uuid="2e8bee55-0a20-4622-91dd-e2d617a1264e"/>
@@ -595,13 +547,6 @@ where numero_factura = $P{numero_factura};]]>
 				<textFieldExpression><![CDATA[$F{nif}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="440" y="184" width="80" height="12" forecolor="#333333" uuid="d06023c4-d5f7-4db8-af3f-3f1ea7700671"/>
-				<textElement textAlignment="Right">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="379" y="151" width="152" height="12" forecolor="#000000" uuid="5a1af75c-9722-47fd-8b72-c504173e8a63"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="7"/>
@@ -614,13 +559,6 @@ where numero_factura = $P{numero_factura};]]>
 					<font fontName="SansSerif" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{site}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="522" y="184" width="20" height="12" forecolor="#333333" uuid="779b05df-1775-4c69-ac7e-9f71ade08af5"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="366" y="32" width="69" height="14" uuid="c5b04289-2e7d-4cc0-96e4-6d8c09f60c62"/>

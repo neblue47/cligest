@@ -52,7 +52,7 @@ public class ConsultaDAO
 	
 	public int  novaConsultas(Triagem fun)
 	{
-		int ultimoId = xequeConsulta(fun.getFK_paciente(), fun.getId_cons_conf());;
+		int ultimoId = xequeConsulta(fun.getFK_paciente(), fun.getId_cons_conf());
 		String sql = "insert into tblconsulta (data_daconsulta,hora_daconsulta,fk_medico,fk_paciente,fk_servico, FK_cons_confirmada) values(?,?,?,?,?,?)";
 		try {
 			

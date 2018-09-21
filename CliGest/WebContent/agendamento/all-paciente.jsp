@@ -39,7 +39,7 @@
 					                                    </div>
 					                                </div>
 					                                <div class="card-body ">
-					                                    <table class="table display" id="example1" style="width:100%;">
+					                                    <table class="table display" id="example1" style="width:100%;" data-page-length="5">
 					                                        <thead>
 					                                            <tr>
 					                                                <th class="center"> Nome </th>
@@ -54,9 +54,9 @@
 					                                        <tbody>
 					                                        <c:forEach var="pc" items="${lsPaciente }">
 					                                        	<tr >
-																	<td>${pc.nome }</td>
+																	<td> <b>${pc.nome }</b></td>
 																	<td class="center">${pc.nomegenero }</td>
-																	<td><a href="#">${pc.telefone } </a></td>
+																	<td class="center"> ${pc.telefone }  </td>
 																	<td class="center"><fmt:formatDate value="${pc.dataNasc.time}" pattern="dd/MM/yyyy"/></td>
 																	<td class="center">${pc.idade}</td>
 																	<td class="center">${pc.sanguineo }</td>

@@ -3268,11 +3268,13 @@ public List<Paciente> buscarpacientePlano()
 	        		perfil.setNomem(rs.getString("nome_meio").toUpperCase().trim());
 	        		perfil.setApelido(rs.getString("ultimo_nome").toUpperCase().trim());
 	        		perfil.setNumero_processo(rs.getString("numero_processo"));
+	        		perfil.setNumero_doc(rs.getString("numero_documento"));
 	        		perfil.setIdade(rs.getDate("data_nascimento"));
 	        		perfil.setNomeProf(rs.getString("profissAo"));
 	        		perfil.setNomeEC(rs.getString("estado_civil"));
 	        		perfil.setEmail(rs.getString("email"));
 	        		perfil.setEditfone(rs.getLong("telefone"));
+	        		perfil.setTelefone(rs.getLong("telefone"));
 	        		perfil.setNomegenero(rs.getString("genero"));
 	        		perfil.setGenero(rs.getInt("FK_genero"));
 	        		perfil.setFK_paciente(rs.getInt("FK_entidade"));
@@ -3440,6 +3442,20 @@ public List<Paciente> buscarpacientePlano()
 				telefone(p);
 				endereco(p);
 				email(p);
+				inforClinico(p);
+				novoArquivo(p);
+				System.out.println("FEITO OK");
+			}
+			
+			public void editarPaciente(Paciente p) throws Exception
+			{
+				 
+				modificarcidadao(p);
+				modificarpaciente(p);
+				modificarnaturalidade(p);
+				modificarfone(p);
+				modificarendereco(p);
+				modificaremail(p);
 				inforClinico(p);
 				novoArquivo(p);
 				System.out.println("FEITO OK");

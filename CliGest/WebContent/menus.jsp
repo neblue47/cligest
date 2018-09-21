@@ -216,28 +216,11 @@
 			                                        <span class="selected"></span>
 			                                    </a>
 			                                </li>
-										   
-			                                <li class="nav-item  ">
-			                                    <a href="#" class="nav-link nav-toggle"> <span class="title">Urgencias/Emergencias</span>
+										   <li class="nav-item  ">
+			                                    <a href="navegacaopd?mods=pd&pag=hstconspac" class="nav-link ">
+			                                        <span class="title">Hist. Atendimento</span>
+			                                        <span class="selected"></span>
 			                                    </a>
-												 <ul class="sub-menu">
-													<li class="nav-item  ">
-														<a href="navegacaopd?mods=pd&pag=atdconspac" class="nav-link "> <span class="title">Atendimento</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="navegacaopd?mods=pd&pag=triconspac" class="nav-link "> <span class="title">Triagem</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="navegacaopd?mods=pd&pag=urgconspac" class="nav-link "> <span class="title">Urgencias</span>
-														</a>
-													</li>
-													<li class="nav-item  ">
-														<a href="navegacaopd?mods=pd&pag=ergconspac" class="nav-link "> <span class="title">Emergencias</span>
-														</a>
-													</li>
-												</ul>
 			                                </li>
 											
 	                            		</ul>
@@ -268,15 +251,19 @@
 	                            </a>
 	                            <ul class="sub-menu">
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ng&pesquisar=cid" class="nav-link "> <span class="title">CIDs </span>
+	                                    <a href="navegacao?mod=ad&pesquisar=cids" class="nav-link "> <span class="title">CIDs </span>
 	                                    </a>
 	                                </li>
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ng&pesquisar=grcid" class="nav-link "> <span class="title">Grupos CIDs 	</span>
+	                                    <a href="navegacao?mod=ad&pesquisar=cidsgrp" class="nav-link "> <span class="title">Grupos CIDs 	</span>
 	                                    </a>
 	                                </li>
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ng&pesquisar=catcid" class="nav-link "> <span class="title">Categorias CIDs </span>
+	                                    <a href="navegacao?mod=ad&pesquisar=cidscat" class="nav-link "> <span class="title">Categorias CIDs </span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item  ">
+	                                    <a href="navegacao?mod=ad&pesquisar=cidscap" class="nav-link "> <span class="title">Capitulos CIDs </span>
 	                                    </a>
 	                                </li>
 	                            </ul>

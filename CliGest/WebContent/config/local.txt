@@ -1,1 +1,1 @@
-url:localhost-:banco:atgbasedados-:user:root-:pass:sistema47
+url:localhost-:banco:gestclinicabd-:user:root-:pass:sistema47

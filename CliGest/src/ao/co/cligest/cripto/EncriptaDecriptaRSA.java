@@ -28,9 +28,10 @@ public class EncriptaDecriptaRSA {
   /**
    * Local da chave privada e chave pública no sistema de arquivos.
    */
-  public static final String PATH_CHAVE_PRIVADA = "C:/keys/private.key";
-  public static final String PATH_CHAVE_PUBLICA = "C:/keys/public.key";
-  public static final String PATH_CHAVE_PASTA = "C:/keys/";
+  
+  public static final String PATH_CHAVE_PRIVADA = MetodosBuscas.getLocal() + "private.key";
+  public static final String PATH_CHAVE_PUBLICA = MetodosBuscas.getLocal() + "public.key";
+  public static final String PATH_CHAVE_PASTA   = MetodosBuscas.getLocal();
  
   /**
    * Gera a chave que contém um par de chave Privada e Pública usando 1025 bytes.

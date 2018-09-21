@@ -6015,7 +6015,7 @@ public class MetodosBuscas
 		}
 	}
 	
-	private static String getLocalFile() throws UnknownHostException
+	public static String getLocalFile() throws UnknownHostException
 	{
 		String  local = "";
 		String maquina =  InetAddress.getLocalHost().getHostName();
@@ -6027,6 +6027,25 @@ public class MetodosBuscas
 			local = "C:\\Users\\NB47\\Documents\\workspace_extra\\CliGest\\WebContent\\config\\local.txt";
 		else
 			local = server;
+		return local;
+	}
+	
+	public static String getLocal()
+	{
+		String  local = "";
+		try {
+			String maquina =  InetAddress.getLocalHost().getHostName();
+			if(maquina.equals("APV-DSV28"))
+				local = "C:\\Users\\nelson.joao\\git\\CliGest\\WebContent\\config\\";
+			else if(maquina.equals("Caricoco"))
+				local = "C:\\ATW\\ATGesthosp\\WebContent\\config\\";
+			else if(maquina.equals("AT"))
+				local = "C:\\Users\\NB47\\Documents\\workspace_extra\\CliGest\\WebContent\\config\\";
+			else
+				local = server;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return local;
 	}
 }

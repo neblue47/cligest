@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consultasconfirmadasA5" language="groovy" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12fce5e9-6188-4d6b-8d9c-8f610101c4c2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -148,7 +149,7 @@ where id_consulta_confirmada = $P{idConsConfirmada}]]>
 				<textFieldExpression><![CDATA["Nº Processo: "+$F{numero_processo}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="7" y="0" width="100" height="50" uuid="eefb5437-3915-4b8a-aa07-168dd87f41a8"/>
+				<reportElement x="25" y="0" width="70" height="50" uuid="eefb5437-3915-4b8a-aa07-168dd87f41a8"/>
 				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
 			</image>
 			<rectangle>
@@ -518,7 +519,7 @@ where id_consulta_confirmada = $P{idConsConfirmada}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[O(A) Profissional]]></text>
+				<text><![CDATA[Assistente de Atendimento]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="34" y="158" width="116" height="12" forecolor="#000000" uuid="0926d158-f5a1-458b-bb96-d9e4cd89b70e"/>
@@ -527,13 +528,6 @@ where id_consulta_confirmada = $P{idConsConfirmada}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="11" y="185" width="152" height="12" uuid="515a43d6-60d8-4b6a-a425-424cb99dd03c"/>
-				<textElement>
-					<font fontName="SansSerif" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Desenvolvido por: www.angotech.co.ao]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="245" y="150" width="125" height="12" forecolor="#000000" uuid="889c65a2-46bb-492e-a0ee-8c0aad1b4498"/>
 				<textElement textAlignment="Right">
@@ -544,20 +538,6 @@ where id_consulta_confirmada = $P{idConsConfirmada}]]>
 			<line>
 				<reportElement x="10" y="144" width="360" height="1" forecolor="#999999" uuid="6b8a2a6b-b6da-403a-9efd-ebde79ff0f0a"/>
 			</line>
-			<textField evaluationTime="Report">
-				<reportElement x="362" y="185" width="20" height="12" forecolor="#333333" uuid="5da46094-0586-47e2-91dd-b601cc2dbf1f"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="280" y="185" width="80" height="12" forecolor="#333333" uuid="a7c11d43-affd-4149-9c67-65fbf4d9767b"/>
-				<textElement textAlignment="Right">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Pág "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="15" y="2" width="145" height="14" uuid="a46174d3-97ad-4e18-84b9-f358379c17aa"/>
 				<textElement verticalAlignment="Middle">

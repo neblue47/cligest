@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ao.co.cligest.dao.AgendaConsultaDAO;
+import ao.co.cligest.dao.ConsultaDAO;
 import ao.co.cligest.dao.Formatando;
 import ao.co.cligest.entidades.Paciente;
+import ao.co.cligest.entidades.Triagem;
 import ao.co.cligest.interfaces.IAgendaConsulta; 
 
 /**
@@ -20,6 +22,7 @@ import ao.co.cligest.interfaces.IAgendaConsulta;
 public class AgendaConsultaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	IAgendaConsulta _agendaConsultaDAO = new AgendaConsultaDAO();
+	private ConsultaDAO _consulta = new ConsultaDAO();
 	Formatando ft = new Formatando();   
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,13 +38,15 @@ public class AgendaConsultaController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession ss = request.getSession();
 		String acao = request.getParameter("acao");
+		String encaminha = "navegacaoag?mods=ag&pag=listagen";
 		try {
 		if(acao!=null && acao.equals("confirmar"))
 		{
 			String codcs = request.getParameter("codcs");
 			int temp = Integer.parseInt(codcs);
-			
+			int usuario = (int) ss.getAttribute("usuario");
 				Paciente pac = _agendaConsultaDAO.listaConsultaPorId(temp);
+				pac.setFK_funcionario(usuario);
 				_agendaConsultaDAO.confirmarConsulta(pac);
 				ss.setAttribute("msgOK", "msgOK");
 		}
@@ -54,11 +59,26 @@ public class AgendaConsultaController extends HttpServlet {
 				_agendaConsultaDAO.confirmarConsulta(pac);
 				ss.setAttribute("msgOK", "msgOK");
 		}
+		if(acao!=null && acao.equals("finalizar")){
+			String codp = request.getParameter("pacInt");
+			String codm = request.getParameter("funInt");
+			String codc = request.getParameter("conInt");
+			
+			Triagem tn = new Triagem();
+			int ultimoId = _consulta.xequeConsulta(Integer.parseInt(codp), Integer.parseInt(codc));
+			tn.setFK_paciente(Integer.parseInt(codp));
+			tn.setFk_funcionario(Integer.parseInt(codm));
+			tn.setId_consulta(ultimoId);
+			tn.setFk_consulta_confirmada(Integer.parseInt(codc));
+			
+			_consulta.finalizarConsulta(tn);
+			encaminha = "navegacaopd?mods=pd&pag=conspac"; 
+		}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ss.setAttribute("msgNOK", "msgNOK");
 		}
-		response.sendRedirect("navegacaoag?mods=ag&pag=listagen");
+		response.sendRedirect(encaminha);
 	}
 
 	/**

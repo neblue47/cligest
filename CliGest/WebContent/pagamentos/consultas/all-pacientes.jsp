@@ -25,7 +25,7 @@
                                      
                                 </div>
                                 <div class="card-body ">
-                                     <table class="table display" id="example1" style="width:100%;">
+                                     <table class="table display" id="example1" style="width:100%;" data-page-length="5">
                                         <thead>
                                             <tr>
                                                 <th class="center"> Nome do Paciente</th>

@@ -26,9 +26,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                        
                             <div class="tabbable-line">
                                 <ul class="nav customtab nav-tabs" role="tablist">
-	                                <li class="nav-item"><a href="#tab1" class="nav-link active"  data-toggle="tab" >Triados</a></li>
+	                                <li class="nav-item"><a href="#tab1" class="nav-link active"  data-toggle="tab" >Historico de Consulta</a></li>
 	                            </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active fontawesome-demo" id="tab1">
@@ -36,7 +37,7 @@
 					                        <div class="col-md-12">
 					                            <div class="card card-topline-red">
 					                                <div class="card-head">
-					                                    <header> Lista de Pacientes </header>
+					                                    <header> Pacientes Atendidos </header>
 					                                    <div class="tools">
 					                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
 						                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -50,21 +51,24 @@
 				                                                <th class="center"> Genero </th>
 				                                                <th class="center"> Idade </th>
 				                                                <th class="center"> Serviço</th>
-				                                                <th class="center"> Status</th>
+				                                                <th class="center"> Doutor</th>
+				                                                <th class="center"> Data Consulta</th>
 				                                                <th class="center"> Opções </th>
 				                                            </tr>
 				                                        </thead>
 				                                        <tbody>
 				                                        <c:forEach var="pc" items="${lsSiTriado }">
 				                                        <tr class="odd gradeX">
+																 
 																<td>${pc.nome_paciente}</td>
 																<td class="center"> ${pc.nomegenero} </td>
 																<td class="center"> ${pc.pac_idade}</td>
 																<td class="center">${pc.servico}</td>
-																<td class="center statu-${pc.FK_status}">${pc.status}</td>
+																<td class="center ">${pc.nome_doutor }</td>
+																<td class="center"><fmt:formatDate value="${pc.data_do_agendamento.time}" pattern="dd/MM/yyyy"/></td>
 																<td class="center">
-																	<a href="navegacaopd?mods=pd&pag=newcons&codp=${pc.FK_paciente}&codc=${pc.FK_consulta_confirmada}" class="btn btn-primary btn-xs">
-																			<i class="fa fa-heartbeat"></i>
+																	<a target="_blank" href="GeradoRelatorio?nomeRelat=FichaMedicoConsulta&cod_param=${pc.FK_consulta}" class="btn btn-success btn-xs">
+																			<i class="fa fa-print"></i>
 																	</a>
 																</td>
 															</tr>

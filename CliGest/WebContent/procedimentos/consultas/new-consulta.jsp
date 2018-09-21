@@ -565,6 +565,12 @@
      </div>
 </div>
 <!-- end page content -->
+<form action="AgendaConsultaController" method="get" id ="formFinalizar">
+ <input type="hidden" name="pacInt" value="${perfil.FK_paciente}">
+ <input type="hidden" name="funInt" value="${usuario}">
+ <input type="hidden" name="conInt" value="${param.codc}">
+ <input type="hidden" name="acao" value="finalizar">
+</form>
 <style>
 
 .nb-form .toggle {
@@ -686,9 +692,11 @@
 		})
 		.then((willDelete) => {
 		  if (willDelete) {
-			enca = "AgendaConsultaController?acao=confirmar&codcs="+codcs;
+			$('#formFinalizar').submit();
 		  }  
-		  location.href= enca; 
+		  else{
+			  location.href= enca; 
+		  }
 		});
 	  
  }

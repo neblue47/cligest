@@ -82,23 +82,52 @@ option.cinco  {background-color: red; color: white;}
 				                        <div class="user-btm-box">
 				                                <div class="row   m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Temperatura</strong>
-				                                       <input type="text" class="form-control " name="temperatura" placeholder="temperatura">  
+				                                       
+				                                       <select name ="temperatura" class="form-control select2">
+												        <option value="0" disabled selected>temperatura...</option>
+			                                            <c:forEach var="dc" items="${lsTemperaturas }">
+			                                           	<option value="${dc.id_temperatura }" >  ${dc.valor_tmp }  </option>
+			                                           	</c:forEach>
+												       </select>  
 				                                    </div>
-				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Respiração</strong>
-				                                     <input type="text" class="form-control " name="respiracao" placeholder="respiracao">
+				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Respiração</strong> 
+				                                     <select name ="respiracao" class="form-control select2">
+												        <option value="0" disabled selected>respiracao...</option>
+			                                            <c:forEach var="dc" items="${lsRespiracao }">
+			                                           	<option value="${dc.id_respiracao }" >  ${dc.valor_resp }  </option>
+			                                           	</c:forEach>
+												       </select> 
 				                                    </div>
 				                                </div>
 				                                <div class="row   m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>Pulso</strong>
-				                                        <input type="text" class="form-control " name="pulso" placeholder="pulso">
+				                                        
+				                                        <select name ="pulso" class="form-control select2">
+												        <option value="0" disabled selected>pulso...</option>
+			                                            <c:forEach var="dc" items="${lsPulsos }">
+			                                           	<option value="${dc.id_pulso }" >  ${dc.valor_pulso }  </option>
+			                                           	</c:forEach>
+												       </select> 
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>T.A Sistolica</strong>
-				                                    <input type="text" class="form-control " name="sistolica" placeholder="sistolica">
+				                                    
+				                                    <select name ="sistolica" class="form-control select2">
+												        <option value="0" disabled selected>tensão sistolica</option>
+			                                            <c:forEach var="dc" items="${lsTArterial1 }">
+			                                           	<option value="${dc.id_tensao_arterial }" >  ${dc.valor_tns }  </option>
+			                                           	</c:forEach>
+												     </select> 
 				                                    </div>
 				                                </div>
 				                                <div class="row   m-t-10">
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 b-r"><strong>T.A Diastolica</strong>
-				                                        <input type="text" class="form-control " name="diastolica" placeholder="diastolica">
+				                                        
+				                                        <select name ="diastolica" class="form-control select2">
+												        <option value="0" disabled selected>tensão diastolica</option>
+			                                            <c:forEach var="dc" items="${lsTArterial2 }">
+			                                           	<option value="${dc.id_tensao_arterial }" >  ${dc.valor_tns }  </option>
+			                                           	</c:forEach>
+												        </select> 
 				                                    </div>
 				                                    <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12"><strong>Peso</strong>
 				                                    <div class="input-group">

@@ -53,7 +53,7 @@ public class QueixaAntecedenteController extends HttpServlet {
 			tn.setId_cons_conf(Integer.parseInt(codc));
 			int cons = _consulta.novaConsultas(tn);
 			tn.setId_consulta(cons);
-			_consulta.novaHipoteseDoenca(tn);
+			_consulta.novaQueixaHistorial(tn);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

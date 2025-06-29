@@ -51,10 +51,12 @@
 					                                            </tr>
 					                                        </thead>
 					                                        <tbody>
+																
+																<c:forEach items="${lsServicos}" var="at">
 																<tr class="odd gradeX">
-																	<td>Consulta Geral</td>
-																	<td class="left">Consulta Geral</td>
-																	<td class="center">1200</td>
+																	<td class="left">${at.servico}</td>
+																	<td class="left">${at.especialidade}</td>
+																	<td style="float: right;">${at.preco}</td>
 																	<td class="center">
 																		<a href="navegacao?mods=ad&pag=editcons" class="btn btn-primary btn-xs">
 																			<i class="fa fa-pencil"></i>
@@ -64,6 +66,8 @@
 																		</button>
 																	</td>
 																</tr>
+																
+																</c:forEach>
 																
 															</tbody>
 					                                    </table>

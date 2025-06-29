@@ -28,8 +28,7 @@
                                      <table class="table display" id="example1" style="width:100%;" data-page-length="5">
                                         <thead>
                                             <tr>
-                                                <th class="center"> Nome do Paciente</th>
-                                                <th class="center"> Contacto </th>
+                                                <th class="center"> Nome do Paciente</th> 
                                                 <th class="center"> Nome do Doutor </th>
                                                 <th class="center">Serviço</th>
                                                 <th class="center"> Opções </th>
@@ -38,11 +37,10 @@
                                         <tbody>
                                         <c:forEach var="pc" items="${lsPaciente }">
                                         <tr class="odd gradeX">
-												<td>${pc.nome_paciente}</td>
-												<td class="center"> ${pc.telefonep} </td>
+												<td>${pc.nome_paciente}</td> 
 												<td>Dr. ${pc.nome_doutor}</td>
 												<td>${pc.servico}</td>
-												<td class="center">
+												<td class="center" width="10%">
 													<a href="navegacaoft?mods=fat&pag=pagarcon&codcs=${pc.FK_consulta_marcada}&codcf=${pc.FK_consulta_confirmada}"class="btn btn-primary btn-xs" title="Pagar">
 														<i class="fa fa-credit-card"></i>
 													</a>

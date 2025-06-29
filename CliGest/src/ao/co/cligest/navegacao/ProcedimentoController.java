@@ -64,6 +64,7 @@ public class ProcedimentoController extends HttpServlet {
 	private IAgendaConsulta _agendaConsulta = new AgendaConsultaDAO();
 	private ExamesDAO _exames = new ExamesDAO();
 	private ConsultaDAO _consulta = new ConsultaDAO();
+	private MetodosBuscas _mtBuscas = new MetodosBuscas();
     public ProcedimentoController() {
         super();
     }
@@ -81,14 +82,24 @@ public class ProcedimentoController extends HttpServlet {
 				request.setAttribute("procmt", "active open");
 				// Inicio - Triagem
 				if (tela != null && (tela.equals("triapac"))) {
+					
 					 
+					
+					
 					request.setAttribute("lsNoTriado", _agendaConsulta.listaPagoNaoTriado());
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=triapac");
 					saida.forward(request, response);
 				}
 				if (tela != null && (tela.equals("newtriar"))) {
+					
 					String codcs =request.getParameter("codcs");
 				    
+					request.setAttribute("lsTemperaturas", _mtBuscas.buscaTemperatura());
+					request.setAttribute("lsRespiracao", _mtBuscas.buscaRespiracao());
+					request.setAttribute("lsPulsos", _mtBuscas.buscaPulso());
+					request.setAttribute("lsTArterial1", _mtBuscas.buscaTensaoArterial());
+					request.setAttribute("lsTArterial2", _mtBuscas.buscaTensaoArterial2());
+					
 					request.setAttribute("perfil", _pacienteDAO.getPerfilPaciente(codcs));
 					
 					saida = request.getRequestDispatcher("index.jsp?mods=pd&pag=newtriar");

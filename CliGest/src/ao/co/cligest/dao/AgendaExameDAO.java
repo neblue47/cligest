@@ -96,15 +96,17 @@ public class AgendaExameDAO implements IAgendaExame{
 	}
 
 	@Override
-	public List<Paciente> listaRequisicaoExameAgendada() {
+	public List<Paciente> listaRequisicaoExameAgendada() { 
 		List <Paciente> lista = new ArrayList<Paciente>();
-		String sql = "select *   FROM vwexamesrequisitadoparafaturar vw join tbltelefone fn on vw.FK_paciente = fn.FK_entidade where vw.data = curdate() "
-				+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturaexame) "
-				+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturademulticaixaexames) "
-				+ "and vw.FK_numero_do_servico_de_exame not in (select DISTINCT fk_requisicao_dexame from tblfacturadeseguroexames  ) "
-				+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturaisencaoporidadeexame) "
-				+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturaexameisentado) "
-				+ "AND vw.FK_numero_do_servico_de_exame not in (SELECT FK_numero_do_servico_de_exame FROM tblexamerequisitadocancelado) order by hora  ";
+		String sql = "select *   FROM vwexamesrequisitadoparafaturar vw join tbltelefone fn on vw.FK_paciente = fn.FK_entidade "
+				//+ " where vw.data = curdate() "
+				//+ "and vw.FK_numero_do_servico_de_exame not in (select FK_exame_requisitado from tblfacturaexame) "
+				//+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturademulticaixaexames) "
+				//+ "and vw.FK_numero_do_servico_de_exame not in (select DISTINCT fk_requisicao_dexame from tblfacturadeseguroexames  ) "
+				//+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturaisencaoporidadeexame) "
+				//+ "and vw.FK_numero_do_servico_de_exame not in (select fk_requisicao_dexame from tblfacturaexameisentado) "
+				//+ "AND vw.FK_numero_do_servico_de_exame not in (SELECT FK_numero_do_servico_de_exame FROM tblexamerequisitadocancelado) "
+				+ " order by hora  ";
 		try {
 			con = Conexao.getConexao();
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -118,6 +120,8 @@ public class AgendaExameDAO implements IAgendaExame{
 				 pac.setFK_consulta_confirmada(rs.getInt("FK_numero_do_servico_de_exame"));
 				 pac.setFK_paciente(rs.getInt("FK_paciente"));
 				 pac.setHora_daconfirmacao(rs.getString("hora"));
+				 pac.setId_servico(rs.getInt("id_servicodeanalise_clinica"));
+				 pac.setServico(rs.getString("analise_clinica"));
 				 pac.setTelefonep(rs.getLong("telefone"));
 				 Calendar data = Calendar.getInstance();
 				 data.setTime(rs.getDate("data"));

@@ -29,7 +29,7 @@ public class MetodosBuscas
 	private Connection con;
 
 	// Meu PC
-	private static String server = "C:\\ATW\\ATGesthosp\\WebContent\\config\\local.txt";
+	private static String server = "C:\\Users\\nelson.diwidi\\git\\cligest\\CliGest\\WebContent\\config\\";
 	
 	public List<Diverso> buscaEspecialidade ()
 	{
@@ -984,7 +984,7 @@ public class MetodosBuscas
 		
 		return lista;
 	}
-//	Vacinação
+//	Vacinaï¿½ï¿½o
 	public List<Diverso> buscaTelaVacinacao (int grupo)
 	{
 		List <Diverso> lista = new ArrayList<Diverso>();
@@ -1100,7 +1100,7 @@ public class MetodosBuscas
 		return lista;
 	}
 	
-//	Berçario
+//	Berï¿½ario
 	public List<Diverso> buscaTelaBercario(int grupo)
 	{
 		List <Diverso> lista = new ArrayList<Diverso>();
@@ -1139,7 +1139,7 @@ public class MetodosBuscas
 		return lista;
 	}
 	
-//	Berçario
+//	Berï¿½ario
 	public List<Diverso> buscaTelaUTI(int grupo)
 	{
 		List <Diverso> lista = new ArrayList<Diverso>();
@@ -2555,7 +2555,7 @@ public class MetodosBuscas
 			return lista;
 		}
 		
-		// Metodo que lista as telas do Mudulo Farmacia Requisição Interna
+		// Metodo que lista as telas do Mudulo Farmacia Requisiï¿½ï¿½o Interna
 				public List<Diverso> buscaTFARInterna (int grupo)
 				{
 					List <Diverso> lista = new ArrayList<Diverso>();
@@ -2594,7 +2594,7 @@ public class MetodosBuscas
 					return lista;
 				}
 				
-				// Metodo que lista as telas do Mudulo Farmacia Requisição Interna
+				// Metodo que lista as telas do Mudulo Farmacia Requisiï¿½ï¿½o Interna
 				public List<Diverso> buscaTFARInternaDentro (int grupo)
 				{
 					List <Diverso> lista = new ArrayList<Diverso>();
@@ -2751,7 +2751,7 @@ public class MetodosBuscas
 			return lista;
 		}
 		
-//		Centro de distribuição cussunga
+//		Centro de distribuiï¿½ï¿½o cussunga
 		public List<Diverso> buscaTPFARCentroDistr (int grupo)
 		{
 			List <Diverso> lista = new ArrayList<Diverso>();
@@ -2791,7 +2791,7 @@ public class MetodosBuscas
 			return lista;
 		}
 		
-//		Centro de distribuição telas cussunga
+//		Centro de distribuiï¿½ï¿½o telas cussunga
 		public List<Diverso> buscaTPFARCentroDistrTelas (int grupo)
 		{
 			List <Diverso> lista = new ArrayList<Diverso>();
@@ -3879,7 +3879,7 @@ public class MetodosBuscas
 			return lista;
 		}
 		
-//		Ambolatório
+//		Ambolatï¿½rio
 		public List<Diverso> buscaTAMBOL (int grupo)
 		{
 			List <Diverso> lista = new ArrayList<Diverso>();
@@ -6003,7 +6003,7 @@ public class MetodosBuscas
 			File dir = new File( "c:\\gestlogs");
 			 
 			if( dir.mkdir() ){
-			     System.out.println("Diretório Criado");
+			     System.out.println("Diretï¿½rio Criado");
 			     FileWriter arq = new FileWriter("c:\\gestlogs\\"+aux+".txt");
 				 PrintWriter gravarArq = new PrintWriter(arq); 
 			     gravarArq.printf(msg);	 

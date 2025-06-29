@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+//import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 
 import ao.co.cligest.entidades.*;
 

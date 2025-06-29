@@ -13,9 +13,9 @@ public class Usuario  implements Serializable
 	private String senha;
 	private String login;
 	private int fk_grupo;
-	 private String nomgrupo;
-	 private String nomComp;
-	 private int fk_perfil;
+	private String nomgrupo;
+	private String nomComp;
+	private int fk_perfil;
 	
 	public int getId() {
 		return id;

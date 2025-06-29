@@ -6,9 +6,14 @@ import ao.co.cligest.util.MetodosBuscas;
 
 	public class Conexao 
 	{
-		public static Connection getConexao()
+		private static Connection conn;
+		private static String url  = "jdbc:mysql://localhost/gestclinicabd";
+		private static String user = "root";
+		private static String pass = "sistema47";
+		
+		public static Connection getLocalConection()
 		{
-			Connection conn = null;
+			Connection conn2 = null;
 			try 
 			{
 				AdressCredencias cred =  MetodosBuscas.getCredencia();
@@ -16,7 +21,7 @@ import ao.co.cligest.util.MetodosBuscas;
 				String user = cred.getUser();
 				String pass = cred.getPass();
 				Class.forName("org.gjt.mm.mysql.Driver");
-				conn = DriverManager.getConnection(url,user,pass);
+				conn2 = DriverManager.getConnection(url,user,pass);
 				//System.out.print("Conexao efectuada com sucesso...");
 			} catch (SQLException e){
 				String aux = e.getMessage().toString()+"\n"+e.getLocalizedMessage();
@@ -26,6 +31,24 @@ import ao.co.cligest.util.MetodosBuscas;
 				String aux = e.getMessage().toString()+"\n"+e.getLocalizedMessage();
 				MetodosBuscas.logs("erroConexao.txt",aux);
 			}
+			return conn2;
+	  }	
+		
+		public static Connection getConexao(){
+			 
+			try {
+				//Class.forName("org.gjt.mm.mysql.Driver"); 
+				Class.forName("com.mysql.cj.jdbc.Driver"); 
+				conn = DriverManager.getConnection(url,user,pass);
+			} catch (SQLException e) {
+				System.out.print("Conexao nao efectuada com sucesso..."+e.getMessage());
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				 
+				e.printStackTrace();
+			}
+			
+		 
 			return conn;
-		}	
+		}
 }

@@ -713,7 +713,7 @@ public class FacturacaoDAO {
 		public int inserir_faturacao  (Facturacao fun)
 		{
 			int ultimoCod = 0;
-		    String sql = "INSERT INTO tblfactura (numero_factura,FK_funcionario,Data_da_facturacao,hora_da_facturacao,FK_abertura_dcaixa,FK_metodo_de_pagameto,FK_paciente,data_doatendimento,FK_tipo_deservico,total_factura,maquina) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		    String sql = "INSERT INTO tblfactura (numero_factura,FK_funcionario,Data_da_facturacao,hora_da_facturacao,FK_abertura_dcaixa,FK_metodo_de_pagameto,FK_paciente,data_doatendimento,FK_tipo_deservico,total_factura) VALUES (?,?,?,?,?,?,?,?,?,?)";
 		    try {
 				 
 				 //1-tblfactura
@@ -729,7 +729,6 @@ public class FacturacaoDAO {
 				 cid.setDate(8	, new Formatando().data_registo());
 				 cid.setInt(9, fun.getFK_tipo_deservico());
 				 cid.setDouble(10, fun.getTotal_factura());
-				 cid.setString(11, fun.getMaquina());
 				 cid.execute();
 				 
 				 ResultSet rs = cid.executeQuery("SELECT LAST_INSERT_ID()");
@@ -948,7 +947,7 @@ public class FacturacaoDAO {
 			}
 		}
 		
-		// faturação exame multicaixa cussunga
+		// faturaï¿½ï¿½o exame multicaixa cussunga
 		public void inserir_faturadeMulticaixaExame(Facturacao fun)
 		{
 			
@@ -988,7 +987,7 @@ public class FacturacaoDAO {
 				 
 		}
 		
-		// faturação exame isencao cussunga
+		// faturaï¿½ï¿½o exame isencao cussunga
 				public void inserir_faturadeIsencaoPorIdadeExame(Facturacao fun)
 				{
 					

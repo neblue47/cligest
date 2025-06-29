@@ -45,20 +45,20 @@
 					                                    <table class="table display" id="example1" style="width:100%;" data-page-length="5">
 					                                        <thead>
 					                                            <tr>
-					                                                <th class="center"> Numero </th>
+					                                                <th class="left"> Numero </th>
 					                                                <th class="left"  > Nome </th>
 					                                                <th class="left"  > Especialidade </th>
-					                                                <th class="center"> Contacto </th>
+					                                                <th class="left"  > Contacto </th>
 					                                                <th class="center"> Opções </th>
 					                                            </tr>
 					                                        </thead>
 					                                        <tbody>
 					                                        <c:forEach items="${lsDoutores}" var="at">
 																<tr class="odd gradeX">
-																	<td class="center">${at.num_fun }</td>
-																	<td>${at.nome } ${at.apelido }</td>
+																	<td class="left">${at.num_fun }</td>
+																	<td>${at.nomeCompleto } </td>
 																	<td class="left">${at.nomeEsp }</td>
-																	<td class="center">${at.telefone }</td>
+																	<td class="left">${at.telefone }</td>
 																	 
 																	<td class="center">
 																		<a href="#" class="btn btn-warning btn-xs">

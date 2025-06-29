@@ -356,7 +356,7 @@ public class CidDAO {
 	
 	//######################################################################################################
 	//SESSAO RESERVADA PARA A GEST�O DO GRUPO DE CAPITULO
-	public List<GrupoDeCapitulo> todoGrupo()
+	public List<GrupoDeCapitulo> listarTodoGrupoCid()
 	{
 		
 		List<GrupoDeCapitulo> listaDeGrupo = new ArrayList<GrupoDeCapitulo>();
@@ -551,7 +551,7 @@ public class CidDAO {
 		}
 	}
 	
-	public List<CategoriaDGrupo> todaCategoriaDGrupo()
+	public List<CategoriaDGrupo> listarTodoCategoriaDGrupo()
 	{
 		List<CategoriaDGrupo> listarCategoriaDGrupo = new ArrayList<CategoriaDGrupo>();
 		
@@ -570,8 +570,7 @@ public class CidDAO {
 				catgru.setListarCodigoCapitulo(rs.getString("codigo_capitulo"));
 				catgru.setListarCodigoGrupo(rs.getString("codigo_grupo"));
 				catgru.setCategorizaGrupo(rs.getString("categoriza_grupo"));
-				catgru.setDescricaoCategoria(rs.getString("descricao_categoria"));
-        	
+				catgru.setDescricaoCategoria(rs.getString("descricao_categoria")); 
 				listarCategoriaDGrupo.add(catgru);
 			}
 			preparador.close();
@@ -774,7 +773,7 @@ public class CidDAO {
 	{
 		List<Cid> listarCid = new ArrayList<Cid>();
 		
-		String sql = "SELECT * FROM vwlistarcid order by (codigo_capitulo) limit 30";
+		String sql = "SELECT * FROM vwlistarcid order by (codigo_capitulo) limit 100";
 		
 		try {
 			con = Conexao.getConexao();

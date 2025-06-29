@@ -263,7 +263,7 @@ public class ServicoDAO {
 					 ser.setId_especialidade(rs.getInt("fk_especialidade"));
 					 ser.setEspecialidade(rs.getString("especialidade"));
 					 ser.setTaxa(rs.getFloat("taxa"));
-					 ser.setPreco(rs.getDouble("preco_acrescido"));
+					 ser.setPreco(rs.getDouble("preco"));
 					 ser.setDescricao(rs.getString("descricao"));
 //					 ser.setTipo_de_servico(rs.getString("tipo_de_servico"));
 					 ser.setNome_categoria(rs.getString("categoriadeservico"));
@@ -1072,7 +1072,7 @@ public class ServicoDAO {
 		   		return todosServicos;
 		   	}
 		 
-		//Para listas todos servicos de qualidade em funcao do nome do serviço
+		//Para listas todos servicos de qualidade em funcao do nome do serviï¿½o
 		 public List<Servico> procurarServoQual(String nomeServico)
 		   	{
 		    	List<Servico> todosServicos = new ArrayList<Servico>(); 
@@ -1114,7 +1114,7 @@ public class ServicoDAO {
 		   	}
 		 
 		 //procurar servico qualidade autocomplit
-		//Para listas todos servicos de qualidade em funcao do nome do serviço
+		//Para listas todos servicos de qualidade em funcao do nome do serviï¿½o
 		 public List<Servico> procurarNomeServoQual(String nomeServico)
 		   	{
 		    	List<Servico> todosServicos = new ArrayList<Servico>(); 
@@ -1230,6 +1230,26 @@ public class ServicoDAO {
 				con = Conexao.getConexao();
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, aux+"%");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					Servico exa = new Servico();
+					exa.setServico(rs.getString("analise_clinica"));
+					exa.setId_servico(rs.getInt("id_servicodeanalise_clinica"));
+//					System.out.println("OKOKOKO");
+					lista.add(exa);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			 return lista;
+		 }
+		 
+		 public List<Servico> buscarServicoExames(){
+			 String sql = "Select * from tblservicosdeexamesclinicos ";
+			 List<Servico> lista = new ArrayList<Servico>();
+			 try {
+				con = Conexao.getConexao();
+				PreparedStatement ps = con.prepareStatement(sql); 
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()){
 					Servico exa = new Servico();

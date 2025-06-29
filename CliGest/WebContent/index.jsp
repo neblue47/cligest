@@ -63,7 +63,7 @@
  						<!-- start manage user dropdown -->
  						<li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle " src="theme/img/dp.jpg" />
+                                <img alt="" class="img-circle " src="theme/img/pop-dc.jpg" />
                                 <span class="username username-hide-on-mobile"> ${nomeUsa} </span> 
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -122,9 +122,18 @@
             	<jsp:include page="adm-sistema/utilizadores/edit-utilizador.jsp" />
             </c:if>
             
-            <!-- CID  -->
-            <c:if test="${param.mods eq 'ad' && param.pag eq 'cids'}">
+            <!-- CIDs  -->
+            <c:if test="${param.mods eq 'cdn' && param.pag eq 'cids'}">
             	<jsp:include page="cid-doenca/all-cid-doencas.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'cdn' && param.pag eq 'cidscat'}">
+            	<jsp:include page="cid-doenca/all-cid-categoria.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'cdn' && param.pag eq 'cidscap'}">
+            	<jsp:include page="cid-doenca/all-cid-capitulo.jsp" />
+            </c:if>
+            <c:if test="${param.mods eq 'cdn' && param.pag eq 'cidsgrp'}">
+            	<jsp:include page="cid-doenca/all-cid-grupos.jsp" />
             </c:if>
             
             <c:if test="${param.mods eq 'ad' && param.pag eq 'usersgrpss'}">
@@ -175,6 +184,7 @@
             	<jsp:include page="adm-sistema/acessos/new-privilegio.jsp" />
             </c:if>
             
+            
            <!-- PACIENTES -->
             <c:if test="${param.mods eq 'ag' && param.pag eq 'pac'}">
             	<jsp:include page="pacientes/all-paciente.jsp" />
@@ -217,6 +227,9 @@
             <c:if test="${param.mods eq 'pd' && param.pag eq 'hstconspac'}">
             	<jsp:include page="procedimentos/consultas/all-consultasHis.jsp" /> 
             </c:if>
+            <c:if test="${param.mods eq 'pd' && param.pag eq 'newcons'}">
+            	<jsp:include page="procedimentos/consultas/new-consulta.jsp" /> 
+            </c:if>
             
             <!-- URGENCIAS / EMERGENCIAS -->
             <c:if test="${param.mods eq 'pd' && param.pag eq 'atdconspac'}">
@@ -252,7 +265,7 @@
         <!-- end page container -->
         <!-- start footer -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2018 &copy; Sistema Integrado de Gestao Clinicas
+            <div class="page-footer-inner"> 2025 &copy; Sistema Integrado de Gestão de Saúde
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>

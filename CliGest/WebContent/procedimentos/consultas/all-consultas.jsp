@@ -49,7 +49,7 @@
 				                                                <th  > Nome do Paciente</th>
 				                                                <th class="center"> Genero </th>
 				                                                <th class="center"> Idade </th>
-				                                                <th class="center"> Serviço</th>
+				                                                <th class="left"> Serviço</th>
 				                                                <th class="center"> Status</th>
 				                                                <th class="center"> Opções </th>
 				                                            </tr>
@@ -60,9 +60,9 @@
 																<td>${pc.nome_paciente}</td>
 																<td class="center"> ${pc.nomegenero} </td>
 																<td class="center"> ${pc.pac_idade}</td>
-																<td class="center">${pc.servico}</td>
+																<td class="left">${pc.servico}</td>
 																<td class="center statu-${pc.FK_status}">${pc.status}</td>
-																<td class="center">
+																<td class="center" width="10%">
 																	<a href="navegacaopd?mods=pd&pag=newcons&codp=${pc.FK_paciente}&codc=${pc.FK_consulta_confirmada}" class="btn btn-primary btn-xs">
 																			<i class="fa fa-heartbeat"></i>
 																	</a>

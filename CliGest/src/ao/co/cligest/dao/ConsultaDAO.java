@@ -123,8 +123,17 @@ public class ConsultaDAO
 			else{
 				actualizaQueixaHistorial(t);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally{
+			try{
+				con.close();
+			}
+			catch(SQLException ef){
+				System.out.println("Erro finalizar: "+ef);
+			}
 		}
 	}
 	
@@ -848,7 +857,7 @@ public class ConsultaDAO
 		}
 	}
 	
-//	---------------------------------- verification os id´s da consulta cussunga tratamentos e Recomendações
+//	---------------------------------- verification os idï¿½s da consulta cussunga tratamentos e Recomendaï¿½ï¿½es
 	public Triagem getTratamento(int cod){ 
 		Triagem t = null;
 		String sql = "SELECT * FROM tbltratamento where fk_consulta  = ?";
@@ -4306,7 +4315,7 @@ public class ConsultaDAO
 	}
 	 
 	int xequeHipoteseObs (int cons){
-		String sql = "SELECT * FROM tblhipoteseobs WHERE  FK_consulta = ?";
+		String sql = "SELECT * FROM tblhipoteseobs WHERE  FK_hipotese = ?";
 		try {
 			 con = Conexao.getConexao();
 			 PreparedStatement ps = con.prepareStatement(sql);
@@ -4314,7 +4323,7 @@ public class ConsultaDAO
 			 ps.setInt(1, cons);
 			 ResultSet rs = ps.executeQuery();
 			 if(rs.next())
-				 return rs.getInt("FK_consulta");
+				 return rs.getInt("FK_hipotese");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

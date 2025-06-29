@@ -34,6 +34,7 @@ import ao.co.cligest.entidades.InforPaciente;
 import ao.co.cligest.entidades.Paciente;
 import ao.co.cligest.entidades.Plano;
 import ao.co.cligest.entidades.Servico;
+import ao.co.cligest.filter.AgendaConsultaFilter;
 import ao.co.cligest.interfaces.IAgendaConsulta;
 import ao.co.cligest.interfaces.IAgendaExame;
 import ao.co.cligest.util.CarEntidade;
@@ -52,6 +53,7 @@ public class AgendaController extends HttpServlet {
 	private IAgendaConsulta _agendaConsulta = new AgendaConsultaDAO();
 	private IAgendaExame _agendaExame = new AgendaExameDAO();
 	private MetodosBuscas _metodos = new MetodosBuscas();
+	private Formatando ft = new Formatando();
 	
 	
 	public AgendaController() {
@@ -62,8 +64,7 @@ public class AgendaController extends HttpServlet {
 		RequestDispatcher saida = null;
 		String mod = request.getParameter("mods");
 		HttpSession ss = request.getSession(false);
-		String tela = request.getParameter("pag");
-	 
+		String tela = request.getParameter("pag"); 
 
 		if (ss != null) {
 			if (mod != null && mod.equals("ag")) {
@@ -155,17 +156,30 @@ public class AgendaController extends HttpServlet {
 					saida.forward(request, response);
 				}
 				if (tela != null && (tela.equals("listagen"))) {
-					
+					 
+																
 					List<Paciente> lsPaciente = new ArrayList<>();
 					String query = request.getParameter("query");
+					String acao = request.getParameter("acao");
+					
 					if(query!=null)
 					{
 						lsPaciente = _agendaConsulta.listaConsultaAgendada(query);
 					}
-					else
+					else if(acao != null && acao.equals("psquisar"))
+					{
+						String nomPaciente = request.getParameter("nomPaciente");
+						String nomDoutor = request.getParameter("nomDoutor");
+						String servicoId = request.getParameter("servico"); 
+						String dtConsulta = ft.dataToPadrao(request.getParameter("dtConsulta"));
+						AgendaConsultaFilter agconsulta = new AgendaConsultaFilter(nomPaciente,nomDoutor,Integer.parseInt(servicoId),ft.dataSql(dtConsulta));
+						lsPaciente = _agendaConsulta.listaConsultaAgendada(agconsulta);
+					} 
+					else 
 					{
 						lsPaciente = _agendaConsulta.listaConsultaAgendada();
 					}
+					request.setAttribute("lsConsultas", _servicoDAO.BuscarServicoConsulta());
 					request.setAttribute("lsPaciente", lsPaciente);
 					
 					saida = request.getRequestDispatcher("index.jsp?mods=ag&pag=listagen");
@@ -176,8 +190,8 @@ public class AgendaController extends HttpServlet {
 					
 					List<Paciente> lsPaciente = new ArrayList<>();
 										
-						lsPaciente = _agendaExame.listaRequisicaoExameAgendada();
-					
+					lsPaciente = _agendaExame.listaRequisicaoExameAgendada();
+					request.setAttribute("lsExames", _servicoDAO.buscarServicoExames());
 					request.setAttribute("lsPaciente", lsPaciente);
 					
 					saida = request.getRequestDispatcher("index.jsp?mods=ag&pag=listagexa");

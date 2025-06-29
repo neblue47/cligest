@@ -37,13 +37,12 @@
 					                                    </div>
 					                                </div>
 					                                <div class="card-body ">
-					                                   <table class="table display" id="example1" style="width:100%;">
+					                                   <table class="table display" id="example1" style="width:100%;" data-page-length="5">
 				                                        <thead>
 				                                            <tr>
-				                                                <th class="center"> Nome do Paciente</th>
-				                                                <th class="center"> Contacto </th>
-				                                                <th class="center"> Nome do Doutor </th>
-				                                                <th class="center">Serviço</th>
+				                                                <th class=""> Nome do Paciente</th> 
+				                                                <th class=""> Nome do Doutor </th>
+				                                                <th class="">Serviço</th>
 				                                                <th class="center"> Opções </th>
 				                                            </tr>
 				                                        </thead>
@@ -51,11 +50,10 @@
 				                                        <c:forEach var="pc" items="${lsNoTriado }">
 				                                        <tr class="odd gradeX">
 																 
-																<td>${pc.nome_paciente}</td>
-																<td class="center"> ${pc.telefonep} </td>
-																<td>Dr. ${pc.nome_doutor}</td>
+																<td>${pc.nome_paciente}</td> 
+																<td>${pc.nome_doutor}</td>
 																<td>${pc.servico}</td>
-																<td class="center">
+																<td class="center" width="10%">
 																	<a href="navegacaopd?mods=pd&pag=newtriar&codcs=${pc.FK_paciente}&cods=${pc.FK_servico}&codc=${pc.FK_consulta_confirmada}"class="btn btn-primary btn-xs" title="triar">
 																		<i class="fa fa-heartbeat"></i>
 																	</a>

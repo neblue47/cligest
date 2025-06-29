@@ -149,16 +149,16 @@ private Connection con ;
 												+ "FK_funcionario, "
 												+ "FK_estado_paciente, "
 												+ "FK_servico, "
-												+ "temperatura, " 
-												+ "pulso, 	"
-												+ "respiracao,"
-												+ "tensao_sistolica,"
-												+ "tensao_diastolica,"
+												+ "FK_temperatura, " 
+												+ "FK_pulso, 	"
+												+ "FK_respiracao,"
+												+ "FK_tensao_sistolica,"
+												+ "FK_tensao_diastolica,"
 												+ "peso,"
 												+ "data,"
 												+ "imc,"
 												+ "altura,"
-												+ "diagnostico_preliminar, hora_registo)" + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+												+ "diagnostico_preliminar)" + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try{
 			con = Conexao.getConexao();
 			PreparedStatement triagPac = con.prepareStatement(sql);
@@ -177,7 +177,7 @@ private Connection con ;
 			triagPac.setDouble(13, fun.getImc());
 			triagPac.setDouble(14,fun.getAltura());
 			triagPac.setString(15, fun.getDiagnostico_preliminar());
-			triagPac.setString(16, new Formatando().horaAtual());
+			//triagPac.setString(16, new Formatando().horaAtual());
 			triagPac.execute();
 			
 			ResultSet rs = triagPac.executeQuery("SELECT LAST_INSERT_ID()");

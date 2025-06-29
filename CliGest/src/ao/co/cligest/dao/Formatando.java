@@ -135,7 +135,7 @@ public class Formatando {
 	
 	public String dataToPadrao(String data)
 	{
-		if(data!=null){
+		if(!data.isEmpty() && data!=null){
 			String dia = data.substring(8);
 			String mes = data.substring(5,7);
 			String ano = data.substring(0,4);
@@ -406,7 +406,7 @@ public String transforma(String frase){
 			break;
 		case 1: mesString = "Fevereiro";
 			break;
-		case 2: mesString = "Março";
+		case 2: mesString = "Marï¿½o";
 			break;
 		case 3: mesString = "Abril";
 			break;

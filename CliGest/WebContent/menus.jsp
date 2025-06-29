@@ -13,11 +13,11 @@
 	                        <li class="sidebar-user-panel">
 	                            <div class="user-panel">
 	                                <div class="pull-left image">
-	                                    <img src="theme/img/dp.jpg" class="img-circle user-img-circle" alt="User Image" />
+	                                    <img src="theme/img/pop-dc.jpg" class="img-circle user-img-circle" alt="User Image" />
 	                                </div>
 	                                <div class="pull-left info">
 	                                    <p>   <i class=" fa fa-user-md"></i> ${nomeUsa} </p>
-	                                    <a href="#"><i class="fa fa-circle user-online"></i><span class="txtOnline"> Online</span></a>
+	                                    <a href="#"><i class="fa fa-circle user-online"></i><span class="txtOnline"> Logado </span></a>
 	                                </div>
 	                            </div>
 	                        </li>
@@ -244,30 +244,32 @@
 		                             </li>
 				    			 </c:if>
 							</c:forEach>
-	                        
-	                        <li class="nav-item  ">
+	                         
+	                        <li class="nav-item  ${cidn}">
 	                            <a href="#" class="nav-link nav-toggle"> <i class="material-icons material-icons fa fa-indent"></i>
 	                                <span class="title">CID</span> <span class="arrow"></span>
 	                            </a>
 	                            <ul class="sub-menu">
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ad&pesquisar=cids" class="nav-link "> <span class="title">CIDs </span>
+	                                    <a href="cidnavegacao?mods=cdn&pag=cids" class="nav-link "> <span class="title">CIDs </span>
 	                                    </a>
 	                                </li>
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ad&pesquisar=cidsgrp" class="nav-link "> <span class="title">Grupos CIDs 	</span>
+	                                    <a href="cidnavegacao?mods=cdn&pag=cidsgrp" class="nav-link "> <span class="title">Grupos CIDs 	</span>
 	                                    </a>
 	                                </li>
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ad&pesquisar=cidscat" class="nav-link "> <span class="title">Categorias CIDs </span>
+	                                    <a href="cidnavegacao?mods=cdn&pag=cidscat" class="nav-link "> <span class="title">Categorias CIDs </span>
 	                                    </a>
 	                                </li>
 	                                <li class="nav-item  ">
-	                                    <a href="navegacao?mod=ad&pesquisar=cidscap" class="nav-link "> <span class="title">Capitulos CIDs </span>
+	                                    <a href="cidnavegacao?mods=cdn&pag=cidscap" class="nav-link "> <span class="title">Capitulos CIDs </span>
 	                                    </a>
 	                                </li>
 	                            </ul>
 	                        </li>
+	                         
+	                        
 	                        
 	                    </ul>
 	                </div>

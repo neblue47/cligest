@@ -3463,13 +3463,14 @@ public List<Paciente> buscarpacientePlano()
 			 
 			public void inforClinico (Paciente p){	
 				
-				String sql = "INSERT INTO TBLINFORMACAOCLINICA (FK_paciente, FK_grupo_sanguineo, proveniencia ) VALUES (?,?,?)";
+				String sql = "INSERT INTO TBLINFORMACAOCLINICA (FK_paciente, FK_grupo_sanguineo, proveniencia,FK_membro_amputado ) VALUES (?,?,?,?)";
 							try {
 								con = Conexao.getConexao();
 								PreparedStatement inf = con.prepareStatement(sql);
 								inf.setInt(1, p.getId_entidade());
 								inf.setInt(2, p.getGruposg());
 								inf.setString(3, "Paciente");
+								inf.setInt(4, 0);
 								inf.execute();
 								inf.close();
 								System.out.println("Cadastro de sucesso...TBLINFORMACAOCLINICA"); 

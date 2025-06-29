@@ -124,7 +124,7 @@ public class PacienteEditController extends HttpServlet {
 						break;
 					}
 				}
-				//_pacienteDAO.editarPaciente(p);
+				_pacienteDAO.editarPaciente(p);
 				ss.setAttribute("msgOk", "msgOK");
 			}
 		} catch (Exception e) {

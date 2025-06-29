@@ -86,7 +86,7 @@ public class AdministracaoController extends HttpServlet {
 				saida.forward(request, response);
 			}
 			
-			// Cadastro de Serviços - Consulta
+			// Cadastro de Servicos - Consulta
 			if (tela != null && (tela.equals("lscons"))) {
 				request.setAttribute("lsServicos", _servicoDAO.BuscarServico());
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=lscons");
@@ -100,7 +100,7 @@ public class AdministracaoController extends HttpServlet {
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=editcons");
 				saida.forward(request, response);
 			}
-			// Cadastro de Serviços - Exame
+			// Cadastro de Serviï¿½os - Exame
 			if (tela != null && (tela.equals("lsexam"))) {
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=lsexam");
 				saida.forward(request, response);
@@ -114,7 +114,7 @@ public class AdministracaoController extends HttpServlet {
 				saida.forward(request, response);
 			}
 			
-			// Cadastro de Serviços - Especialidade
+			// Cadastro de Servicos - Especialidade
 			if (tela != null && (tela.equals("lsesp"))) {
 				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=lsesp");
 				saida.forward(request, response);
@@ -165,35 +165,11 @@ public class AdministracaoController extends HttpServlet {
 				saida.forward(request, response);
 			}
 			
-			if (tela != null && (tela.equals("cids"))) {
-				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
-				request.setAttribute("lsModulos", _grupo.getModulos());
-				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cids");
-				saida.forward(request, response);
-			}
-			if (tela != null && (tela.equals("cidscap"))) {
-				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
-				request.setAttribute("lsModulos", _grupo.getModulos());
-				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cidscap");
-				saida.forward(request, response);
-			}
-			if (tela != null && (tela.equals("cidscat"))) {
-				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
-				request.setAttribute("lsModulos", _grupo.getModulos());
-				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cidscat");
-				saida.forward(request, response);
-			}
-			if (tela != null && (tela.equals("cidsgrp"))) {
-				request.setAttribute("lsGrupos", _grupo.getGrupoPrivilegios());
-				request.setAttribute("lsModulos", _grupo.getModulos());
-				saida = request.getRequestDispatcher("index.jsp?mods=ad&pag=cidsgrp");
-				saida.forward(request, response);
-			}
 			
 			if(mod!=null && mod.equals("ng"))
 			{
 				request.removeAttribute("admings");
-				List<Paciente> agendados =  _agendaConsulta.listaConsultaAgendada();
+				List<Paciente> agendados =  _agendaConsulta.listaConsultaAgendadaResum();
 				request.setAttribute("listaPac", agendados);
 				saida = request.getRequestDispatcher("index.jsp?mods=ng");
 				saida.forward(request, response);

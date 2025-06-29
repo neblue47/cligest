@@ -28,10 +28,9 @@
                                         <thead>
                                             <tr>
                                             	<th class="center">  </th>
-                                                <th class="center"> Nome </th>
-                                                <th class="center"> Contacto </th>
-                                                <th class="center"> Doutor </th>
-                                                <th class="center"> Serviço</th>
+                                                <th class="center"> Nome do Paciente</th> 
+                                                <th class="center"> Nome do Doutor </th>
+                                                <th class=""> Serviço</th>
                                                 <th class="center"> Acção </th>
                                             </tr>
                                         </thead>
@@ -41,9 +40,8 @@
 												<td  >
 													  ${pos.index+1}
 												</td>
-												<td>${pc.nome_paciente}</td>
-												<td class="center"> ${pc.telefonep} </td>
-												<td>Dr. ${pc.nome_doutor}</td>
+												<td>${pc.nome_paciente}</td> 
+												<td>${pc.nome_doutor}</td>
 												<td>${pc.servico}</td>
 												<td class="center">
 													<a target="_blank" href="GeradoRelatorio?nomeRelat=PagamentoConsultaA4&cod_param=${pc.numero_doc}" class="btn btn-success btn-xs" title="Gerar Comprovativo">

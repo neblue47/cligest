@@ -27,6 +27,7 @@ public class Funcionario implements Serializable
 	 private Integer profissao;
 	 private Integer especialidade;
 	 private Integer funcao;
+	 private String nomeCompleto;
 	 //tblTelefone
 	 private Long telefone; 
 	 private String editfone;
@@ -404,8 +405,12 @@ public class Funcionario implements Serializable
 	public void setFunResponsavel_id(int funResponsavel_id) {
 		this.funResponsavel_id = funResponsavel_id;
 	}
-	
+	public String getNomeCompleto() {
+		return this.nome + " " + this.apelido;
+	}
 	 
+	
+	  
 }
 	 
 	 

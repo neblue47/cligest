@@ -1,21 +1,18 @@
 
 <form class="row   m-t-10">
 	<div class="card-head">Doenças Diagnosticadas </div>
-	<div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  ">
-		<input type="text" class="form-control " name="diagnotico" id="diagnotico"
-			placeholder="pesquisar por doenças no CID">
+	<div class="col-lg-10 col-md-12 col-sm-8 col-xs-12  "> 
+		<select class="form-control " name="diagnotico" id="diagnotico"	>
+			<option disabled selected>pesquisar por doenças no CID</option>
+		</select>
 	</div>
 	<div class="col-lg-1 col-md-12 col-sm-2 col-xs-12">
-		<button type="button" onclick="addNoCarrinhoDg()"
-			class="btn btn-success btn-sm">
-			<i class="fa fa-plus"></i>
-		</button>
+		<button type="button" onclick="addNoCarrinhoDg()" class="btn btn-success btn-sm">	<i class="fa fa-plus"></i></button>
 	</div>
 </form>
 <div class="table-scrollable">
 	<table
-		class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
-		id="tableHips">
+		class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" 		id="tableHips">
 		<thead>
 			<tr>
 				

@@ -4,6 +4,7 @@ import java.util.List;
 
 import ao.co.cligest.entidades.Paciente;
 import ao.co.cligest.entidades.Triagem;
+import ao.co.cligest.filter.AgendaConsultaFilter;
 
 public interface IAgendaConsulta {
 
@@ -13,8 +14,10 @@ public interface IAgendaConsulta {
 	void cancelarConsulta(Paciente p);
 	
 	Paciente listaConsultaPorId(int codcs);
+	List<Paciente> listaConsultaAgendadaResum();
 	List<Paciente> listaConsultaAgendada();
 	List<Paciente> listaConsultaAgendada(String query);
+	List<Paciente> listaConsultaAgendada(AgendaConsultaFilter filter);
 	List<Paciente> listaConsultaConfirmada();
 	List<Paciente> listaAgendasPacientes();
 	Paciente ConsultaParaPagar(int codcs);

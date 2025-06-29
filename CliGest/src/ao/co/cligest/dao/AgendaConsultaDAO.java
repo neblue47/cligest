@@ -1,6 +1,7 @@
 package ao.co.cligest.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import ao.co.cligest.entidades.*;
+import ao.co.cligest.filter.AgendaConsultaFilter;
 import ao.co.cligest.interfaces.IAgendaConsulta;
 
 public class AgendaConsultaDAO implements IAgendaConsulta {
@@ -106,6 +108,13 @@ public int inserirmarcacao(Paciente mc){
 				 ps.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 		}
 
@@ -124,17 +133,33 @@ public int inserirmarcacao(Paciente mc){
 				 ps.setInt(6, p.getFK_doutor());
 				 ps.setInt(7, p.getFK_funcionario());
 				 ps.execute();
+				// ConfirmarConsulta(p.getFK_consulta_marcada(), con);
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 		}
 
 
 		@Override
 		public void alterarConsulta(Paciente p) {
-			
+			 
+			 
 		}
-
+        private void ConfirmarConsulta(int FK_consulta_marcada, Connection  con) throws SQLException {
+        	 String sql = "UPDATE INTO tblconsulta SET FK_consulta_marcada = ? WHERE Id_consulta = ? "; 
+        	 PreparedStatement ps = con.prepareStatement(sql);
+			 ps.setInt(1, FK_consulta_marcada);
+			 ps.setInt(2, FK_consulta_marcada);
+			  
+			 ps.execute();
+        }
 
 		@Override
 		public void cancelarConsulta(Paciente p) {
@@ -150,14 +175,22 @@ public int inserirmarcacao(Paciente mc){
 				 ps.execute();
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 		}
 
 
 		@Override
-		public List<Paciente> listaConsultaAgendada() {
+		public List<Paciente> listaConsultaAgendadaResum() {
 			String sql = "SELECT * FROM vwlistaConsultaAgendada order by id_consulta_marcada desc limit 5";
 			List<Paciente> lista = new ArrayList<>();
+			
 			try {
 				 con = Conexao.getConexao();
 				 PreparedStatement ps = con.prepareStatement(sql);
@@ -165,8 +198,8 @@ public int inserirmarcacao(Paciente mc){
 				 while(rs.next())
 				 {
 					 Paciente p = new Paciente();
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("NomePaciente"));
+					 p.setNome_doutor(rs.getString("NomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setTelefonep(rs.getLong("contacto"));
 					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
@@ -185,13 +218,68 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
+			 			
 			return lista;
 		}
-		
+		@Override
+		public List<Paciente> listaConsultaAgendada() { 
+			String sql = "SELECT * FROM vwlistaConsultaAgendada order by id_consulta_marcada desc LIMIT 100  ";
+			List<Paciente> lista = new ArrayList<>();
+			
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())
+				 {
+					 Paciente p = new Paciente();
+					 p.setNome_paciente(rs.getString("NomePaciente"));
+					 p.setNome_doutor(rs.getString("NomeDoutor"));
+					 p.setServico(rs.getString("servico"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data_do_agendamento"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setConfirmado(confirmado);
+					 p.setFK_consulta_confirmada(confirmado);
+					 lista.add(p);
+				 }
+				 if(ps != null){
+						ps.close();
+					}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
+			}
+			 			
+			return lista;
+		}
 		@Override
 		public List<Paciente> listaConsultaConfirmada() {
-			String sql = "SELECT * FROM vwlistaConsultaAgendada vw join tblconsultaconfirmada cf on vw.id_consulta_marcada = cf.FK_consulta_marcada"
+			String sql = "SELECT * FROM vwlistaConsultaAgendada vw "
+					+ " join tblconsultaconfirmada cf on vw.id_consulta_marcada = cf.FK_consulta_marcada"
 					+ " where cf.id_consulta_confirmada not in (SELECT FK_consulta_confirmada FROM tblfacturaconsulta ) "
 					+ " order by id_consulta_marcada asc ";
 			List<Paciente> lista = new ArrayList<>();
@@ -202,8 +290,8 @@ public int inserirmarcacao(Paciente mc){
 				 while(rs.next())
 				 {
 					 Paciente p = new Paciente();
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setTelefonep(rs.getLong("contacto"));
 					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
@@ -218,12 +306,21 @@ public int inserirmarcacao(Paciente mc){
 					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
 					 p.setFK_consulta_confirmada(confirmado);
 					 p.setConfirmado(confirmado);
+					 //p.setPreco(0);
 					 p.setPreco(rs.getDouble("sub_total"));
 					 lista.add(p);
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
+			
 			return lista;
 		}
 		
@@ -232,7 +329,7 @@ public int inserirmarcacao(Paciente mc){
 			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
 					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
 					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
-					   + " JOIN `tblfactura` `fc` ON `fcs`.`FK_factura` = `fc`.`id_factura` ORDER BY `fc`.`id_factura` DESC";
+					   + " JOIN `tblfactura` `fc` ON `fcs`.`FK_factura` = `fc`.`id_factura` ORDER BY `fc`.`id_factura` DESC LIMIT 100 ";
 			List<Paciente> lista = new ArrayList<>();
 			try {
 				 con = Conexao.getConexao();
@@ -241,8 +338,8 @@ public int inserirmarcacao(Paciente mc){
 				 while(rs.next())
 				 {
 					 Paciente p = new Paciente();
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setTelefonep(rs.getLong("contacto"));
 					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
@@ -263,6 +360,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return lista;
 		}
@@ -272,7 +376,7 @@ public int inserirmarcacao(Paciente mc){
 			String sql = " SELECT  * FROM vwlistaConsultaAgendada vw  "
 					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
 					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
-					   + " WHERE  cf.id_consulta_confirmada NOT IN (SELECT trg.FK_consulta_confirmada FROM tbltriagem trg) ";
+					   + " WHERE  cf.id_consulta_confirmada NOT IN (SELECT trg.FK_consulta_confirmada FROM tbltriagem trg) LIMIT 100 ";
 			List<Paciente> lista = new ArrayList<>();
 			try {
 				 con = Conexao.getConexao();
@@ -281,8 +385,8 @@ public int inserirmarcacao(Paciente mc){
 				 while(rs.next())
 				 {
 					 Paciente p = new Paciente();
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setTelefonep(rs.getLong("contacto"));
 					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
@@ -302,6 +406,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return lista;
 		}
@@ -312,7 +423,7 @@ public int inserirmarcacao(Paciente mc){
 					   + " JOIN tblconsultaconfirmada cf ON vw.id_consulta_marcada = cf.FK_consulta_marcada "
 					   + " JOIN tblfacturaconsulta fcs ON cf.id_consulta_confirmada = fcs.FK_consulta_confirmada "
 					   + " JOIN tbltriagem trg ON cf.id_consulta_confirmada = trg.FK_consulta_confirmada "
-					   + " WHERE cf.id_consulta_confirmada NOT IN (SELECT FK_consulta_confirmada FROM tblconsultafinalizada)";
+					   + " WHERE cf.id_consulta_confirmada NOT IN (SELECT FK_consulta_confirmada FROM tblconsultafinalizada) LIMIT 100 ";
 			List<Paciente> lista = new ArrayList<>();
 			try {
 				 con = Conexao.getConexao();
@@ -321,8 +432,8 @@ public int inserirmarcacao(Paciente mc){
 				 while(rs.next())
 				 {
 					 Paciente p = new Paciente();
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setNomegenero(rs.getString("genero"));
 					 p.setTelefonep(rs.getLong("contacto"));
@@ -345,6 +456,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return lista;
 		}
@@ -364,8 +482,8 @@ public int inserirmarcacao(Paciente mc){
 				 while(rs.next())
 				 {
 					 Paciente p = new Paciente();
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setNomegenero(rs.getString("genero"));
 					 p.setTelefonep(rs.getLong("contacto"));
@@ -389,6 +507,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return lista;
 		}
@@ -406,8 +531,8 @@ public int inserirmarcacao(Paciente mc){
 				 if(rs.next())
 				 {
 					
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setTelefonep(rs.getLong("contacto"));
 					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
@@ -426,6 +551,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return p;
 		}
@@ -442,8 +574,8 @@ public int inserirmarcacao(Paciente mc){
 				 ResultSet rs = ps.executeQuery();
 				 if(rs.next())
 				 {
-					 p.setNome_paciente(rs.getString("NomeCompleto"));
-					 p.setNome_doutor(rs.getString("nome")+" "+rs.getString("ultimo_nome"));
+					 p.setNome_paciente(rs.getString("nomePaciente"));
+					 p.setNome_doutor(rs.getString("nomeDoutor"));
 					 p.setServico(rs.getString("servico"));
 					 p.setTelefonep(rs.getLong("contacto"));
 					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
@@ -459,11 +591,73 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return p;
 		}
 
 
+		@Override
+		public List<Paciente> listaConsultaAgendada(AgendaConsultaFilter filter) {
+			String sql = "SELECT * FROM vwlistaConsultaAgendada where 1 = 1 " ;
+			Date datanull = ft.dataSql(ft.dataToPadrao(""));
+			if(!filter.getNomPaciente().isEmpty()) {
+				sql = sql + " and nomePaciente Like '%" + filter.getNomPaciente() + "%' ";
+			}
+			if(!filter.getNomDoutor().isEmpty()) {
+				sql = sql + " and nomeDoutor Like '" + filter.getNomDoutor() +"%' ";
+			}
+			if(filter.getServicoId() != 0) {
+				sql = sql + " and FK_servico = "+ filter.getServicoId() +" ";
+			}
+			if(filter.getDataConsulta().getDate() != datanull.getDate()) {
+				sql = sql + " and data_do_agendamento Like '"+ filter.getDataConsulta() +"' ";
+			}
+			sql = sql + " order by id_consulta_marcada desc limit  100 ";
+			List<Paciente> lista = new ArrayList<>();
+			try {
+				 con = Conexao.getConexao();
+				 PreparedStatement ps = con.prepareStatement(sql);				 
+				 ResultSet rs = ps.executeQuery();
+				 while(rs.next())
+				 {
+					 Paciente p = new Paciente();
+					 p.setNome_paciente(rs.getString("NomePaciente"));
+					 p.setNome_doutor(rs.getString("NomeDoutor"));
+					 p.setServico(rs.getString("servico"));
+					 p.setTelefonep(rs.getLong("contacto"));
+					 p.setFK_consulta_marcada(rs.getInt("id_consulta_marcada"));
+					 p.setHora_daconfirmacao(rs.getString("hora_do_agendamento"));
+					 Calendar data = Calendar.getInstance();
+					 data.setTime(rs.getDate("data_do_agendamento"));
+					 p.setData_do_agendamento(data);
+					 p.setFK_servico(rs.getInt("FK_servico"));
+					 p.setPac_idade(rs.getInt("idade"));
+					 p.setFK_paciente(rs.getInt("FK_paciente"));
+					 p.setFK_doutor(rs.getInt("FK_doutor"));
+					 confirmado = consultaConfirmada(rs.getInt("id_consulta_marcada"));
+					 p.setConfirmado(confirmado);
+					 p.setFK_consulta_confirmada(confirmado);
+					 lista.add(p);
+				 }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
+			}
+			return lista;
+		}
 		@Override
 		public List<Paciente> listaConsultaAgendada(String query) {
 			String sql = "SELECT * FROM vwlistaConsultaAgendada where nomeCompleto Like ? order by id_consulta_marcada desc limit 5";
@@ -496,10 +690,16 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return lista;
 		}
-
 
 		@Override
 		public Paciente listaConsultaPorId(int codcs) {
@@ -523,6 +723,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return pac;
 		}
@@ -540,6 +747,13 @@ public int inserirmarcacao(Paciente mc){
 					 ultimoId = rs.getInt("id_consulta_confirmada");
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return ultimoId;
 		}
@@ -557,6 +771,13 @@ public int inserirmarcacao(Paciente mc){
 					 ultimoId = rs.getInt("FK_servico");
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return ultimoId;
 		}
@@ -589,6 +810,13 @@ public int inserirmarcacao(Paciente mc){
 				 }
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return lista;
 		}
@@ -607,6 +835,13 @@ public int inserirmarcacao(Paciente mc){
 				con.close();
 			}catch (Exception e) {
 				e.printStackTrace();
+			}finally {			
+				 
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} 
 			}
 			return "";
 		}
@@ -615,7 +850,7 @@ public int inserirmarcacao(Paciente mc){
 		public Triagem getSinais(String codc)
 		{
 			Triagem pac = null;
-			String sql = "SELECT * FROM tbltriagem where FK_consulta_confirmada = ? ";
+			String sql = "SELECT * FROM vwtriados where FK_consulta_confirmada = ? ";
 			try
 			{
 				con = Conexao.getConexao();

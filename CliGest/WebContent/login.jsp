@@ -31,20 +31,16 @@
                                 <span class="fa fa-lock" aria-hidden="true"></span>
                                 <input name="senha" type="password" class="form-control" id="inputSuccess5" aria-describedby="inputSuccess5Status" placeholder="Senha de Utilizador">
                             </div>
-                            <div class="form-group">
-                                <div class="">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name=""> Lembre de mim
-                                        </label>
-                                    </div>
-                                </div>
+                            <div style="padding: 0; margin: -5px">
+                            <text>
+                                <font size="1" color="black">
+                                    A sua sessão expirou. Favor efectuar o login para voltar a ter acesso ao sistema.
+                                </font>
+                            </text>
                             </div>
+                            
                             <div class="form-group text-center">
-                                <button type="submit" class="btn">Entrar</button>
-                            </div>
-                            <div class="form-group text-center">
-                                <a href="#">Esqueceu a senha?</a>
+                                <button type="submit" class="btn">ENTRAR</button>
                             </div>
                         </form>
                     </div>
